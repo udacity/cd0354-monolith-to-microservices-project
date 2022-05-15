@@ -8,6 +8,6 @@ spec:
   ports:
   - name: "8100"
     port: 8100
-    targetPort: 8100
+    targetPort: 80
   selector:
     service: frontend    

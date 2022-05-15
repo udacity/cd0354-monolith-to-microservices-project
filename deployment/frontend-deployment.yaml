@@ -17,10 +17,10 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: tdlinh89/udagram-frontend:v2
+        image: tdlinh89/udagram-frontend:v1
         imagePullPolicy: Always          
         ports:
-        - containerPort: 8100
+        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"
