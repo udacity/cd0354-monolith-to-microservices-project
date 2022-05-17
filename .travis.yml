@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+install:
+  - echo "nothing needs to be installed"
+
+before_script:
+  - echo "no tests"
+# Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
+# Use either `docker-compose` or individual `docker build` commands
+# Build
+script:
+  - docker --version
+  - docker build -t udagram-api-feed ./udagram-api-feed
+  - docker tag udagram-api-feed tuankhoi2206/udagram-api-feed:v1
+  - docker build -t udagram-api-user ./udagram-api-user
+  - docker tag udagram-api-user tuankhoi2206/udagram-api-user:v1
+  - docker build -t udagram-frontend ./udagram-frontend
+  - docker tag udagram-frontend tuankhoi2206/udagram-frontend:v1
+  - docker build -t reverseproxy ./udagram-reverseproxy
+  - docker tag reverseproxy tuankhoi2206/reverseproxy:v1
+
+# Push
+after_success:
+# Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push tuankhoi2206/udagram-api-feed:v1
+  - docker push tuankhoi2206/udagram-api-user:v1
+  - docker push tuankhoi2206/udagram-frontend:v1
+  - docker push tuankhoi2206/reverseproxy:v1
+# Do similar for other three images
