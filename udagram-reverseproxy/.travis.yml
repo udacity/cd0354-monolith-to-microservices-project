@@ -1,24 +1,13 @@
-language: node_js
-node_js:
-  - 13
+# Build
+- docker build -t udagram-reverseproxy ./udagram-reverseproxy
+# Do similar for other three images
 
-services:
-  - docker
+# Tagging
+- docker tag udagram-reverseproxy tuankhoi2206/udagram-reverseproxy:v1
+# Do similar for other three images
 
-# Pre-testing installs
-install:
-  - echo "nothing needs to be installed"
-
-# Scripts to be run such as tests
-before_script:
-  - echo "no tests"
-
-script:
-  - docker --version # print the version for logging
-  - docker build -t udagram-reverseproxy .
-  - docker tag udagram-reverseproxy tuankhoi2206/udagram-reverseproxy:v1
-
-# Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push tuankhoi2206/udagram-reverseproxy
+# Push
+# Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push tuankhoi2206/reverseproxy:v1
+# Do similar for other three images
