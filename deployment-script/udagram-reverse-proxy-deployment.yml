@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-reverse-proxy
+  namespace: default
+  labels:
+    app: udagram-reverse-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-reverse-proxy
+  template:
+    metadata:
+      labels:
+        app: udagram-reverse-proxy
+    spec:
+      containers:
+      - name: nginx
+        image: tuankhoi2206/reverseproxy:v1
+        imagePullPolicy: Always                
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
