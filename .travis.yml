@@ -23,11 +23,11 @@ install:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker images
-  - docker tag reverseproxy $DOCKER_USERNAME/reverseproxy
-  - docker push $DOCKER_USERNAME/reverseproxy
-  - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user
-  - docker push $DOCKER_USERNAME/udagram-api-user
-  - docker tag udagram-api-feed $DOCKER_USERNAME/udagram-api-feed
-  - docker push $DOCKER_USERNAME/udagram-api-feed
-  - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontend
-  - docker push $DOCKER_USERNAME/udagram-frontend
+  - docker tag reverseproxy $DOCKER_USERNAME/reverseproxy:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USERNAME/reverseproxy:$TRAVIS_BUILD_NUMBER
+  - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USERNAME/udagram-api-user:$TRAVIS_BUILD_NUMBER
+  - docker tag udagram-api-feed $DOCKER_USERNAME/udagram-api-feed:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USERNAME/udagram-api-feed:$TRAVIS_BUILD_NUMBER
+  - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontend:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USERNAME/udagram-frontend:$TRAVIS_BUILD_NUMBER
