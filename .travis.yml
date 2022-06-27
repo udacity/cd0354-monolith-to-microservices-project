@@ -28,6 +28,6 @@ after_success:
   - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user
   - docker push $DOCKER_USERNAME/udagram-api-user
   - docker tag udagram-api-feed $DOCKER_USERNAME/udagram-api-feed
-  - docker push $DOCKER_USERNAME/udagram-api-user
-  - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user
-  - docker push $DOCKER_USERNAME/udagram-api-user
+  - docker push $DOCKER_USERNAME/udagram-api-feed
+  - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontend
+  - docker push $DOCKER_USERNAME/udagram-frontend
