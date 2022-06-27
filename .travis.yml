@@ -22,7 +22,7 @@ install:
   
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push https://hub.docker.com/repository/docker/tinhpt94/reverseproxy
-  - docker push https://hub.docker.com/repository/docker/tinhpt94/udagram-api-user
-  - docker push https://hub.docker.com/repository/docker/tinhpt94/udagram-api-feed
-  - docker push https://hub.docker.com/repository/docker/tinhpt94/udagram-frontend
+  - docker push tinhpt94/reverseproxy:latest
+  - docker push tinhpt94/udagram-api-user:latest
+  - docker push tinhpt94/udagram-api-feed:latest
+  - docker push tinhpt94/udagram-frontend:latest
