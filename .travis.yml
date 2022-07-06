@@ -1,0 +1,26 @@
+sudo: required
+services:
+  - docker
+
+env:
+  COMPOSE_VERSION: 1.4.1
+
+before_install:
+ - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+ - chmod +x docker-compose
+ - sudo mv docker-compose /usr/local/bin
+
+ script:
+  - docker-compose -f docker-compose-build.yaml build --parallel
+  - docker tag udagram-reverseproxy gammer4live/udagram-reverseproxy:v1
+  - docker tag udagram-api-user gammer4live/udagram-api-user:v1
+  - docker tag udagram-api-feed gammer4live/udagram-api-feed:v1
+  - docker tag udagram-frontend gammer4live/udagram-frontend:v1
+
+# Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push gammer4live/udagram-reverseproxy:v1
+  - docker push gammer4live/udagram-api-user:v1
+  - docker push gammer4live/udagram-api-feed:v1
+  - docker push gammer4live/udagram-frontend:v1
