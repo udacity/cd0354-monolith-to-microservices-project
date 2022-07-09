@@ -3,13 +3,26 @@ import {config} from './config/config';
 
 
 // Configure AWS
-const credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
-AWS.config.credentials = credentials;
+// const credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
+// AWS.config.credentials = credentials;
+
+// export const s3 = new AWS.S3({
+//   signatureVersion: 'v4',
+//   region: config.aws_region,
+//   params: {Bucket: config.aws_media_bucket},
+// });
+//Configure AWS
+AWS.config = new AWS.Config({
+  accessKeyId:config.aws_access_key_Id,
+  secretAccessKey:config.aws_secret_key,
+  region: config.aws_region,
+  signatureVersion:'v4'
+})
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
   region: config.aws_region,
-  params: {Bucket: config.aws_media_bucket},
+  params: {Bucket: config.aws_media_bucket}
 });
 
 // Generates an AWS signed URL for retrieving objects
