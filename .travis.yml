@@ -1,23 +1,35 @@
+language: node_js
+node_js:
+  - 13
 
-#Build-
-- docker-compose build -t udagram-api-feed ./udagram-api-feed
-- docker-compose build -t udagram-api-user ./udagram-api-user
-- docker-compose build -t udagram-frontend ./udagram-frontend
-- docker-compose build -t udagram-reverseproxy ./udagram-reverseproxy
+services:
+  - docker
 
-# tagging
-- docker tag udagram-api-feed okoth/udagram-api-feed:v1
-- docker tag udagram-api-user okoth/udagram-api-user:v1
-- docker tag udagram-frontend okoth/udagram-frontend:v1
-- docker tag udagram-reverseproxy okoth/udagram-reverseproxy:v1
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
 
-# push
-# Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
 
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker push okoth/udagram-api-feed:v1
-- docker push okoth/udagram-api-user:v1
-- docker push okoth/udagram-frontend:v1
-- docker push okoth/udagram-api-reverseproxy:v1
+script:
+  - docker --version # print the version for logging
+  - docker-compose build -t udagram-api-feed ./udagram-api-feed
+  - docker-compose build -t udagram-api-user ./udagram-api-user
+  - docker-compose build -t udagram-frontend ./udagram-frontend
+  - docker-compose build -t udagram-reverseproxy ./udagram-reverseproxy
+  # tagging
+  - docker tag udagram-api-feed okoth/udagram-api-feed:v1
+  - docker tag udagram-api-user okoth/udagram-api-user:v1
+  - docker tag udagram-frontend okoth/udagram-frontend:v1
+  - docker tag udagram-reverseproxy okoth/udagram-reverseproxy:v1
 
+# Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push okoth/udagram-api-feed:v1
+  - docker push okoth/udagram-api-user:v1
+  - docker push okoth/udagram-frontend:v1
+  - docker push okoth/udagram-reverseproxy:v1
 
