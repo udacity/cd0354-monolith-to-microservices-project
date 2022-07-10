@@ -1,5 +1,5 @@
 
-#Build
+#Build-
 - docker-compose build -t udagram-api-feed ./udagram-api-feed
 - docker-compose build -t udagram-api-user ./udagram-api-user
 - docker-compose build -t udagram-frontend ./udagram-frontend
