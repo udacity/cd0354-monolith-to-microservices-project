@@ -32,4 +32,3 @@ after_success:
   - docker push okoth/udagram-api-user:v1
   - docker push okoth/udagram-frontend:v1
   - docker push okoth/udagram-reverseproxy:v1
-
