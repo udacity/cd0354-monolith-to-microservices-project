@@ -1,0 +1,31 @@
+language: node_js
+node_js: 
+  - 12
+
+services:
+  - docker
+
+#Build
+- docker-compose build -t udagram-api-feed ./udagram-api-feed
+- docker-compose build -t udagram-api-user ./udagram-api-user
+- docker-compose build -t udagram-frontend ./udagram-frontend
+- docker-compose build -t udagram-reverseproxy ./udagram-reverseproxy
+
+# tagging
+- docker tag udagram-api-feed okoth/udagram-api-feed:v1
+- docker tag udagram-api-user okoth/udagram-api-user:v1
+- docker tag udagram-frontend okoth/udagram-frontend:v1
+- docker tag udagram-reverseproxy okoth/udagram-reverseproxy:v1
+
+# push
+# Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
+
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push okoth/udagram-api-feed:v1
+- docker push okoth/udagram-api-user:v1
+- docker push okoth/udagram-frontend:v1
+- docker push okoth/udagram-api-reverseproxy:v1
+
+
+
+
