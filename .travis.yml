@@ -21,7 +21,7 @@ script:
   - docker tag udagram-api-user atochi/udagram-api-user:v2
   - docker tag reverseproxy atochi/reverseproxy:v2
 
-after_success:E
+after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push atochi/udagram-frontend:v2
   - docker push atochi/udagram-api-feed:v2
