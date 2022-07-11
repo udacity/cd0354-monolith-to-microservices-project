@@ -25,6 +25,7 @@
     "email-validator": "^2.0.4",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
     "pg": "^8.0.3",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^5.21.4",
