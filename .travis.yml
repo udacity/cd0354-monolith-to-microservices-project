@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version # print the version for logging
+  - docker-compose -f docker-compose-build.yaml build --parallel
+  - docker tag udagram-api-user golf4sp/udagram-api-user:v1
+  - docker tag udagram-api-feed golf4sp/udagram-api-feed:v1
+  - docker tag udagram-api-reverseproxy golf4sp/udagram-reverseproxy:v1
+  - docker tag udagram-frontend golf4sp/udagram-frontend:v1
+
+# Tasks to perform after the process is successful. 
+# Formatting the Docker username and password as below enables you to 
+# programmatically log in without having the password exposed in logs.
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push golf4sp/udagram-api-user
+  - docker push golf4sp/udagram-api-feed
+  - docker push golf4sp/udagram-reverseproxy
+  - docker push golf4sp/udagram-frontend
