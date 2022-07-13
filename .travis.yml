@@ -20,8 +20,8 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
   # tagging
-  - docker tag udagram-api-feed okoth/udagram-api-feed:v1
-  - docker tag udagram-api-user okoth/udagram-api-user:v1
+  - docker tag udagram-api-feed okoth/udagram-api-feed:v2
+  - docker tag udagram-api-user okoth/udagram-api-user:v2
   - docker tag udagram-frontend okoth/udagram-frontend:v1
   - docker tag udagram-reverseproxy okoth/udagram-reverseproxy:v1
 
