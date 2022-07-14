@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -19,3 +19,62 @@ spec:
         image: okoth/udagram-frontend:v1
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+        env:
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_REGION
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_PROFILE
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_BUCKET
+
+
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: AWS_SECRET_ACCESS_KEY
+        - name: POSTGRES_DB
+          valueFrom: 
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_HOST
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: password
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: URL
+
