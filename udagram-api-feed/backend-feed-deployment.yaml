@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-feed
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend-feed
@@ -16,6 +16,20 @@ spec:
     spec:
       containers:
       - name: udagram-api-feed
-        image: okoth/udagram-api-feed:v1
+        image: okoth/udagram-api-feed:v2
         ports:
         - containerPort: 80
+        env:
+          - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: AWS_ACCESS_KEY_ID
+          - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: AWS_SECRET_ACCESS_KEY
+              
+            
+

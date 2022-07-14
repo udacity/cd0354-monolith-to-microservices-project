@@ -4,10 +4,10 @@ metadata:
   name: env-configmap
 data:
      
-  POSTGRES_DB: "${POSTGRES_DB}"
-  POSTGRES_HOST: "${POSTGRES_HOST}"
-  AWS_REGION: "${AWS_REGION}"
-  AWS_PROFILE: "${AWS_PROFILE}"
-  AWS_BUCKET: "${AWS_BUCKET}"
-  JWT_SECRET: "${JWT_SECRET}"
+  POSTGRES_DB: "postgres"
+  POSTGRES_HOST: "okothdev.cbqwj41jwf7p.us-east-1.rds.amazonaws.com"
+  AWS_REGION: "us-east-1"
+  AWS_PROFILE: "default"
+  AWS_BUCKET: "faith-414514675546-dev"
+  JWT_SECRET: "testing"
   URL: "http://localhost:8100"

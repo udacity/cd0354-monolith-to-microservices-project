@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-user
-        image: okoth/udagram-api-user:v1
+        image: okoth/udagram-api-user:v2
+        
         ports:
         - containerPort: 80
