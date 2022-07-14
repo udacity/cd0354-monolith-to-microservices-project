@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+data:
+  POSTGRES_DATABASE: postgres
+  POSTGRES_HOST: rds-850110712456.c8bo8tfpekv3.us-east-2.rds.amazonaws.com
+  AWS_REGION: us-east-2
+  AWS_PROFILE: default
+  AWS_S3_BUCKET: arn:aws:s3:::project3-850110712456
+  JWT_SECRET: hello
+  URL: https://oidc.eks.us-east-2.amazonaws.com:8100
