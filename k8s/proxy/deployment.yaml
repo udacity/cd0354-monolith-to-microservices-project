@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverseproxy
+  # namespace: udagram
+  labels:
+    service: reverseproxy
+spec:
+  selector:
+    matchLabels:
+      service: reverseproxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: reverseproxy
+    spec:
+      containers:
+      - image: ehbraheem/reverseproxy:latest
+        name: reverseproxy
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      restartPolicy: Always
+

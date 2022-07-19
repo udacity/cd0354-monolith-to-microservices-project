@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-user
+  # namespace: udagram
+  labels:
+    service: backend-user
+    app: backend-user
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    service: backend-user
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -1,0 +1,48 @@
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+    image: ehbraheem/reverseproxy
+  backend_user:
+    build:
+      context: ./udagram-api-user
+    image: ehbraheem/udagram-api-user
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
+      - POSTGRES_HOST=$POSTGRES_HOST
+      - POSTGRES_PORT=$POSTGRES_PORT
+      - JWT_SECRET=$JWT_SECRET
+      - AWS_PROFILE=$AWS_PROFILE
+      - AWS_REGION=$AWS_REGION
+      - AWS_BUCKET=$AWS_BUCKET
+      - URL=$URL
+
+
+  backend_feed:
+    build:
+      context: ./udagram-api-feed
+    image: ehbraheem/udagram-api-feed
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
+      - POSTGRES_HOST=$POSTGRES_HOST
+      - POSTGRES_PORT=$POSTGRES_PORT
+      - JWT_SECRET=$JWT_SECRET
+      - AWS_PROFILE=$AWS_PROFILE
+      - AWS_REGION=$AWS_REGION
+      - AWS_BUCKET=$AWS_BUCKET
+      - URL=$URL
+  frontend:
+    build:
+      context: ./udagram-frontend
+    image: ehbraheem/udagram-frontend
+    depends_on:
+      - reverseproxy
+      - backend_user
+      - backend_feed
+    environment:
+      - URL=$URL

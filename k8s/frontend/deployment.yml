@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  # namespace: udagram
+  labels:
+    service: frontend
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: frontend
+  template:
+    metadata:
+      labels:
+        service: frontend
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ehbraheem/udagram-frontend:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 3
+          timeoutSeconds: 1
+        # env:
+        # - name: URL
+        #   value: http://backend-user-svc.udagram.svc.cluster.local:8080/api/v0/users/
+
+ 

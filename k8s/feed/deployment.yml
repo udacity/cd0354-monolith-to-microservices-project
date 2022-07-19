@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-feed
+  # namespace: udagram
+  labels:
+    service: backend-feed
+    app: backend-feed
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: backend-feed
+  template:
+    metadata:
+      labels:
+        service: backend-feed
+        app: backend-feed
+    spec:
+      containers:
+      - name: feed
+        image: ehbraheem/udagram-api-feed:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 300 # We want to wait for the server to start before sending the first request
+          periodSeconds: 10
+          timeoutSeconds: 1
+        env:
+          - name: POSTGRES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: udagram-secret
+                key: POSTGRES_USERNAME
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: udagram-secret
+                key: POSTGRES_PASSWORD
+          - name: POSTGRES_HOST
+            valueFrom:
+              secretKeyRef:
+                name: udagram-secret
+                key: POSTGRES_HOST
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: udagram-secret
+                key: POSTGRES_DB
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: udagram-secret
+                key: JWT_SECRET
+          - name: AWS_BUCKET
+            valueFrom:
+              secretKeyRef:
+                name: udagram-secret
+                key: AWS_BUCKET
+          - name: AWS_REGION
+            valueFrom:
+              configMapKeyRef:
+                name: udagram-config
+                key: AWS_REGION
+          - name: AWS_PROFILE
+            valueFrom:
+              configMapKeyRef:
+                name: udagram-config
+                key: AWS_PROFILE
+          - name: URL
+            valueFrom:
+              configMapKeyRef:
+                name: udagram-config
+                key: URL
+        volumeMounts:
+          - mountPath: /root/.aws/
+            name: aws-credentials
+            readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: aws-credentials
+          secret:
+            secretName: aws-secret
