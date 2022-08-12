@@ -31,4 +31,4 @@ after_success:
   - docker push haitham911eg/reverseproxy:v1
   - docker push haitham911eg/udagram-api-feed:v1
   - docker push haitham911eg/udagram-api-user:v1
-  - docker push haitham911eg/udagram-frontend:v1
+  - docker push haitham911eg/udagram-frontend:v2
