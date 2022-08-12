@@ -1,0 +1,61 @@
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+    image: reverseproxy
+    depends_on:
+    - backend_user
+    - backend_feed
+    networks:
+    - nginx_net  
+  backend_user:
+    build:
+      context: ./udagram-api-user
+    image: udagram-api-user
+    environment:
+      POSTGRES_USERNAME: postgres    
+      POSTGRES_PASSWORD: passpostgres
+      POSTGRES_HOST: database-1.cgmuewubuhtl.us-east-2.rds.amazonaws.com
+      POSTGRES_DB: udacitydb
+      AWS_BUCKET: my-346910922421-bucket
+      AWS_REGION: us-east-2
+      AWS_PROFILE: Admin
+      JWT_SECRET: testing
+      URL: http://localhost:8080   
+    networks:
+    - nginx_net        
+  backend_feed:
+    build:
+      context: ./udagram-api-feed
+    image: udagram-api-feed
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: passpostgres
+      POSTGRES_HOST: database-1.cgmuewubuhtl.us-east-2.rds.amazonaws.com
+      POSTGRES_DB: udacitydb
+      AWS_BUCKET: my-346910922421-bucket
+      AWS_REGION: us-east-2
+      AWS_PROFILE: Admin
+      JWT_SECRET: testing
+      URL: http://localhost:8080    
+    networks:
+    - nginx_net           
+  frontend:
+    build:
+      context: ./udagram-frontend
+    image: udagram-frontend:local
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: passpostgres
+      POSTGRES_HOST: database-1.cgmuewubuhtl.us-east-2.rds.amazonaws.com
+      POSTGRES_DB: udacitydb
+      AWS_BUCKET: my-346910922421-bucket
+      AWS_REGION: us-east-2
+      AWS_PROFILE: Admin
+      JWT_SECRET: testing
+      URL: http://localhost:8080  
+    networks:
+    - nginx_net             
+networks:
+  nginx_net: 
