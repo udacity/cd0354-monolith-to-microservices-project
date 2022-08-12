@@ -1,0 +1,172 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubernetes.io/psp: eks.privileged
+  creationTimestamp: "2022-08-12T21:56:14Z"
+  generateName: backend-feed-6ff7c56bfd-
+  labels:
+    pod-template-hash: 6ff7c56bfd
+    service: backend-feed
+  name: backend-feed-6ff7c56bfd-p8tw8
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: backend-feed-6ff7c56bfd
+    uid: 6bcdc240-bf78-4989-ae95-c7832350f2fc
+  resourceVersion: "3275"
+  uid: 658c1ff2-7475-45eb-90e1-788dcf6abae5
+spec:
+  containers:
+  - env:
+    - name: URL
+      valueFrom:
+        configMapKeyRef:
+          key: URL
+          name: env-config
+    - name: AWS_BUCKET
+      valueFrom:
+        configMapKeyRef:
+          key: AWS_BUCKET
+          name: env-config
+    - name: AWS_PROFILE
+      valueFrom:
+        configMapKeyRef:
+          key: AWS_PROFILE
+          name: env-config
+    - name: AWS_REGION
+      valueFrom:
+        configMapKeyRef:
+          key: AWS_REGION
+          name: env-config
+    - name: JWT_SECRET
+      valueFrom:
+        configMapKeyRef:
+          key: JWT_SECRET
+          name: env-config
+    - name: POSTGRES_DB
+      valueFrom:
+        configMapKeyRef:
+          key: POSTGRES_DB
+          name: env-config
+    - name: POSTGRES_HOST
+      valueFrom:
+        configMapKeyRef:
+          key: POSTGRES_HOST
+          name: env-config
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: POSTGRES_PASSWORD
+          name: env-secret
+    - name: POSTGRES_USERNAME
+      valueFrom:
+        secretKeyRef:
+          key: POSTGRES_USERNAME
+          name: env-secret
+    image: haitham911eg/udagram-api-feed:v1
+    imagePullPolicy: Always
+    name: backend-feed
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 250m
+        memory: 64Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /root/.aws/
+      name: aws-secret
+      readOnly: true
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-jpxvs
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: ip-192-168-45-187.us-east-2.compute.internal
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: aws-secret
+    secret:
+      defaultMode: 420
+      secretName: aws-secret
+  - name: kube-api-access-jpxvs
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-12T21:56:14Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-12T21:56:14Z"
+    message: 'containers with unready status: [backend-feed]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-12T21:56:14Z"
+    message: 'containers with unready status: [backend-feed]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-12T21:56:14Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - image: haitham911eg/udagram-api-feed:v1
+    imageID: ""
+    lastState: {}
+    name: backend-feed
+    ready: false
+    restartCount: 0
+    started: false
+    state:
+      waiting:
+        message: couldn't find key POSTGRES_DB in ConfigMap default/env-config
+        reason: CreateContainerConfigError
+  hostIP: 192.168.45.187
+  phase: Pending
+  podIP: 192.168.48.105
+  podIPs:
+  - ip: 192.168.48.105
+  qosClass: Burstable
+  startTime: "2022-08-12T21:56:14Z"

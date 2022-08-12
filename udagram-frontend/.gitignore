@@ -28,7 +28,9 @@ plugins/
 plugins/android.json
 plugins/ios.json
 $RECYCLE.BIN/
-
+aws-secret.yaml
+env-configmap.yaml
+env-secret.yaml
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
