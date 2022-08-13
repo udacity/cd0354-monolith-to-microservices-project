@@ -5,6 +5,8 @@ import {config} from './config/config';
 // Configure AWS
 const credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
 AWS.config.credentials = credentials;
+///AWS.config.accessKeyId="AKIA5R5NPGCU5HU53B4V"
+///AWS.config.secretAccessKey="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"
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
