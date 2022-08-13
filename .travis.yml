@@ -23,7 +23,7 @@ script:
   - docker tag reverseproxy haitham911eg/reverseproxy:v1
   - docker tag udagram-api-feed haitham911eg/udagram-api-feed:v2
   - docker tag udagram-api-user haitham911eg/udagram-api-user:v2
-  - docker tag udagram-frontend haitham911eg/udagram-frontend:v4
+  - docker tag udagram-frontend haitham911eg/udagram-frontend:v5
 
 
 after_success:
@@ -31,4 +31,4 @@ after_success:
   - docker push haitham911eg/reverseproxy:v1
   - docker push haitham911eg/udagram-api-feed:v2
   - docker push haitham911eg/udagram-api-user:v2
-  - docker push haitham911eg/udagram-frontend:v4
+  - docker push haitham911eg/udagram-frontend:v5
