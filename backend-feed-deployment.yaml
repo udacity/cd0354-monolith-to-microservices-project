@@ -5,7 +5,7 @@ metadata:
     service: backend-feed
   name: backend-feed
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       service: backend-feed
@@ -15,12 +15,12 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: haitham911eg/udagram-api-feed:v1
+      - image: haitham911eg/udagram-api-feed:v2
         name: backend-feed
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "200Mi"
+            memory: "1024Mi"
             cpu: "250m"
           limits:
             memory: "1024Mi"
@@ -63,12 +63,12 @@ spec:
               key: POSTGRES_HOST
         - name: POSTGRES_PASSWORD
           valueFrom:
-            secretKeyRef:
+            configMapKeyRef:
               name: env-secret
               key: POSTGRES_PASSWORD
         - name: POSTGRES_USERNAME
           valueFrom:
-            secretKeyRef:
+            configMapKeyRef:
               name: env-secret
               key: POSTGRES_USERNAME
         volumeMounts:

@@ -5,7 +5,7 @@ metadata:
     service: backend-user
   name: backend-user
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       service: backend-user
@@ -15,12 +15,12 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: haitham911eg/udagram-api-user:v1
+      - image: haitham911eg/udagram-api-user:v2
         name: backend-user
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "200Mi"
+            memory: "1024Mi"
             cpu: "250m"
           limits:
             memory: "1024Mi"
@@ -48,12 +48,12 @@ spec:
               key: POSTGRES_HOST
         - name: POSTGRES_PASSWORD
           valueFrom:
-            secretKeyRef:
+            configMapKeyRef:
               name: env-secret
               key: POSTGRES_PASSWORD
         - name: POSTGRES_USERNAME
           valueFrom:
-            secretKeyRef:
+            configMapKeyRef:
               name: env-secret
               key: POSTGRES_USERNAME
       restartPolicy: Always
