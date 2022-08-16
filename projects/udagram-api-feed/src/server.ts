@@ -13,7 +13,7 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
   // await sequelize.sync();
 
   const app = express();
-  const port = process.env.PORT || 8082;
+  const port = process.env.PORT || 8080;
 
   app.use(express.json());
   app.use(cors({
