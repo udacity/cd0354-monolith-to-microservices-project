@@ -79,16 +79,13 @@ router.post('/', async (req: Request, res: Response) => {
   }
 
   const user = await User.findByPk(email);
-  if (user) {
-    return res.status(422).send({auth: false, message: 'User already exists.'});
-  }
+  if (user) return res.status(422).send({auth: false, message: 'User already exists.'});
 
   const generatedHash = await generatePassword(plainTextPassword);
-
-  const newUser = await new User({
+  const newUser = await User.create({
     email: email,
     passwordHash: generatedHash,
-  });
+  } as any);
 
   const savedUser = await newUser.save();
   const jwt = generateJWT(savedUser);
