@@ -9,5 +9,20 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push destinyajax/udagram-api-feed:v1
 
+  - docker build -t udagram-api-user ./projects/udagram-api-user
+  - docker tag udagram-api-user destinyajax/udagram-api-user:v1
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push destinyajax/udagram-api-user:v1
+
+  - docker build -t udagram-frontend ./projects/udagram-frontend
+  - docker tag udagram-frontend destinyajax/udagram-frontend:v1
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push destinyajax/udagram-frontend:v1
+
+  - docker build -t reverse-proxy ./projects/udagram-reverseproxy
+  - docker tag reverse-proxy destinyajax/reverseproxy:v1
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push destinyajax/reverseproxy:v1
+
 script: 
   - echo "Skipping test"
