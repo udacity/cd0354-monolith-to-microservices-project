@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: reverseproxy
+spec:
+  selector:
+    matchLabels:
+      app: reverseproxy
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: reverseproxy
+    spec:
+      containers:
+      - name: reverseproxy
+        image: destinyajax/reverseproxy:v1
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-frontend
+  labels:
+    app: udagram-frontend
+spec:
+  selector:
+    matchLabels:
+      app: udagram-frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: udagram-frontend
+    spec:
+      containers:
+        - name: udagram-frontend
+          image: destinyajax/udagram-frontend:v2
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: env-configmap
+            - secretRef:
+                name: credentials

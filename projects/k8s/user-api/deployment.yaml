@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user-deployment
+  labels:
+    app: backend-user
+spec:
+  selector:
+    matchLabels:
+      app: backend-user
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+        - name: backend-user
+          image: destinyajax/udagram-api-user:v1
+          ports:
+            - containerPort: 7000
+          envFrom:
+            - configMapRef:
+                name: env-configmap
+            - secretRef:
+                name: credentials

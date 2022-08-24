@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-feed-deployment
+  labels:
+    app: backend-feed
+spec:
+  selector:
+    matchLabels:
+      app: backend-feed
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: backend-feed
+    spec:
+      containers:
+        - name: backend-feed
+          image: destinyajax/udagram-api-feed:v1
+          ports:
+            - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: env-configmap
+            - secretRef:
+                name: credentials
