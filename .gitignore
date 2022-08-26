@@ -40,3 +40,10 @@ venv/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Customs
+set_env.sh
+.env
+docker-compose-build.yaml
+docker-compose.yaml
+.travis.yml
