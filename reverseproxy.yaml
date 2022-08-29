@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-feed
+  name: reverseproxy
 spec:
   selector:
     matchLabels:
-      run: backend-feed
+      run: reverseproxy
   replicas: 2
   template:
     metadata:
       labels:
-        run: backend-feed
+        run: reverseproxy
     spec:
       containers:
-      - name: backend-feed
-        image: docker.io/codecloude/udagram-api-feed:v3
+      - name: reverseproxy
+        image: docker.io/codecloude/udagram-reverseproxy:v3
         ports:
         - containerPort: 80
         resources:
@@ -28,12 +28,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: backend-feed
-  name: backend-feed
+    service: reverseproxy
+  name: reverseproxy
 spec:
   ports:
   - name: "8080"
     port: 8080
     targetPort: 8080
   selector:
-    service: backend-feed
+    service: reverseproxy
