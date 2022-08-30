@@ -1,0 +1,71 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   creationTimestamp: null
+#   labels:
+#     app: reverseproxy
+#   name: reverseproxy
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: reverseproxy
+#   strategy: {}
+#   template:
+#     metadata:
+#       creationTimestamp: null
+#       labels:
+#         app: reverseproxy
+#     spec:
+#       containers:
+#       - image: codecloude/reverseproxy:v3
+#         name: reverseproxy
+#         ports:
+#         - containerPort: 8080
+#         resources:
+#           requests:
+#             memory: "64Mi"
+#             cpu: "250m"
+#           limits:
+#             memory: "1024Mi"
+#             cpu: "500m"
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverseproxy
+spec:
+  selector:
+    matchLabels:
+      run: reverseproxy
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: reverseproxy
+    spec:
+      containers:
+      - name: reverseproxy
+        image: docker.io/codecloude/udagram-reverseproxy:v3
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 500m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: reverseproxy
+  name: reverseproxy
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    service: reverseproxy

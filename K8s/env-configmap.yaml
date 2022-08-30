@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  AWS_BUCKET: dimicro
+  AWS_PROFILE: default
+  AWS_REGION: us-east-1
+  JWT_SECRET: testing
+  POSTGRES_HOST: dimicrodb.ce6oyzabkldt.us-east-1.rds.amazonaws.com
+  POSTGRESS_DB: postgres
+  URL: http://localhost:8100
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: myconfig
+
+
