@@ -6,13 +6,13 @@ services:
     image: austinokari/reverseproxy 
   backend_user:
     build:
-      context: ../../udagram-c3-restapi-user
+      context: ../udagram-c3-restapi-user
     image: austinokari/rest-api-user
   backend_feed:
     build:
-      context: ../../udagram-c3-restapi-feed  
+      context: ../udagram-c3-restapi-feed  
     image: austinokari/rest-api-feed
   frontend:
     build:
-      context: ../../udagram-frontend  
+      context: ../udagram-frontend  
     image: austinokari/udagram-frontend
