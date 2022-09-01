@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  POSTGRES_USERNAME: lolade
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_HOST: postgres.cygfodsflblc.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: postgres
+  AWS_BUCKET: arn:aws:s3:::udagramfilterbucket
+  AWS_REGION: us-east-1AWS_PROFILE=default
+  JWT_SECRET: testing
+  URL: http://localhost:8100
