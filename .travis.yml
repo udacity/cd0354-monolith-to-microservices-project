@@ -22,7 +22,8 @@ install:
 
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
+
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" docker.io
   - docker-compose -f docker-compose-build.yaml push
 
 
