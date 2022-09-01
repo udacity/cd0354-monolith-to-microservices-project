@@ -19,4 +19,4 @@ before_install:
 
 install:
   - docker-compose -f udagram-deployment/docker-compose-build.yaml build --parallel
-  
+
