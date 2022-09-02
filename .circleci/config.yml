@@ -32,7 +32,7 @@ jobs:
             docker tag udagram-frontend lolade1234/udagram-frontend:v1
 
             docker build -t udagram-reverseproxy ./udagram-reverseproxy
-            docker tag udagram-reverseproxy lolade1234/udagram-reverseproxy:v1
+            docker tag udagram-reverseproxy lolade1234/udagram-reverseproxy:v2
 
             echo "-------- All images succesfully built----------"
             echo " ------- login in to hub--------"
@@ -43,7 +43,7 @@ jobs:
             docker push lolade1234/udagram-api-feed:v1
             docker push lolade1234/udagram-api-user:v1
             docker push lolade1234/udagram-frontend:v1
-            docker push lolade1234/udagram-reverseproxy:v1
+            docker push lolade1234/udagram-reverseproxy:v2
 workflows:
   default:
     jobs:
