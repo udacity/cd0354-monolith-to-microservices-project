@@ -12,7 +12,7 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: austinokari/rest-api-feed
+      - image: austinokari/rest-api-feed:v1
         name: backend-feed
         imagePullPolicy: Always  
         resources:

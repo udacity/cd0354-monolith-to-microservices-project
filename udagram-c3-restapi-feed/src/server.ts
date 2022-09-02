@@ -2,6 +2,7 @@ import express from 'express';
 import { sequelize } from './sequelize';
 import cors from 'cors';
 
+
 import { IndexRouter } from './controllers/v0/index.router';
 
 import bodyParser from 'body-parser';
@@ -16,6 +17,8 @@ const c = config.dev;
 
   const app = express();
   const port = process.env.PORT || 8080; // default port to listen
+ 
+
   
   app.use(bodyParser.json());
   app.use(cors({

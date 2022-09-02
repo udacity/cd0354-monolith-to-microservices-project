@@ -12,7 +12,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: austinokari/reverseproxy
+      - image: austinokari/reverseproxy:v1
         name: reverseproxy
         imagePullPolicy: Always          
         resources:

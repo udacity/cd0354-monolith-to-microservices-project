@@ -12,7 +12,7 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: austinokari/rest-api-user
+      - image: austinokari/rest-api-user:v1
         name: backend-user 
         imagePullPolicy: Always  
         resources:
