@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-feed
+spec:
+  selector:
+    matchLabels:
+      run: backend-feed
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: backend-feed
+    spec:
+      containers:
+      - name: backend-feed
+        image: docker.io/austinokari/udagram-api-feed:v1
+        env:
+        - name: POSTGRES_USERNAME
+          value: austindb
+        - name: POSTGRES_PASSWORD
+          value: 12345678
+        - name: POSTGRES_HOST
+          value: databaseproject3okari.crrg6h7lb3la.us-east-1.rds.amazonaws.com
+
+        - name: POSTGRES_DB
+          value: databaseproject3okari
+        - name: AWS_BUCKET
+          value: myproject3s3okari
+        - name: AWS_REGION
+          value: us-east-1
+        - name: AWS_PROFILE
+          value: default
+        - name: JWT_SECRET
+          value: welcome
+        - name: URL
+          value: http://localhost:8100
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+          requests:
+            cpu: 100m
