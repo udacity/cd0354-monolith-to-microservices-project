@@ -15,7 +15,7 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: austinokari/rest-api-feed:v1
+      - image: docker.io/austinokari/udagram-api-feed:v1
         name: backend-feed
         imagePullPolicy: Always  
         resources:
