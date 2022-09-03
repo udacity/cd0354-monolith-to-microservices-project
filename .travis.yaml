@@ -19,12 +19,12 @@ before_install:
 
 
 install:
-  - docker-compose -f udagram-deployment/docker-compose-build.yaml build --parallel
+  - docker-compose -f docker-compose-build.yaml build --parallel
 
 
 after_success:
 
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" docker.io
-  - docker-compose -f udagram-deployment/docker-compose-build.yaml push
+  - docker-compose -f docker-compose-build.yaml push
 
 
