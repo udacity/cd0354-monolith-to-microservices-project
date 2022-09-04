@@ -15,13 +15,13 @@ jobs:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker build -t udagram-api-feed -f ./udagram-api-feed .
+            docker build . -t udagram-api-feed -f ./udagram-api-feed
             docker push udagram-api-feed:v1
-            docker build -t udagram-api-user -f ./udagram-api-user .
+            docker build . -t udagram-api-user -f ./udagram-api-user
             docker push udagram-api-user:v1
-            docker build -t udagram-frontend -f ./udagram-frontend .
+            docker build . -t udagram-frontend -f ./udagram-frontend 
             docker push udagram-frontend:v1
-            docker build -t udagram-reverseproxy -f ./udagram-reverseproxy .
+            docker build . -t udagram-reverseproxy -f ./udagram-reverseproxy
             docker push udagram-reverseproxy:v1
 workflows:
   version: 2
