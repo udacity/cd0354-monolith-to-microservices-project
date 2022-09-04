@@ -20,7 +20,7 @@ Make sure that you are following the steps for _AWS Management Console_ and not 
 During the creation process, the EKS console will provide dropdown menus for selecting options such as IAM roles and VPCs. If none exist for you, follow the documentation that are linked in the EKS console.
 
 #### Tips
-* For the _Cluster Service Role_ in the creation process, create an [AWS role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) for EKS. Make sure you attach the policies for `AmazonEKSClusterPolicy`, `AmazonEC2ContainerServiceFullAccess`, and `AmazonEKSServicePolicy`.
+* For the _Cluster Service Role_ in the creation process, create an [AWS role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) for EKS. Make sure you attach the policies for `AmazonEKSClusterPolicy`, `AmazonECS_FullAccess`, and `AmazonEKSServicePolicy`.
 * If you don't have a [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html), create one with the `IPv4 CIDR block` value `10.0.0.0/16`. Make sure you select `No IPv6 CIDR block`.
 * Your _Cluster endpoint access_ should be set to _Public_
 * Your cluster may take ~20 minutes to be created. Once it's ready, it should be marked with an _Active_ status.
