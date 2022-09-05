@@ -5,7 +5,7 @@ metadata:
     service: reverseproxy
   name: reverseproxy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: reverseproxy
@@ -19,13 +19,6 @@ spec:
         - image: tatchumnono/reverseproxy
           name: reverseproxy
           imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "1024Mi"
-              cpu: "500m"
           ports:
             - containerPort: 8080
       restartPolicy: Always

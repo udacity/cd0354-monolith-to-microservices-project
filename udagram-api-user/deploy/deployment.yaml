@@ -19,14 +19,8 @@ spec:
           image: tatchumnono/udagram-api-user
           ports:
             - containerPort: 8080
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 3
-            periodSeconds: 3
           envFrom:
             - configMapRef:
-              name: env-configmap
-            - secreteRef:
-              name: env-secrete
+                name: env-configmap
+            - secretRef:
+                name: env-secrete
