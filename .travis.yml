@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "Nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "No tests planned"
+
+script:
+  - docker --version # print the version for logging
+  - docker-compose -f docker-compose-build.yaml build --parallel
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push massakone/reverseproxy
+  - docker push massakone/udagram-api-user
+  - docker push massakone/udagram-api-feed
+  - docker push massakone/udagram-frontend:local
