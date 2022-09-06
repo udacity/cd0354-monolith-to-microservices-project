@@ -19,6 +19,11 @@ spec:
           image: tatchumnono/udagram-api-feed
           ports:
             - containerPort: 8080
+          resources:
+            limits:
+              cpu: 512m
+            requests:
+              cpu: 256m
           envFrom:
             - configMapRef:
                 name: env-configmap
