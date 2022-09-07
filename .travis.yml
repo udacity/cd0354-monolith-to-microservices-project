@@ -23,4 +23,4 @@ after_success:
   - docker push matheusciaramella/udagram-api-user:latest
   - docker push matheusciaramella/udagram-api-feed:latest
   - docker push matheusciaramella/udagram-frontend:latest
-  - docker push matheusciaramella/reverseproxy:latest
+  - docker push matheusciaramella/udagram-reverseproxy:latest
