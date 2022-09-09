@@ -63,7 +63,5 @@
   },
     "include": [
         "src/**/*"
-    ],
-    "esModuleInterop": false,
-    "skipLibCheck": true
+    ]
 }
