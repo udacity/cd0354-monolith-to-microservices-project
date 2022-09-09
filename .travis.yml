@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version # print the version for logging
+  - docker-compose -f docker-compose-build.yaml build --parallel
+  - docker tag reverseproxy abanoubwagih/reverseproxy
+  - docker tag udagram-frontend:local abanoubwagih/udagram-frontend
+  - docker tag udagram-api-feed abanoubwagih/udagram-api-feed
+  - docker tag udagram-api-user abanoubwagih/udagram-api-user
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push abanoubwagih/reverseproxy
+  - docker push abanoubwagih/udagram-frontend
+  - docker push abanoubwagih/udagram-api-feed
+  - docker push abanoubwagih/udagram-api-user
+
