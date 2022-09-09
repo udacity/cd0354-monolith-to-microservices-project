@@ -62,15 +62,24 @@ services:
     env_file:
       - .env  
     environment:
-      POSTGRESS_USERNAME: 'postgres'
-      POSTGRESS_PASSWORD: 'postgresAbc111'
-      POSTGRESS_DB: 'postgres'
-      POSTGRESS_HOST: 'postgres.cohefwz5riff.us-east-1.rds.amazonaws.com'
-      AWS_REGION: 'us-east-1'
-      AWS_PROFILE: 'serverless-admin'
-      AWS_BUCKET: 'c2-udacity'
-      JWT_SECRET: 'testing'
-      URL: 'http://localhost:8100'
+      # POSTGRESS_USERNAME: 'postgres'
+      # POSTGRESS_PASSWORD: 'postgresAbc111'
+      # POSTGRESS_DB: 'postgres'
+      # POSTGRESS_HOST: 'postgres.cohefwz5riff.us-east-1.rds.amazonaws.com'
+      # AWS_REGION: 'us-east-1'
+      # AWS_PROFILE: 'serverless-admin'
+      # AWS_BUCKET: 'c2-udacity'
+      # JWT_SECRET: 'testing'
+      # URL: 'http://localhost:8100'
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DB: $POSTGRESS_DB
+      POSTGRESS_HOST: $POSTGRESS_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: 'http://localhost:8100'      
   backend-feed:
     image: udagram-api-feed
     volumes:
@@ -78,15 +87,24 @@ services:
     env_file:
       - .env      
     environment:
-      POSTGRESS_USERNAME: 'postgres'
-      POSTGRESS_PASSWORD: 'postgresAbc111'
-      POSTGRESS_DB: 'postgres'
-      POSTGRESS_HOST: 'postgres.cohefwz5riff.us-east-1.rds.amazonaws.com'
-      AWS_REGION: 'us-east-1'
-      AWS_PROFILE: 'serverless-admin'
-      AWS_BUCKET: 'c2-udacity'
-      JWT_SECRET: 'testing'
-      URL: 'http://localhost:8100'
+      # POSTGRESS_USERNAME: 'postgres'
+      # POSTGRESS_PASSWORD: 'postgresAbc111'
+      # POSTGRESS_DB: 'postgres'
+      # POSTGRESS_HOST: 'postgres.cohefwz5riff.us-east-1.rds.amazonaws.com'
+      # AWS_REGION: 'us-east-1'
+      # AWS_PROFILE: 'serverless-admin'
+      # AWS_BUCKET: 'c2-udacity'
+      # JWT_SECRET: 'testing'
+      # URL: 'http://localhost:8100'
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DB: $POSTGRESS_DB
+      POSTGRESS_HOST: $POSTGRESS_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: 'http://localhost:8100'      
   frontend:
     image: udagram-frontend:local
     ports:
