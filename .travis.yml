@@ -14,12 +14,22 @@ before_script:
   - echo "No tests planned"
 
 script:
-  - docker --version # print the version for logging
-  - docker-compose -f docker-compose-build.yaml build --parallel
+  - docker --version # Print the version for logging
+  - echo "Removing unused and dangling images"                       
+  - docker image prune --all # Remove unused and dangling images
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "Logged in DockerHub, next step is building the images" 
+  - docker-compose -f docker-compose-build.yaml build ----parallel
+  - echo "Building of images done, next step is pusshing images to DockerHub"
+  - echo "Pushing massakone/reverseproxy"
+  - docker push massakone/reverseproxy
+  - echo "Pushing massakone/reverseproxy"
+  - docker push massakone/udagram-api-user
+  - echo "Pushing massakone/reverseproxy"
+  - docker push massakone/udagram-api-feed
+  - echo "Pushing massakone/reverseproxy"
+  - docker push massakone/udagram-frontend
+  - echo "Pushing massakone/reverseproxy" 
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push massakone/reverseproxy
-  - docker push massakone/udagram-api-user
-  - docker push massakone/udagram-api-feed
-  - docker push massakone/udagram-frontend:local
+  - echo "Pushing images to DockerHub done"
