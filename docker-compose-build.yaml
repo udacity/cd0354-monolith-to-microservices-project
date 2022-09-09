@@ -15,4 +15,4 @@ services:
   frontend:
     build:
       context: ./udagram-frontend
-    image: massakone/udagram-frontend:local
+    image: massakone/udagram-frontend
