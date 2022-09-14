@@ -1,19 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: backend-feed
   labels:
-    app: backend-feed
-  name: backend-feed-svc
-  namespace: default
-  selfLink: /api/v1/namespaces/default/services/backend-feed-svc
+    run: backend-feed
 spec:
   ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
+  type: ClusterIP
   selector:
     app: backend-feed
-  sessionAffinity: None
-  type: ClusterIP
-status:
-  loadBalancer: {}
+  

@@ -4,4 +4,4 @@ metadata:
   name: env-configmap
 data:
   AWS_REGION: us-east-1
-  URL: http://localhost:8100
+  URL: http://localhost:8080

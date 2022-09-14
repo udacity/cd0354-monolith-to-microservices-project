@@ -20,10 +20,12 @@ spec:
           ports:
             - containerPort: 8080
           resources:
+            requests:
+              cpu: "250m"
+              memory: "1000Mi"
             limits:
               cpu: 512m
-            requests:
-              cpu: 256m
+              memory: "2000Mi"
           envFrom:
             - configMapRef:
                 name: env-configmap
