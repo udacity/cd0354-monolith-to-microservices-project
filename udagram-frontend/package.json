@@ -27,6 +27,7 @@
     "@ionic/cli": "^6.16.3",
     "core-js": "^2.5.4",
     "fsevents": "^2.3.2",
+    "ng": "^0.0.0",
     "rxjs": "~6.5.4",
     "zone.js": "~0.9.1"
   },
@@ -39,7 +40,7 @@
     "@angular/compiler": "~8.2.14",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
-    "@ionic/angular-toolkit": "~1.4.0",
+    "@ionic/angular-toolkit": "^7.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.12.0",
