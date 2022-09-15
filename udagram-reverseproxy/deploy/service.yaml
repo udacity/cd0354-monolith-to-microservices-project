@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     service: reverseproxy
-  name: reverseproxy-svc
+  name: reverseproxy
 spec:
   ports:
     - name: "8080"
