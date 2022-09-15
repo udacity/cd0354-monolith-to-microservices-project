@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: "3"
 services:
   reverseproxy:
@@ -15,4 +16,23 @@ services:
   frontend:
     build:
       context: ./udagram-frontend
+=======
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+    image: reverseproxy
+  backend_user:
+    build:
+      context: ./udagram-api-user
+    image: udagram-api-user
+  backend_feed:
+    build:
+      context: ./udagram-api-feed
+    image: udagram-api-feed
+  frontend:
+    build:
+      context: ./udagram-frontend
+>>>>>>> 1ea6dcf8702a0808584dc3a6cbbb40a22c99e195
     image: udagram-frontend:local
