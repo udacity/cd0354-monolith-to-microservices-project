@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user
+spec:
+  selector:
+    matchLabels:
+      run: backend-user
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: backend-user
+    spec:
+      containers:
+      - name: backend-user
+        image: docker.io/newthingade/udagram-api-user:v3
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: backend-user
+  name: backend-user
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    service: backend-user
