@@ -25,4 +25,3 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push sudkul/udagram-api-feed:v1
   - docker push sudkul/udagram-api-user:v1
-  - docker push sudkul/udagram-api-reverseproxy:v1
