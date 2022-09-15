@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+data:
+  postgres_host: postgres.cod2be2u6ezj.us-east-2.rds.amazonaws.com
+  postgres_db: postgres
+  aws_bucket: udagram-819379974179-dev
+  aws_region: us-east-2
+  aws_profile: default
+  jwt_secret: hello
+  url: http://localhost:8100
