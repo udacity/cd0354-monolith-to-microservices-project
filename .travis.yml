@@ -16,10 +16,10 @@ before_script:
 script:
   - docker --version # print the version for logging
   - docker-compose -f docker-compose-build.yaml build --parallel
-  - docker tag reverseproxy:local asanjaata96/reverseproxy:v1
+  - docker tag reverseproxy asanjaata96/reverseproxy:v1
   - docker tag udagram-api-user asanjaata96/udagram-api-user:v1
   - docker tag udagram-api-feed asanjaata96/udagram-api-feed:v1
-  - docker tag udagram-frontend asanjaata96/udagram-frontend:v1
+  - docker tag udagram-frontend:local asanjaata96/udagram-frontend:v1
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
