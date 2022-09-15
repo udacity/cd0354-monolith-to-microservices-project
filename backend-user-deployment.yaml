@@ -19,3 +19,10 @@ spec:
         image: asanjaata96/udagram-api-user:v1
         ports:
         - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: env-configmap
+        - secretRef:
+            name: postgres-secret
+        - secretRef:
+            name: aws-secret
