@@ -30,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:${{ steps.vars.outputs.tag }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:${{ steps.vars.outputs.tag }}, ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:latest
 
       - name: (2) UDAGRAM-API-USER -- Build and push
         id: docker_build2
@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-user:${{ steps.vars.outputs.tag }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-user:${{ steps.vars.outputs.tag }}, ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-user:latest
 
       - name: (3) UDAGRAM-REVERSE-PROXY -- Build and push
         id: docker_build3
@@ -46,7 +46,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-reverseproxy:${{ steps.vars.outputs.tag }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-reverseproxy:${{ steps.vars.outputs.tag }}, ${{ secrets.DOCKERHUB_USERNAME }}/udagram-reverseproxy:latest
 
       - name: (4) UDAGRAM-FRONTEND -- Build and push
         id: docker_build4
@@ -54,4 +54,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-frontend:${{ steps.vars.outputs.tag }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-frontend:${{ steps.vars.outputs.tag }}, ${{ secrets.DOCKERHUB_USERNAME }}/udagram-frontend:latest
