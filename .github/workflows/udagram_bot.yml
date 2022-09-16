@@ -28,7 +28,7 @@ jobs:
     needs: CI
     steps:
       - name: (1) UDAGRAM-API-FEED -- Build and push
-        id: docker_build
+        id: docker_build1
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:udagram-api-feed"
@@ -36,7 +36,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:latest
 
       - name: (2) UDAGRAM-API-USER -- Build and push
-        id: docker_build
+        id: docker_build2
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:udagram-api-user"
@@ -44,7 +44,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-user:latest
 
       - name: (3) UDAGRAM-REVERSE-PROXY -- Build and push
-        id: docker_build
+        id: docker_build3
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:udagram-reverseproxy"
@@ -52,7 +52,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-reverseproxy:latest
 
       - name: (4) UDAGRAM-FRONTEND -- Build and push
-        id: docker_build
+        id: docker_build4
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:udagram-frontend"
