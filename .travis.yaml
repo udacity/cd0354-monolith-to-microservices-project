@@ -15,7 +15,6 @@ script:
   - docker build -f udagram-frontend/Dockerfile -t  ./udagram-frontend:latest udagram-frontend
   - docker build -f udagram-reverse-proxy/Dockerfile -t  ./udagram-reverse-proxy:latest udagram-reverse-proxy
 
-
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push hushjoezzy/udagram-feed-api:latest
