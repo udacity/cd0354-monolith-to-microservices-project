@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    tags:
-      - '*'
-    # branches:
-    #   - 'main'
+    # tags:
+    #   - '*'
+    branches:
+      - 'main'
 
 jobs:
   docker:
@@ -30,7 +30,10 @@ jobs:
         with:
           context: {{defaultContext}}:udagram-api-feed
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:${{ steps.vars.outputs.tag }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:latest
+      
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
 
       # - name: (2) UDAGRAM-API-USER -- Build and push
       #   id: docker_build2
