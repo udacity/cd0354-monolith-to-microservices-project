@@ -8,7 +8,7 @@ on:
       - 'main'
 
 jobs:
-  DOCKER INIT:
+  DOCKER:
     runs-on: ubuntu-latest
     steps:
       -
@@ -23,9 +23,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-  DOCKER PUSH:
+  PUSH:
     runs-on: ubuntu-latest
-    needs: DOCKER PUSH
+    needs: DOCKER
     steps:
       - name: (1) UDAGRAM-API-FEED -- Build and push
         id: docker_build1
