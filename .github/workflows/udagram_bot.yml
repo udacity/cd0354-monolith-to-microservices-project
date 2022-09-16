@@ -8,7 +8,7 @@ on:
       - 'main'
 
 jobs:
-  docker:
+  DOCKER:
     runs-on: ubuntu-latest
     steps:
       -
@@ -23,7 +23,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+  PUSH:
+    runs-on: ubuntu-latest
+    needs: CI
+    steps:
       - name: (1) UDAGRAM-API-FEED -- Build and push
         id: docker_build
         uses: docker/build-push-action@v3
@@ -31,9 +34,31 @@ jobs:
           context: "{{defaultContext}}:udagram-api-feed"
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:latest
+
+      - name: (2) UDAGRAM-API-USER -- Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:udagram-api-user"
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-user:latest
+
+      - name: (3) UDAGRAM-REVERSE-PROXY -- Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:udagram-reverseproxy"
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-reverseproxy:latest
+
+      - name: (4) UDAGRAM-FRONTEND -- Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:udagram-frontend"
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-frontend:latest
       
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
 
       # - name: (2) UDAGRAM-API-USER -- Build and push
       #   id: docker_build2
