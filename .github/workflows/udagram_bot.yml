@@ -28,9 +28,9 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: {{defaultContext}}:udagram-api-feed
           push: true
-          tags: user/app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:${{ steps.vars.outputs.tag }}
 
       # - name: (2) UDAGRAM-API-USER -- Build and push
       #   id: docker_build2
