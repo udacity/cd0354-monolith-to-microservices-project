@@ -1,0 +1,47 @@
+.grid1 {
+    height: 100%;
+    padding: 0px;
+}
+
+.contaier-login {
+    width: 90%;
+    padding: 10px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(131, 131, 131, 0.75);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(116, 116, 116, 0.75);
+    box-shadow: 0px 0px 10px 1px rgba(113, 113, 113, 0.75);
+}
+@media (min-width: 1025px) and (max-width: 1280px){
+    .contaier-login {
+        width: 90%;
+        height: 90%;
+    }
+}
+
+.row1 {
+    height: 50%;
+    background: -moz-linear-gradient(45deg, rgb(30, 35, 36) 0%, rgba(30, 35, 36, 0.8) 100%);
+    background: -webkit-linear-gradient(45deg, rgb(30, 35, 36) 0%, rgba(30, 35, 36, 0.8) 100%);
+    background: linear-gradient(45deg, rgb(30, 35, 36) 0%, rgba(30, 35, 36, 0.8) 100%);
+}
+
+.row2 {
+    height: 50%;
+}
+
+ion-icon {
+    margin-right: 15px;
+}
+
+ion-button {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+ion-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute !important;
+    top: 0px !important;
+}

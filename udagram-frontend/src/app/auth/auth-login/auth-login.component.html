@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (submit)="onSubmit($event)">
+<!-- <form [formGroup]="loginForm" (submit)="onSubmit($event)">
   <ion-item>
     <ion-label position="floating" color="primary">Email</ion-label>
     <ion-input type="text" formControlName="email" required></ion-input>
@@ -7,11 +7,75 @@
     <ion-label position="floating" color="primary">Password</ion-label>
     <ion-input type="password" formControlName="password" required></ion-input>
   </ion-item>
-  <ion-button 
-    color="primary" 
-    type="submit"
-    [disabled]="!loginForm.valid">
-    Log In
-  </ion-button>
+  <ion-button color="primary" type="submit" [disabled]="!loginForm.valid">Log In</ion-button>
   {{error}}
-</form>
+</form> -->
+
+
+<ion-content>
+
+  <ion-grid class="grid1">
+  
+      <ion-row class="row1">
+          <ion-col>
+  
+          </ion-col>
+      </ion-row>
+  
+      <ion-row class="row2">
+          <ion-col>
+  
+          </ion-col>
+      </ion-row>
+  
+  </ion-grid>
+  
+  <ion-slide>
+    <div class="contaier-login">
+      <form [formGroup]="loginForm" (submit)="onSubmit($event)">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <h3>LOGIN</h3>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-list>
+
+                        <ion-item>
+                          <ion-label position="floating" color="primary">Email</ion-label>
+                          <ion-input type="text" formControlName="email" required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                          <ion-label position="floating" color="primary">Password</ion-label>
+                          <ion-input type="password" formControlName="password" required></ion-input>
+                        </ion-item>                          
+
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-button color="primary" type="submit" [disabled]="!loginForm.valid" fill="solid" expand="full">
+                      Log In
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-label>
+                        <h3>Do not have an account? 
+                          <a style="cursor: pointer;" color="secondary" (click)="presentRegister()">Register</a> instead 🔒️
+                        </h3>
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+      </form>
+      <div style="color: red; padding: .5em; min-width: 10em;">
+        {{error}}
+      </div>
+    </div>
+  </ion-slide>
+  

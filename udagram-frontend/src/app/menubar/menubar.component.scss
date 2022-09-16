@@ -3,3 +3,16 @@ ion-title {
     font-family: 'Dancing Script', cursive;
     font-size: 180%;
   }
+ion-toolbar{
+  // background-color: #2b2929 !important;
+  background-color: #1e2324;
+}
+.headerM, .toolBarM{
+  background-color: #2b2929 !important;
+}
+.header-md::after {
+  background-color: #84d7ea;
+}
+.inner-scroll {
+  background-color: #f5fbff;
+}

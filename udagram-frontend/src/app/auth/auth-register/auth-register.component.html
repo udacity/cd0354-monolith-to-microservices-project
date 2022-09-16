@@ -1,25 +1,75 @@
-<form [formGroup]="registerForm" (submit)="onSubmit($event)">
-    <ion-item>
-      <ion-label position="floating" color="primary">Name</ion-label>
-      <ion-input type="text" formControlName="name" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating" color="primary">Email</ion-label>
-      <ion-input type="text" formControlName="email" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating" color="primary">Password</ion-label>
-      <ion-input type="password" formControlName="password" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating" color="primary">Confirm Password</ion-label>
-      <ion-input type="password" formControlName="password_confirm" required></ion-input>
-    </ion-item>
-    <ion-button 
-      color="primary" 
-      type="submit"
-      [disabled]="!registerForm.valid ">
-      Register
-    </ion-button> {{error}}
-  </form>
+<ion-content>
+
+  <ion-grid class="grid1">
+  
+      <ion-row class="row1">
+          <ion-col>
+  
+          </ion-col>
+      </ion-row>
+  
+      <ion-row class="row2">
+          <ion-col>
+  
+          </ion-col>
+      </ion-row>
+  
+  </ion-grid>
+  
+  <ion-slide>
+    <div class="contaier-login">
+      <form [formGroup]="registerForm" (submit)="onSubmit($event)">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <h3>REGISTER</h3>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-list>
+
+                      <ion-item>
+                        <ion-label position="floating" color="primary">Name</ion-label>
+                        <ion-input type="text" formControlName="name" required></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label position="floating" color="primary">Email</ion-label>
+                        <ion-input type="text" formControlName="email" required></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label position="floating" color="primary">Password</ion-label>
+                        <ion-input type="password" formControlName="password" required></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label position="floating" color="primary">Confirm Password</ion-label>
+                        <ion-input type="password" formControlName="password_confirm" required></ion-input>
+                      </ion-item>                     
+
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-button color="primary" type="submit" [disabled]="!registerForm.valid" fill="solid" expand="full">
+                      Register
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-label>
+                        <h3>Already have an account? 
+                          <a style="cursor: pointer;" color="secondary" (click)="presentRegister()">Login</a> right now.
+                        </h3>
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+      </form>
+      <div style="color: red; padding: .5em; min-width: 10em;">
+        {{error}}
+      </div>
+    </div>
+  </ion-slide>
   
