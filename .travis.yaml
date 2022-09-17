@@ -16,7 +16,7 @@ before_install:
   - docker -v
 
 Install:
-  - docker-compose -f docker-compose.yaml build --parallel 
+  - docker-compose -f docker-compose-build.yaml build --parallel 
   - docker tag udagram-api-user hushjoezzy/udagram-api-user
   - docker tag udagram-api-feed hushjoezzy/udagram-api-feed
   - docker tag udagram-frontend hushjoezzy/udagram-frontend:local
