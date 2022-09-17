@@ -1,5 +1,3 @@
-
-
 language: minimal
 
 services: docker
@@ -16,6 +14,10 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker -v
+
 Install:
-  - docker-compose -f docker-compose.yml build --parallel 
-  - docker-compose -f docker-compose.yml push
+  - docker-compose -f docker-compose.yaml build --parallel 
+  - docker push hushjoezzy/udagram-frontend:local
+  - docker push hushjoezzy/reverseproxy
+  - docker push hushjoezzy/udagram-api-user
+  - docker push hushjoezzy/udagram-api-feed
