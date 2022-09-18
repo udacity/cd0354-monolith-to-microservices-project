@@ -23,7 +23,7 @@ Install:
   - docker-compose -f docker-compose-build.yaml build --parallel 
   - docker tag udagram-api-user:latest hushjoezzy/udagram-api-user
   - docker tag udagram-api-feed:latest hushjoezzy/udagram-api-feed
-  - docker tag udagram-frontend:latest hushjoezzy/udagram-frontend:local
+  - docker tag udagram-frontend:latest hushjoezzy/udagram-frontend
   - docker tag reverseproxy:latest hushjoezzy/reverseproxy
   
   - docker push hushjoezzy/udagram-frontend
