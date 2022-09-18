@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend_feed
+spec:
+  selector:
+    matchLabels:
+      run: backend_feed
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: backend_feed
+    spec:
+      containers:
+      - name: backend_feed
+        image: ifaniry/udagram-api-feed:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_HOST
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_REGION
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: AWS_REGION
+        - name: AWS_BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: AWS_BUCKET
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: JWT_SECRET

@@ -43,5 +43,6 @@ venv/
 
 set_env.sh
 .env
+k8s/secrets.yml
 
 /data

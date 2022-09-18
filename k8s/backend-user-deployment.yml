@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend_user
+spec:
+  selector:
+    matchLabels:
+      run: backend_user
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: backend_user
+    spec:
+      containers:
+      - name: backend_user
+        image: ifaniry/udagram-api-user:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: POSTGRES_HOST
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secret
+              key: JWT_SECRET

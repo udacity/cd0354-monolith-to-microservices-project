@@ -1,0 +1,25 @@
+# kubectl autoscale deployment my-app-2 --cpu-percent=50 --min=1 --max=2
+# kubectl get hpa
+# worker node role
+# https://www.youtube.com/watch?v=aZd0UolVwD4
+# node group We recommend setting 2 minimum nodes, 3 maximum nodes
+# update apiHost in frontend > environment.ts
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      run: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ifaniry/udagram-frontend:v1
+        ports:
+        - containerPort: 80
