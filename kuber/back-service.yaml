@@ -1,0 +1,15 @@
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: user-service
+  name: user-service 
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    service: user-service
