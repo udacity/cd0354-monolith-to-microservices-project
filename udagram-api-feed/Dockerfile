@@ -1,11 +1,11 @@
 FROM node:12
-# Créer le répertoire de l'application
+# Create app directory
 WORKDIR /usr/src/app
-# Installer les dépendances de l'application
-# Un joker est utilisé pour s'assurer que le paquet.json ET le paquet-lock.json sont copiés lorsqu'ils sont disponibles (npm@5+)
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied where available (npm@5+)
 COPY package*.json ./
-RUN npm ci
-# Regroupement des sources de l'application
+RUN npm ci 
+# Bundle app source
 COPY . .
 EXPOSE 8080
 CMD [ "npm", "run", "prod" ]
