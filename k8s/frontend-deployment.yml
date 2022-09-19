@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ifaniry/udagram-frontend:v1
+        image: ifaniry/udagram-frontend:v1.1
         ports:
         - containerPort: 80

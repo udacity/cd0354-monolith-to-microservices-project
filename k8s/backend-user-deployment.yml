@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-user
-        image: ifaniry/udagram-api-user:v1
+        image: ifaniry/udagram-api-user:v1.1
         ports:
         - containerPort: 8080
         env:

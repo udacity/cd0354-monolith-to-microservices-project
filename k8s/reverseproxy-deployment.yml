@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: reverseproxy
-        image: ifaniry/reverseproxy:v1
+        image: ifaniry/reverseproxy:v1.1
         ports:
         - containerPort: 8080
