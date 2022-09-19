@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend_feed
+  name: backend-feed
 spec:
   selector:
     matchLabels:
-      run: backend_feed
+      run: backend-feed
   replicas: 1
   template:
     metadata:
       labels:
-        run: backend_feed
+        run: backend-feed
     spec:
       containers:
-      - name: backend_feed
+      - name: backend-feed
         image: ifaniry/udagram-api-feed:v1
         ports:
         - containerPort: 8080

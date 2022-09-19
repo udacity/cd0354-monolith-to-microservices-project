@@ -1,0 +1,30 @@
+name: Push Udagram Docker Images to DockerHub
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker build and push
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        POSTGRES_USERNAME: ${{secrets.POSTGRES_USERNAME}}
+        POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+        POSTGRES_DB: ${{secrets.POSTGRES_DB}}
+        POSTGRES_HOST: ${{secrets.POSTGRES_HOST}}
+        AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+        AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+        AWS_REGION: ${{secrets.AWS_REGION}}
+        AWS_BUCKET: ${{secrets.AWS_BUCKET}}
+        JWT_SECRET: ${{secrets.JWT_SECRET}}
+      run: sh ./docker_push.sh

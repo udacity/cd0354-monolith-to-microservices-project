@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend_user
+  name: backend-user
 spec:
   selector:
     matchLabels:
-      run: backend_user
+      run: backend-user
   replicas: 1
   template:
     metadata:
       labels:
-        run: backend_user
+        run: backend-user
     spec:
       containers:
-      - name: backend_user
+      - name: backend-user
         image: ifaniry/udagram-api-user:v1
         ports:
         - containerPort: 8080
