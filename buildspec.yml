@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo no tests,skipping...
+  build:
+    commands:
+      - docker --version # print the version for logging
+      - docker-compose -f docker-compose-build.yaml build --parallel
+      - docker images # print all images building
+      - docker tag reverseproxy saberguirat/reverseproxy:v1
+      - docker tag udagram-api-user saberguirat/udagram-api-user:v1
+      - docker tag udagram-api-feed saberguirat/udagram-api-feed:v1
+      - docker tag udagram-frontend:local saberguirat/udagram-frontend:v1
+      - echo "all images builded successfully"
+  post_build:
+    commands:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker push saberguirat/reverseproxy:v1
+      - docker push saberguirat/udagram-api-user:v1
+      - docker push saberguirat/udagram-api-feed:v1
+      - docker push saberguirat/udagram-frontend:v1
+      - echo "all images pushed to dockerhub successfully"
+      
