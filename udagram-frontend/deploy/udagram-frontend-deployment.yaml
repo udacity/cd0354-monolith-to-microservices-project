@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: udagram-frontend
-          image: saberguirat/udagram-frontend:v1
+          image: saberguirat/udagram-frontend:v3
           ports:
             - containerPort: 80
           resources:
