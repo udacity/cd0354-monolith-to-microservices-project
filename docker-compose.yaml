@@ -10,8 +10,8 @@ services:
       - backend-feed
   backend-user:
     image: udagram-api-user
-    # volumes: # delete me
-    #   - ./udagram-api-user:/usr/src/app # delete me
+    # volumes: # for local dev
+    #   - ./udagram-api-user:/usr/src/app # for local dev
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
@@ -19,12 +19,12 @@ services:
       POSTGRES_HOST: $POSTGRES_HOST
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
-    # depends_on: # delete me
-    #   - postgres # delete me
+    # depends_on: # for local dev
+    #   - postgres # for local dev
   backend-feed:
     image: udagram-api-feed
-    # volumes: # delete me
-    #   - ./udagram-api-feed:/usr/src/app # delete me
+    # volumes: # for local dev
+    #   - ./udagram-api-feed:/usr/src/app # for local dev
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
@@ -36,27 +36,19 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
-    # depends_on: # delete me
-    #   - postgres # delete me
+    # depends_on: # for local dev
+    #   - postgres # for local dev
   frontend:
     image: udagram-frontend:local
     ports:
       - "8100:80"
-    labels:
-      kompose.service.expose: true
-  # DELETE BELOW
-  # eksctl create cluster --name udagram-tahina --region us-east-2 --version 1.23 --nodegroup-name udagram-nodes --node-type t2.micro --nodes 2
-  # eksctl create cluster --name udagram-tahina --region us-east-2 --version 1.23 --nodegroup-name udagram-nodes --node-type t2.micro --nodes 2
-# kubectl apply -f backend-feed-deployment.yml -f backend-user-deployment.yml -f frontend-deployment.yml -f reverseproxy-deployment.yml
-# kubectl apply -f backend-feed-service.yml -f backend-user-service.yml -f frontend-service.yml -f reverseproxy-service.yml
-
-  # postgres:
-  #   image: postgres:14-alpine
-  #   volumes:
-  #     - ./data/db:/var/lib/postgresql/data
-  #   ports:
-  #     - 5432:5432
-  #   environment:
-  #     POSTGRES_USER: $POSTGRES_USERNAME
-  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-  #     POSTGRES_DB: $POSTGRES_DB
+  # postgres: # for local dev
+  #   image: postgres:14-alpine # for local dev
+  #   volumes: # for local dev
+  #     - ./data/db:/var/lib/postgresql/data # for local dev (do not create ./data on first run)
+  #   ports: # for local dev
+  #     - 5432:5432 # for local dev
+  #   environment: # for local dev
+  #     POSTGRES_USER: $POSTGRES_USERNAME # for local dev
+  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD # for local dev
+  #     POSTGRES_DB: $POSTGRES_DB # for local dev

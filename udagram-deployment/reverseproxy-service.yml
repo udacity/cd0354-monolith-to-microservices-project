@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-09-20T13:14:54Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  name: reverseproxy
+  namespace: default
+  resourceVersion: "39055"
+  uid: 524d8cbb-fca9-4362-9019-8386b7a9d97c
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.100.225.191
+  clusterIPs:
+  - 10.100.225.191
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31984
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: reverseproxy
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: a524d8cbbfca9436290198386b7a9d97-1091510868.us-east-2.elb.amazonaws.com

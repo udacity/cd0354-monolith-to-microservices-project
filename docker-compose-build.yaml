@@ -16,6 +16,5 @@ services:
     build:
       context: ./udagram-frontend
     image: udagram-frontend:local
-  # DELETE BELOW
-  # postgres:
-  #   image: postgres:14-alpine
+  # postgres: # for local dev
+  #   image: postgres:14-alpine # for local dev
