@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: udagram-api-feed
+  name: backend-feed
+  namespace: default
+  selfLink: /api/v1/namespaces/default/services/udagram-api-feed
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: udagram-api-feed
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
