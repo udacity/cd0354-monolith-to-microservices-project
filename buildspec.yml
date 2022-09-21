@@ -12,7 +12,7 @@ phases:
       - docker tag reverseproxy saberguirat/reverseproxy:v1
       - docker tag udagram-api-user saberguirat/udagram-api-user:v1
       - docker tag udagram-api-feed saberguirat/udagram-api-feed:v1
-      - docker tag udagram-frontend:local saberguirat/udagram-frontend:v2
+      - docker tag udagram-frontend:local saberguirat/udagram-frontend:v3
       - echo "all images builded successfully"
   post_build:
     commands:
@@ -20,6 +20,6 @@ phases:
       - docker push saberguirat/reverseproxy:v1
       - docker push saberguirat/udagram-api-user:v1
       - docker push saberguirat/udagram-api-feed:v1
-      - docker push saberguirat/udagram-frontend:v2
+      - docker push saberguirat/udagram-frontend:v3
       - echo "all images pushed to dockerhub successfully"
       
