@@ -16,10 +16,8 @@ spec:
     spec:
       containers:
         - name: udagram-api-user
-          image: saberguirat/udagram-api-user:v1
+          image: saberguirat/udagram-api-user:v2
           envFrom:
-            - secretRef:
-                name: aws-secret
             - secretRef:
                 name: env-secret
             - configMapRef:
@@ -33,3 +31,4 @@ spec:
             requests:
               cpu: 500m
               memory: 1024Mi
+      restartPolicy: Always

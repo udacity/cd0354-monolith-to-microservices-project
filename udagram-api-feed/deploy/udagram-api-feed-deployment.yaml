@@ -16,10 +16,8 @@ spec:
     spec:
       containers:
         - name: udagram-api-feed
-          image: saberguirat/udagram-api-feed:v1
+          image: saberguirat/udagram-api-feed:v2
           envFrom:
-            - secretRef:
-                name: aws-secret
             - secretRef:
                 name: env-secret
             - configMapRef:
@@ -33,3 +31,12 @@ spec:
             requests:
               cpu: 500m
               memory: 1024Mi
+          volumeMounts:
+            - name: aws-secret
+              mountPath: "/root/.aws/"
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret    
