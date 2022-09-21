@@ -4,9 +4,6 @@ on:
   push:
     tags:
       - '*'
-    # branches:
-    #   - 'main'
-
 jobs:
   API-FEED:
     runs-on: ubuntu-latest
