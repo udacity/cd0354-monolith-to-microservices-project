@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set output
+      - name: Extract tag version
         id: vars
         run: echo ${{ steps.vars.outputs.tag }}
 
