@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-reverseproxy
+  labels:
+    app: backend-reverseproxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-reverseproxy
+  template:
+    metadata:
+      labels:
+        app: backend-reverseproxy
+    spec:
+      containers:
+      - name: backend-reverseproxy
+        image: 13365920/udagram-reverseproxy:latest
+        ports:
+          - containerPort: 80
+        resources:
+          requests:
+            cpu: 200m
+          limits:
+            cpu: 500m
+        envFrom:
+          - configMapRef:
+              name: env-config
+          - secretRef:
+             name: env-secret
