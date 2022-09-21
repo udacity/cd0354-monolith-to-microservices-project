@@ -23,3 +23,13 @@ kubectl describe hpa
 ```bash
 kubectl logs {pod_name}
 ```
+
+
+## udagram front-end url 
+
+`http://a8dddeb05b0ea45eba85a107124b11c7-778549903.us-east-1.elb.amazonaws.com`
+
+
+## udagram back-end url 
+
+`a3861bcefec6046cb9a6769af72dcf9e-1850535507.us-east-1.elb.amazonaws.com:8080`
