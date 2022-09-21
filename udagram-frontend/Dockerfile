@@ -15,7 +15,7 @@ RUN npm ci
 COPY . .
 
 #Build app
-RUN ionic build --prod	
+RUN ionic build 	
 
 
 #Exécuter
