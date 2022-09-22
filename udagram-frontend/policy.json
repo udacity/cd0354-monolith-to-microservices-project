@@ -1,0 +1,12 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Stmt1625306057759",
+			"Effect": "Allow",
+			"Principal": "*",
+			"Action": "s3:*",
+			"Resource": "arn:aws:s3:::mono-micro-dev"
+		}
+	]
+}
