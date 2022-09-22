@@ -19,3 +19,5 @@
 - docker push hm88/udagram-api-user:v1
 - docker push hm88/udagram-frontend:v1
 - docker push hm88/reverseproxy:v1
+
+#Checking if travis works
