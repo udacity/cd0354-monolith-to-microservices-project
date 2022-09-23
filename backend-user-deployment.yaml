@@ -29,48 +29,48 @@ spec:
         - name: URL
           valueFrom:
             configMapKeyRef:
-              name: env-configmap
+              name: env-configx
               key: URL
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
-              name: env-configmap
+              name: env-configx
               key: AWS_BUCKET
         - name: AWS_PROFILE
           valueFrom:
             configMapKeyRef:
-              name: env-configmap
+              name: env-configx
               key: AWS_PROFILE
         - name: AWS_REGION
           valueFrom:
             configMapKeyRef:
-              name: env-configmap
+              name: env-configx
               key: AWS_REGION
-        - name: POSTGRESS_DB
-          valueFrom:
-            configMapKeyRef:
-              name: env-configmap
-              key: POSTGRESS_DB
-        - name: POSTGRESS_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: env-configmap
-              key: POSTGRESS_HOST
-        - name: POSTGRESS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: env-secret
-              key: POSTGRESS_PASSWORD
-        - name: POSTGRESS_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: env-secret
-              key: POSTGRESS_USERNAME      
         - name: JWT_SECRT
           valueFrom:
+            configMapKeyRef:
+              name: env-configx
+              key: JWT_SECRET
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-configx
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-configx
+              key: POSTGRES_HOST
+        - name: POSTGRES_PASSWORD
+          valueFrom:
             secretKeyRef:
               name: env-secret
-              key: JWT_SECRET
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_USERNAME      
         volumeMounts:
         - name: aws-secret
           mountPath: "/root/.aws/"
