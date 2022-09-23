@@ -22,7 +22,7 @@ script:
         # Tagging
   - docker tag udagram-api-feed osaladev/udagram-api-feed:v1
   - docker tag udagram-api-user osaladev/udagram-api-user:v1
-  - docker tag udagram-frontend osaladev/udagram-frontend:v1
+  - docker tag udagram-frontend osaladev/udagram-frontend:v2
   - docker tag udagram-reverseproxy osaladev/udagram-reverseproxy:v1
 
 after_script:
