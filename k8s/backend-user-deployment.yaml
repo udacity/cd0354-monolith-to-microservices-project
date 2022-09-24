@@ -30,7 +30,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: env-configx
-              key: URL
+              key: USER_URL
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
@@ -61,6 +61,11 @@ spec:
             configMapKeyRef:
               name: env-configx
               key: POSTGRES_HOST
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: env-configx
+              key: USER_PORT     
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -70,7 +75,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRES_USERNAME      
+              key: POSTGRES_USERNAME
         volumeMounts:
         - name: aws-secret
           mountPath: "/root/.aws/"

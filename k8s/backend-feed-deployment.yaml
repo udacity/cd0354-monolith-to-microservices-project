@@ -30,7 +30,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: env-configx
-              key: URL
+              key: FEED_URL
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
@@ -51,6 +51,11 @@ spec:
             configMapKeyRef:
               name: env-configx
               key: JWT_SECRET
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: env-configx
+              key: FEED_PORT
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:

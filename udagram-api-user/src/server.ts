@@ -16,7 +16,7 @@ console.log(config.host);
   await sequelize.sync();
 
   const app = express();
-  const port = process.env.PORT || 8080;
+  const port = process.env.PORT || 8081;
 
   app.use(bodyParser.json());
 
