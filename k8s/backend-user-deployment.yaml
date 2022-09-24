@@ -46,7 +46,7 @@ spec:
             configMapKeyRef:
               name: env-configx
               key: AWS_REGION
-        - name: JWT_SECRT
+        - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
               name: env-configx
