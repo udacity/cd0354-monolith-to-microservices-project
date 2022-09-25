@@ -5,8 +5,7 @@ WORKDIR /usr/src/app
 # Installer les dépendances de l'application
 # Un joker est utilisé pour s'assurer que package.json ET package-lock.json sont copiés.
 COPY package*.json ./
-RUN npm i
-# RUN npm ci
+RUN npm ci
 # Regroupement des sources de l'application
 COPY . .
 RUN ionic build
