@@ -15,15 +15,10 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t simple-node .
-  - docker tag simple-node koneahmed/simple-node:latest
+  # - docker build -t simple-node .
+  # - docker tag simple-node koneahmed/simple-node:latest
 
-# Tâches à effectuer après la réussite du processus. Le formatage du nom d'utilisateur et du mot de passe Docker comme indiqué ci-dessous vous permet de vous connecter par programmation sans que le mot de passe soit exposé dans les journaux.
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push koneahmed/simple-node
-
-# En supposant que le fichier .travis.yml se trouve dans le répertoire du projet et qu'il existe un sous-répertoire distinct pour chaque service.
+  # En supposant que le fichier .travis.yml se trouve dans le répertoire du projet et qu'il existe un sous-répertoire distinct pour chaque service.
 # Utilisez les commandes `docker-compose` ou les commandes `docker build` individuelles.
 # Construire
   - docker build -t udagram-api-feed ./udagram-api-feed
@@ -37,6 +32,13 @@ after_success:
   - docker tag udagram-api-user koneahmed/udagram-api-user:v1
   - docker tag udagram-frontend koneahmed/udagram-frontend:v1
   - docker tag udagram-reverseproxy koneahmed/udagram-reverseproxy:v1
+
+# Tâches à effectuer après la réussite du processus. Le formatage du nom d'utilisateur et du mot de passe Docker comme indiqué ci-dessous vous permet de vous connecter par programmation sans que le mot de passe soit exposé dans les journaux.
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # - docker push koneahmed/simple-node
+
+
 # Faire de même pour les trois autres images ``
 #```bash
 # Push
