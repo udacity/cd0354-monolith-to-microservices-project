@@ -30,11 +30,11 @@ after_success:
 # Faites de même pour les trois autres images
 
 # Marquage
-  - docker tag udagram-api-feed sudkul/udagram-api-feed:v1
+  - docker tag udagram-api-feed koneahmed/udagram-api-feed:v1
 # Faire de même pour les trois autres images ``
 #```bash
 # Push
 # En supposant que DOCKER_PASSWORD et DOCKER_USERNAME sont définis dans les paramètres du dépôt Travis
   - echo "$DOCKER_PASSWORD". | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push sudkul/udagram-api-feed:v1
+  - docker push koneahmed/udagram-api-feed:v1
 # Faites de même pour les trois autres images
