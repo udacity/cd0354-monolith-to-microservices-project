@@ -46,6 +46,6 @@ after_success:
   - echo "$DOCKER_PASSWORD". | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push koneahmed/udagram-api-feed:v1
   - docker push koneahmed/udagram-api-user:v1
-  - docker push koneahmed/udagram-api-frontend:v1
+  - docker push koneahmed/udagram-frontend:v1
   - docker push koneahmed/udagram-reverseproxy:v1
 # Faites de même pour les trois autres images
