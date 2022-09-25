@@ -40,7 +40,7 @@ after_success:
 
 
 # Faire de même pour les trois autres images ``
-#```bash
+  - bash
 # Push
 # En supposant que DOCKER_PASSWORD et DOCKER_USERNAME sont définis dans les paramètres du dépôt Travis
   - echo "$DOCKER_PASSWORD". | docker login -u "$DOCKER_USERNAME" --password-stdin
