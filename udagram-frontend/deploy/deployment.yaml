@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -13,12 +13,13 @@ spec:
     metadata:
       labels:
         app: frontend
+        api: external
     spec:
       containers:
         - name: frontend
           image: tatchumnono/udagram-frontend:local
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           resources:
             requests:
               cpu: "250m"

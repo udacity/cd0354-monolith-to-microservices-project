@@ -12,4 +12,3 @@ spec:
   type: ClusterIP
   selector:
     app: backend-feed
-  
