@@ -59,7 +59,7 @@ Launch the frontend app locally.
     ```
 * Install Ionic Framework's Command Line tools for us to build and run the application:
     ```bash
-    npm install -g ionic
+    npm install -g @ionic/cli
     ```
 * Prepare your application by compiling them into static files.
     ```bash
