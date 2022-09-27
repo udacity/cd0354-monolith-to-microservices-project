@@ -1,0 +1,27 @@
+name: Docker Images CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+    - run: docker-compose -f docker-compose-build.yaml build --parallel
+    - run : docker tag udagram-api-feed sanmeh/udagram-api-feed:v1
+    - run : docker tag udagram-api-user sanmeh/udagram-api-user:v1
+    - run : docker tag udagram-frontend:local sanmeh/udagram-frontend:v1
+    - run : docker tag reverseproxy sanmeh/reverseproxy:v1
+    - run : echo "${{ env.DOCKER_PASSWORD }}" | docker login -u "${{ env.DOCKER_USERNAME }}" --password-stdin
+    - run : docker push sanmeh/udagram-api-feed:v1
+    - run : docker push sanmeh/udagram-api-user:v1
+    - run : docker push sanmeh/udagram-frontend:v1
+    - run : docker push sanmeh/reverseproxy:v1
