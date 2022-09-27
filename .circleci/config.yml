@@ -45,7 +45,7 @@ jobs:
             docker push copa-cabana/udagram-api-feed:v3
             docker push copa-cabana/udagram-api-user:v3
             docker push copa-cabana/udagram-frontend:v3
-            docker push copa-cabana/udagram-reverseproxy:v
+            docker push copa-cabana/udagram-reverseproxy:v3
 workflows:
   default:
     jobs:
