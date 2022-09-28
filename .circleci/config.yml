@@ -1,26 +1,24 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
+  jobs:
+    build:
+      docker:
+        - image: cimg/base:2022.06
+          auth:
+            username: $DOCKERHUB_USERNAME
+            password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      steps:
+        - setup_remote_docker:
+            version: 20.10.14
+            docker_layer_caching: true
+        - checkout
+        - run: |
+                docker-compose -f docker-compose-build.yaml build --parallel
+                docker tag udagram-api-user ${DOCKERHUB_USERNAME}/udagram-api-user:v8
+                docker tag udagram-api-feed ${DOCKERHUB_USERNAME}/udagram-api-feed:v8
+                docker tag udagram-frontend:local ${DOCKERHUB_USERNAME}/udagram-frontend:v9.5
+                docker tag reverseproxy ${DOCKERHUB_USERNAME}/reverseproxy:v1
+                echo “$DOCKERHUB_PASSWORD” | docker login -u “$DOCKERHUB_USERNAME” --password-stdin
+                docker push ${DOCKERHUB_USERNAME}/udagram-api-user:v8
+                docker push ${DOCKERHUB_USERNAME}/udagram-api-feed:v8
+                docker push ${DOCKERHUB_USERNAME}/udagram-frontend:v9.5
+                docker push ${DOCKERHUB_USERNAME}/reverseproxy:v1
