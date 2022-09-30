@@ -1,0 +1,46 @@
+# Workflow to ensure whenever a push to main branch is made,
+# a build of docker images to dockerhub occurs.
+name: Run CI
+
+# Controls when the action will run.
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build the docker images
+        run: |
+          echo "Building docker images"
+          docker-compose -f docker-compose-build.yaml build --parallel
+
+      - name: Tagging the Docker images
+        run: |
+          echo "Tagging docker images"
+          docker tag udagram-api-feed ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-api-feed:v1
+          docker tag udagram-api-user ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-api-user:v1
+          docker tag udagram-frontend ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-frontend:v1
+          docker tag reverseproxy ${{ secrets.DOCKER_HUB_USERNAME }}/reverseproxy:v1
+
+      - name: Push Docker images
+        run: |
+          echo "Tagging docker images"
+          docker-compose -f docker-compose-build.yaml push
+
+      - name: Image pushed successfully
+        run: echo "Issue ${{ steps.create.outputs.issue }} was created"
