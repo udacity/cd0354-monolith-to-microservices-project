@@ -1,4 +1,4 @@
-# Overview - Udagram Image Filtering Microservice
+# Overview - Udagram Image Filtering Microservice prod
 The project application, **Udagram** - an Image Filtering application, allows users to register and log into a web client, and post photos to a feed.
 
 This section introduces the project followed by instructions on how to set up your local environment remote dependencies to be able to configure and run the starter project.
