@@ -26,7 +26,4 @@ after_success:
   - docker tag udagram-frontend ndzib/udagram-frontend:v1
   - docker tag reverseproxy ndzib/reverseproxy:v1
   # PUSH IMAGES TO DOCKER HUB
-  - docker push ndzib/udagram-api-feed:v1
-  - docker push ndzib/udagram-api-user:v1
-  - docker push ndzib/udagram-frontend:v1
-  - docker push ndzib/reverseproxy:v1
+  - docker-compose -f docker-compose-build.yaml push
