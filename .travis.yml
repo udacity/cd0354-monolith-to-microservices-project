@@ -1,6 +1,8 @@
 sudo: required
 
-language: ruby
+language: node_js
+node_js:
+  - "16"
 
 services:
   - docker
@@ -15,7 +17,7 @@ script:
 
 after_success:
   # LOGIN TO DOCKER HUB
-  - docker login -e=$DOCKER_HUB_EMAIL -u=$DOCKER_HUB_USER -p=$DOCKER_HUB_SECRET
+  - docker login -u=$DOCKER_HUB_USER -p=$DOCKER_HUB_SECRET
   # BUILD IMAGES USING DOCKER-COMPOSE
   - docker-compose -f docker-compose-build.yaml build --parallel
   # TAG THE IMAGES
