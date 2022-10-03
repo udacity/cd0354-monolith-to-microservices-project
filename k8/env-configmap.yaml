@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  POSTGRES_HOST: vanelledb.cafyncszbkmy.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: vanelledb
+  AWS_BUCKET: vanelle-project3bucket
+  AWS_REGION: us-east-1
+  AWS_PROFILE: default
+  JWT_SECRET: testing
+  URL: a1c49d927d95c41a2942293b3ffba98c-1766424342.us-east-1.elb.amazonaws.com
+metadata:
+  name: env-config
