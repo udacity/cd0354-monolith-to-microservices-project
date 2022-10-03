@@ -19,13 +19,11 @@ after_success:
   # LOGIN TO DOCKER HUB
   - docker login -u=$DOCKER_HUB_USER -p=$DOCKER_HUB_SECRET
   # BUILD IMAGES USING DOCKER-COMPOSE
-  #- docker-compose -f docker-compose-build.yaml build --parallel
-  - docker build -t udagram-frontend ./udagram-frontend
+  - docker-compose -f docker-compose-build.yaml build --parallel
   # TAG THE IMAGES
-  #- docker tag udagram-api-feed ndzib/udagram-api-feed:v1
-  #- docker tag udagram-api-user ndzib/udagram-api-user:v1
+  - docker tag udagram-api-feed ndzib/udagram-api-feed:v1
+  - docker tag udagram-api-user ndzib/udagram-api-user:v1
   - docker tag udagram-frontend ndzib/udagram-frontend:v2
-  #- docker tag reverseproxy ndzib/reverseproxy:v1
+  - docker tag reverseproxy ndzib/reverseproxy:v1
   # PUSH IMAGES TO DOCKER HUB
-  #- docker-compose -f docker-compose-build.yaml push
-  - docker push ndzib/udagram-frontend:v2
+  - docker-compose -f docker-compose-build.yaml push
