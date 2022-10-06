@@ -1,14 +1,15 @@
 # Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
 # Use either `docker-compose` or individual `docker build` commands
 # Build
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t udagram-reverseproxy ./udagram-reverseproxy
-- docker tag udagram-reverseproxy geekinside/udagram-reverseproxy:latest
-- docker build -t udagram-api-user ./udagram-api-user
-- docker tag udagram-api-user geekinside/udagram-api-user:latest
-- docker build -t udagram-api-feed ./udagram-api-feed
-- docker tag udagram-api-feed geekinside/udagram-api-feed:latest
-- docker build -t udagram-frontend ./udagram-frontend
-- docker tag udagram-frontend geekinside/udagram-frontend:latest
-- docker build -t udagram-api-feed ./udagram-api-feed
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t udagram-reverseproxy ./udagram-reverseproxy
+  - docker tag udagram-reverseproxy geekinside/udagram-reverseproxy:latest
+  - docker build -t udagram-api-user ./udagram-api-user
+  - docker tag udagram-api-user geekinside/udagram-api-user:latest
+  - docker build -t udagram-api-feed ./udagram-api-feed
+  - docker tag udagram-api-feed geekinside/udagram-api-feed:latest
+  - docker build -t udagram-frontend ./udagram-frontend
+  - docker tag udagram-frontend geekinside/udagram-frontend:latest
+  - docker build -t udagram-api-feed ./udagram-api-feed
 # Do similar for other three images
