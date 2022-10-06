@@ -1,6 +1,7 @@
 # Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
 # Use either `docker-compose` or individual `docker build` commands
 # Build
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker build -t udagram-reverseproxy ./udagram-reverseproxy
 - docker tag udagram-reverseproxy geekinside/udagram-reverseproxy:latest
 - docker build -t udagram-api-user ./udagram-api-user
