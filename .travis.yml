@@ -1,6 +1,19 @@
 # Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
 # Use either `docker-compose` or individual `docker build` commands
 # Build
+
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+
+# Scripts to be run such as tests
+before_script:
+  - echo "tests:"
+  - echo "none "
+
 script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
