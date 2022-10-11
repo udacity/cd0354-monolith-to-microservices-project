@@ -17,7 +17,6 @@ spec:
       containers:
       - name: udagram-frontend
         image: timidev1/udagram-frontend:v1
-        imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:
