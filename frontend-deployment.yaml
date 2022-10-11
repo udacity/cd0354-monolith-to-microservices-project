@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+  labels:
+    app: frontend-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+      - name: udagram-frontend
+        image: timidev1/udagram-frontend:v1
+        ports:
+        - containerPort: 80
+        env:
+          - name: URL
+            valueFrom:
+              configMapKeyRef:
+                name: myconfig
+                key: URL
+          - name: AWS_PROFILE
+            valueFrom:
+              configMapKeyRef:
+                name: myconfig
+                key: AWS_PROFILE
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: myconfig
+                key: POSTGRES_DB
+          - name: POSTGRES_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: myconfig
+                key: POSTGRES_HOST
+          - name: AWS_BUCKET
+            valueFrom:
+              configMapKeyRef:
+                name: myconfig
+                key: AWS_BUCKET
+          - name: AWS_REGION
+            valueFrom:
+              configMapKeyRef:
+                name: myconfig
+                key: AWS_REGION
+          - name: JWT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: myconfig
+                key: JWT_SECRET
+          - name: POSTGRES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: myenvsecret
+                key: POSTGRES_USERNAME
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: myenvsecret
+                key: POSTGRES_PASSWORD
+          - name: credentials
+            valueFrom:
+              secretKeyRef:
+                name: myawssecret
+                key: credentials
