@@ -17,6 +17,7 @@ spec:
       containers:
       - name: reverseproxy
         image: timidev1/reverseproxy:v1
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:
