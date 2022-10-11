@@ -9,7 +9,6 @@ node_js:
 services:
   - docker
 
-# Scripts to be run such as tests
 before_script:
   - echo "tests:"
   - echo "none "
@@ -25,4 +24,3 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
   - docker tag udagram-frontend geekinside/udagram-frontend:latest
   - docker build -t udagram-api-feed ./udagram-api-feed
-# Do similar for other three images
