@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: timidev1/udagram-frontend:v1
+        image: timidev1/udagram-frontend:v2
         ports:
         - containerPort: 80
         env:
