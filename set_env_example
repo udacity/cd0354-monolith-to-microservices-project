@@ -1,0 +1,11 @@
+# This file is used for convenience of local development.
+# DO NOT STORE YOUR CREDENTIALS INTO GIT
+export POSTGRES_USERNAME=<your postgres username>
+export POSTGRES_PASSWORD=<postgres_password>
+export POSTGRES_HOST=<db_host>
+export POSTGRES_DB=<db_name>
+export AWS_BUCKET=<your_bucket_name>
+export AWS_REGION=<your availability zone>
+export AWS_PROFILE=[default]
+export JWT_SECRET=<anything>
+export URL=http://localhost:<port>
