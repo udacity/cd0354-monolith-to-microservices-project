@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 # Install app dependencies
 # A wildcard...ci
 RUN npm install -g @ionic/cli
+RUN npm i -D -E @angular/cli
 # Bundle app source
 COPY . .
 RUN ionic build
