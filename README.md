@@ -87,4 +87,3 @@ Launch the frontend app locally.
 
 
 ### AUTHOR
-ADENUGA TIMILEHIN
