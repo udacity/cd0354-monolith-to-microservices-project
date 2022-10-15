@@ -1,0 +1,29 @@
+# Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
+# Use either `docker-compose` or individual `docker build` commands
+language: node_js
+node_js:
+  - 13
+services:
+  - docker
+# Build
+script:
+- docker build -t udagram-api-feed ./udagram-api-feed
+- docker build -t udagram-api-user ./udagram-api-user
+- docker build -t udagram-frontend ./udagram-frontend
+- docker build -t reverseproxy   ./udagram-reverseproxy
+# Do similar for other three images
+# Tagging
+- docker tag udagram-api-feed covenantson/udagram-api-feed:v1
+- docker tag udagram-api-user covenantson/udagram-api-user:v1
+- docker tag udagram-frontend covenantson/udagram-frontend:local
+- docker tag reverseproxy  covenantson/reverseproxy:v1
+# Do similar for other three images
+# Push
+# Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
+after_success:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push covenantson/udagram-api-feed:v1
+- docker push covenantson/udagram-api-user:v1
+- docker push covenantson/udagram-frontend:local
+- docker push covenantson/reverseproxy:v1
+# Do similar for other three images done
