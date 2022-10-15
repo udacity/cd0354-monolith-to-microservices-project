@@ -5,6 +5,8 @@ node_js:
   - 13
 services:
   - docker
+install:
+- npm i -D -E @angular/cli
 # Build
 script:
 - docker build -t udagram-api-feed ./udagram-api-feed
@@ -13,17 +15,17 @@ script:
 - docker build -t reverseproxy   ./udagram-reverseproxy
 # Do similar for other three images
 # Tagging
-- docker tag udagram-api-feed covenantson/udagram-api-feed:v1
-- docker tag udagram-api-user covenantson/udagram-api-user:v1
+- docker tag udagram-api-feed covenantson/udagram-api-feed:v2
+- docker tag udagram-api-user covenantson/udagram-api-user:v2
 - docker tag udagram-frontend covenantson/udagram-frontend:local
-- docker tag reverseproxy  covenantson/reverseproxy:v1
+- docker tag reverseproxy  covenantson/reverseproxy:v2
 # Do similar for other three images
 # Push
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker push covenantson/udagram-api-feed:v1
-- docker push covenantson/udagram-api-user:v1
+- docker push covenantson/udagram-api-feed:v2
+- docker push covenantson/udagram-api-user:v2
 - docker push covenantson/udagram-frontend:local
-- docker push covenantson/reverseproxy:v1
+- docker push covenantson/reverseproxy:v2
 # Do similar for other three images done
