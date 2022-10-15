@@ -23,7 +23,7 @@ script:
   - docker tag udagram-reverseproxy thimee/udagram-reverseproxy
   - docker tag udagram-api-feed thimee/udagram-api-feed
   - docker tag udagram-api-user thimee/udagram-api-user
-  - docker tag udagram-api-frontend thimee/udagram-api-frontend:local
+  - docker tag udagram-frontend thimee/udagram-frontend:local
 
 # Tasks to perform after process is successful
 after_success:
