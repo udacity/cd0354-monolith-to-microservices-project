@@ -17,7 +17,7 @@ script:
 - docker tag udagram-api-feed covenantson/udagram-api-feed-new:v2
 - docker tag udagram-api-user covenantson/udagram-api-user-new:v2
 - docker tag udagram-frontend covenantson/udagram-frontend-new:local
-- docker tag reverseproxy  covenantson/udagram-reverseproxy-new:v2
+- docker tag udagram-reverseproxy covenantson/udagram-reverseproxy-new:v2
 # Do similar for other three images
 # Push
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
