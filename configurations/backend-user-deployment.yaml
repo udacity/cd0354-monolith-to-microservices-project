@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user
+  labels:
+    app: backend-user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+      - name: simple-node
+        image: mohamednehad/udagram-api-user
+        imagePullPolicy: Always  
+        resources:
+         requests:
+          memory: "1024Mi"
+          cpu: "500m"
+         limits:
+          memory: "2048Mi"
+          cpu: "1000m"
+        ports:
+        - containerPort: 8080
+        env:
+         - name: AWS_BUCKET
+           valueFrom:
+             configMapKeyRef:
+               name: env-configmap
+               key: AWS_BUCKET
+         - name: AWS_REGION
+           valueFrom:
+             configMapKeyRef:
+               name: env-configmap 
+               key: AWS_REGION              
+         - name: AWS_PROFILE
+           valueFrom:
+             configMapKeyRef:
+               name: env-configmap
+               key: AWS_PROFILE
+         - name: JWT_SECRET
+           valueFrom:
+             configMapKeyRef:
+               name: env-configmap 
+               key: JWT_SECRET               
+               
+         - name: POSTGRES_USERNAME
+           valueFrom:
+             secretKeyRef:
+               name: env-secret
+               key: POSTGRES_USERNAME 
+         - name: POSTGRES_PASSWORD
+           valueFrom:
+             secretKeyRef:
+               name: env-secret
+               key: POSTGRES_PASSWORD   
+         - name: POSTGRES_HOST
+           valueFrom:
+             configMapKeyRef:
+               name: env-configmap
+               key: POSTGRES_HOST
+         - name: POSTGRES_DB
+           valueFrom:
+             secretKeyRef:
+               name: env-secret
+               key: POSTGRES_DB       
+         - name: aws_access_key_id
+           valueFrom:
+             secretKeyRef:
+               name: aws-secret
+               key: aws_access_key_id 
+         - name: aws_secret_access_key
+           valueFrom:
+             secretKeyRef:
+               name: aws-secret
+               key: aws_secret_access_key
+         - name: URL
+           valueFrom:
+            configMapKeyRef:
+               name: env-configmap
+               key: URL               
