@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-feed
+spec:
+  selector: # this is the deployment name the service should speak to.
+    app: backend-feed
+  ports:
+    - protocol: TCP
+      port: 80 # entrance port -> what nginx is listening to
+      targetPort: 8080 # Exposed Port in the backend-feed DockerFile
+
+# check info on each of the services -> kubectl service describe **service file**: 
+# this will show the IP of the service.
+
+### different types of service IPs. 
+# cluster IP : Runs only inside the kubernetes environment (curl IP address) but won't work in the browser
+# node pods IP
+# ingres_controller IP
+# reverseproxyIP

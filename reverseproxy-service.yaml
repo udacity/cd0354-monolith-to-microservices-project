@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reverseproxy
+spec:
+  selector: # this is the deployment name the service should speak to.
+    app: reverseproxy
+  ports:
+    - protocol: TCP
+      port: 8080 ### entrance port -> since the frontend is sending out to 80, that should be the same port it should speak to here.
+      targetPort: 8080 # Exposed Port in the backend-feed & backend-user DockerFile

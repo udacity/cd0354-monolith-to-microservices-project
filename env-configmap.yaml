@@ -1,0 +1,13 @@
+# store non-confidential data
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: udagram-config
+data:
+  POSTGRES_HOST: udagram-instance.cbsax0axnlxt.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: udagramdb
+  AWS_BUCKET: udagram-user-files
+  AWS_REGION: us-east-1
+  AWS_PROFILE: default
+  JWT_SECRET: testing
+  URL: http://localhost:8100
