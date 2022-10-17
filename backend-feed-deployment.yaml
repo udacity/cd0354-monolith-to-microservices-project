@@ -18,7 +18,12 @@ spec:
         - name: backend-feed
           image: sharonibejih/udagram-api-feed:v1
           ports:
-          - containerPort: 8080 # Exposed port in backend-feed dockerfile
+            - containerPort: 8080 # Exposed port in backend-feed dockerfile
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
           envFrom:
             - configMapRef:
                 name: udagram-config
