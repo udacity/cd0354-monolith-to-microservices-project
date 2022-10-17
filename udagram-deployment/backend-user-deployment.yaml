@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-api-user
+  labels:
+    app: udagram-api-user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-api-user
+  template:
+    metadata:
+      labels:
+        app: udagram-api-user
+    spec:
+      containers:
+      - name: udagram-api-user
+        image: mahshaker/udagram-api-user:v1
+        env:
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: udacity-p3-env-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: udacity-p3-env-config
+              key: POSTGRES_DB
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: udacity-p3-env-config
+              key: AWS_BUCKET
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: udacity-p3-env-config
+              key: AWS_REGION
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: udacity-p3-env-config
+              key: AWS_PROFILE
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: udacity-p3-env-config
+              key: JWT_SECRET
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: udacity-p3-env-config
+              key: URL        
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: udacity-p3-env-secret
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: udacity-p3-env-secret
+              key: POSTGRES_PASSWORD
