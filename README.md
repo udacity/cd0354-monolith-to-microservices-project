@@ -1,6 +1,6 @@
 # Udagram Image Filtering Application
 
-Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
+Udagram is a simple cloud application developed alongside the Udacity Cloud Developer Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
 The project is split into two parts:
 1. Frontend - Angular web application built with Ionic Framework
@@ -84,3 +84,38 @@ Launch the frontend app locally.
     ```
 4. `set_env.sh` is really for your backend application. Frontend applications have a different notion of how to store configurations. Configurations for the application endpoints can be configured inside of the `environments/environment.*ts` files.
 5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
+
+
+
+## Submission
+1. *Build and run a container image using Docker*
+
+<img width="1438" alt="Screenshot 2022-10-17 at 02 07 26" src="https://user-images.githubusercontent.com/55222856/196074516-8676b131-657e-498c-b794-f9f7dd2937f6.png">
+
+2. *Use Travis to build a CI/CD pipeline*
+Due to the charges attached to Travis, I used **GitHub Actions** for this project instead. Below is a screenshot of its build.
+
+<img width="1438" alt="Screenshot 2022-10-17 at 02 08 59" src="https://user-images.githubusercontent.com/55222856/196074683-1cec0230-4805-4ee5-b343-62f96d048e5b.png">
+
+3. *Deploy microservices using a Kubernetes cluster on AWS*
+ - `kubectl get pods`
+ 
+ <img width="968" alt="Screenshot 2022-10-17 at 01 44 22" src="https://user-images.githubusercontent.com/55222856/196074893-0502ecaf-158c-445b-99d7-131ca4d3bf36.png">
+
+ 
+ - `kubectl describe services`
+
+<img width="1440" alt="Screenshot 2022-10-17 at 03 21 52" src="https://user-images.githubusercontent.com/55222856/196075658-7701f0a9-3164-4aa5-99eb-6dde7febb2dc.png">
+
+ 
+4. *Use a reverse proxy to direct requests to the appropriate backend*
+The screenshot above (`kubectl describe services`), showing the Kubernetes services shows a reverse proxy.
+
+5. *Configure scaling and self-healing for each service (`kubectl describe hpa`)*
+
+<img width="978" alt="Screenshot 2022-10-17 at 03 23 29" src="https://user-images.githubusercontent.com/55222856/196075784-6bd77944-ea89-4d80-8ad9-2f652a122dc5.png">
+
+6. *Use logs to capture metrics for debugging a microservices deployment*
+
+<img width="934" alt="Screenshot 2022-10-17 at 03 27 28" src="https://user-images.githubusercontent.com/55222856/196076158-45910d56-79d8-4ec2-9c4c-06228cd629d6.png">
+
