@@ -7,5 +7,6 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 8100 # can be any port. This is the very first entry port of a user, e.g: localhost:8100
-      targetPort: 8080 # The entry port above will be redirected to the Docker Container Port (as used in frontend-deployment.yaml)
+    # USE docker ps to see the entry and target ports. e:g 0.0.0.0:8100->80/tcp 
+      port: 8100 # can be any port. This is the very first entry port of a user, in our case we have http://localhost:8100
+      targetPort: 80 # The port the entry port will be redirected to.

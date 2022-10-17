@@ -4,9 +4,9 @@ kind: ConfigMap
 metadata:
   name: udagram-config
 data:
-  POSTGRES_HOST: udagram-instance.cbsax0axnlxt.us-east-1.rds.amazonaws.com
-  POSTGRES_DB: udagramdb
-  AWS_BUCKET: udagram-user-files
+  POSTGRES_HOST: udacity-proj3-instance.ceyxytthigub.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: udacity_proj3_db
+  AWS_BUCKET: udacity-proj3-bucket
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing

@@ -1,0 +1,10 @@
+# store non-confidential data
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: udagram-aws-config
+data:
+  credentials: |
+    [default]
+    aws_access_key_id = AKIATX6LTARIDFX5IUXY
+    aws_secret_access_key = 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

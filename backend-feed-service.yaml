@@ -7,7 +7,7 @@ spec:
     app: backend-feed
   ports:
     - protocol: TCP
-      port: 80 # entrance port -> what nginx is listening to
+      port: 8080 # entrance port -> what nginx is listening to
       targetPort: 8080 # Exposed Port in the backend-feed DockerFile
 
 # check info on each of the services -> kubectl service describe **service file**: 

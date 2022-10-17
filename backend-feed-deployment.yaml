@@ -15,13 +15,20 @@ spec:
         app: backend-feed
     spec:
       containers:
-      - name: backend-feed
-        image: sharonibejih/udagram-api-feed:v1
-        ports:
-        - containerPort: 8080 # Exposed port in backend-feed dockerfile
-        envFrom:
-        - configMapRef:
-            name: udagram-config
-        - secretRef:
-            name: udagramdb-secrets
+        - name: backend-feed
+          image: sharonibejih/udagram-api-feed:v1
+          ports:
+          - containerPort: 8080 # Exposed port in backend-feed dockerfile
+          envFrom:
+            - configMapRef:
+                name: udagram-config
+            - secretRef:
+                name: udagramdb-secrets
+          volumeMounts:
+            - mountPath: "/root/.aws/"
+              name: udagram-aws-config
+      volumes:
+        - name: udagram-aws-config
+          configMap:
+            name: udagram-aws-config
 
