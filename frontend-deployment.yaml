@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: sharonibejih/udagram-frontend:v1
+        image: sharonibejih/udagram-frontend:v2
         ports:
         - containerPort: 80 # since frontend dockerfile didn't specify the port, 80 is the default for images built on nginx
 
