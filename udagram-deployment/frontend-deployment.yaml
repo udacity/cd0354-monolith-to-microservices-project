@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: mahshaker/udagram-frontend:v9
+        image: mahshaker/udagram-frontend:v13
         ports:
         - containerPort: 80

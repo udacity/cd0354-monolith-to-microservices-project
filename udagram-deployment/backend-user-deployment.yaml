@@ -19,10 +19,10 @@ spec:
         image: mahshaker/udagram-api-user:v1
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
+            memory: "2048Mi"
+            cpu: "500m"
           limits:
-            memory: "1024Mi"
+            memory: "2048Mi"
             cpu: "500m" 
         env:
         - name: POSTGRES_HOST

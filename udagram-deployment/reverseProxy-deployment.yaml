@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: reverseproxy
-        image: mahshaker/reverseproxy:v4
+        image: mahshaker/reverseproxy:v5
         ports:
         - containerPort: 8080

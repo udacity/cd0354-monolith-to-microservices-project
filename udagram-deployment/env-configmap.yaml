@@ -6,7 +6,7 @@ metadata:
 data:
   POSTGRES_HOST: udacity-p3-db.c9azcxno8qlu.us-east-1.rds.amazonaws.com
   POSTGRES_DB: postgres
-  AWS_BUCKET: arn:aws:s3:::udacity-p3-280211166656
+  AWS_BUCKET: udacity-p3-280211166656
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing
