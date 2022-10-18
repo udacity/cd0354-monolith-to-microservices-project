@@ -26,6 +26,6 @@ before_script:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push 0xceejay/udagram-reverserproxy:v1
-  - docker push 0xceejay/udagram-frontend:local:local
+  - docker push 0xceejay/udagram-frontend:local
   - docker push 0xceejay/udagram-api-user:v1
   - docker push 0xceejay/udagram-api-feed:v1
