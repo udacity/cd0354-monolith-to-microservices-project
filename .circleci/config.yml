@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/base
+      - image: circleci/buildpack:stretch
     steps:
       - checkout
       - setup_remote_docker:
