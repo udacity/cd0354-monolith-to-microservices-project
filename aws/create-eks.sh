@@ -1,0 +1,1 @@
+./aws/create.sh capstone-eks ./aws/eks.yml ./aws/eks-parameters.json

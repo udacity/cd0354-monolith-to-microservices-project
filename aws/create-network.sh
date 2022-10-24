@@ -1,0 +1,1 @@
+./aws/create.sh capstone-network ./aws/network.yml ./aws/network-parameters.json
