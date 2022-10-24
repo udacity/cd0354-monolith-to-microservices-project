@@ -1,0 +1,1 @@
+./aws/create.sh capstone-rds ./aws/rds.yml ./aws/rds-parameters.json

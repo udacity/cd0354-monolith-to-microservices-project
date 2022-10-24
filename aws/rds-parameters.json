@@ -1,0 +1,34 @@
+[
+	{
+		"ParameterKey": "EnvironmentName",
+		"ParameterValue": "UdacityProject"
+	},
+	{
+		"ParameterKey": "InstanceType",
+		"ParameterValue": "t3.medium"
+	},
+	{
+		"ParameterKey": "DBUsername",
+		"ParameterValue": "postgres"
+	},
+	{
+		"ParameterKey": "DBPassword",
+		"ParameterValue": "mypassword"
+	},
+	{
+		"ParameterKey": "MyDBInstanceClass",
+		"ParameterValue": "db.t2.micro"
+	},
+	{
+		"ParameterKey": "MyDBName",
+		"ParameterValue": "postgres"
+	},
+	{
+		"ParameterKey": "DBAllocatedStorage",
+		"ParameterValue": "5"
+	},
+	{
+		"ParameterKey": "MultiAZDatabase",
+		"ParameterValue": "false"
+	}
+]

@@ -1,0 +1,60 @@
+Parameters:
+  EnvironmentName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+  InstanceType:
+    Type: String
+  DBUsername:
+    Type: "String" 
+  DBPassword:
+    Type: "String"
+  MyDBInstanceClass:
+    Type: "String"
+  MyDBName:
+    Type: "String"
+  DBAllocatedStorage:
+    Type: "Number"
+  MultiAZDatabase:
+    Type: "String"
+
+Resources:
+
+  SubnetGroup:
+    Type: "AWS::RDS::DBSubnetGroup"
+    Properties:
+      DBSubnetGroupName: "subnetgroup"
+      DBSubnetGroupDescription: "Subnet Group"
+      SubnetIds:
+        - Fn::ImportValue: !Sub "${EnvironmentName}-PUB1-SN"
+        - Fn::ImportValue: !Sub "${EnvironmentName}-PUB2-SN"
+
+  InstanceSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupName: "Example Security Group"
+      GroupDescription: "RDS traffic"
+      VpcId: 
+        Fn::ImportValue: !Sub "${EnvironmentName}-VPCID"
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: "5432"
+          ToPort: "5432"
+          CidrIp: "0.0.0.0/0"
+
+  DBInstance:
+    Type: "AWS::RDS::DBInstance"
+    Properties:
+      AllocatedStorage: !Ref "DBAllocatedStorage"
+      AutoMinorVersionUpgrade: false
+      VPCSecurityGroups:
+      - !Ref "InstanceSecurityGroup"
+      DBName: !Ref "MyDBName"
+      DBInstanceClass: !Ref "MyDBInstanceClass"
+      DBSubnetGroupName: !Ref "SubnetGroup"
+      Engine: "postgres"
+      EngineVersion: "12.7"
+      MasterUsername: !Ref "DBUsername"
+      MasterUserPassword: !Ref "DBPassword"
+      MultiAZ: !Ref "MultiAZDatabase"
+      StorageType: "gp2"
+      PubliclyAccessible: true
