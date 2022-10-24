@@ -1,0 +1,2 @@
+docker image prune --all
+
