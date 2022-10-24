@@ -16,10 +16,11 @@ The project is split into two parts:
 #### Environment Script
 A file named `set_env.sh` has been prepared as an optional tool to help you configure these variables on your local development environment.
  
-We do _not_ want your credentials to be stored in git. After pulling this `starter` project, run the following command to tell git to stop tracking the script in git but keep it stored locally. This way, you can use the script for your convenience and reduce risk of exposing your credentials.
+We do _not_ want your credentials to be stored in git.
+- After pulling this `starter` project, run the following command to tell git to stop tracking the script in git but keep it stored locally. This way, you can use the script for your convenience and reduce risk of exposing your credentials.
 `git rm --cached set_env.sh`
-
-Afterwards, we can prevent the file from being included in your solution by adding the file to our `.gitignore` file.
+- Another approach is to add these variables to the .profile. Keep set_env.sh as a template, but without setting any password, S3 name or DB name.
+- Afterwards, we can prevent the file from being included in your solution by adding the file to our `.gitignore` file.
 
 ### 1. Database
 Create a PostgreSQL database either locally or on AWS RDS. The database is used to store the application's metadata.
@@ -69,6 +70,9 @@ Launch the frontend app locally.
     ```bash
     ionic serve
     ```
+  **Note:** In case you execute it into a virtual server, you have to do two things:
+  *  ionic serve --external 
+  * Edit the environments file and set the external IP of the VM, so your browser can redirect the requests to the proper place (otherwise will send to localhost, which is not serving it).
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
 ## Tips
