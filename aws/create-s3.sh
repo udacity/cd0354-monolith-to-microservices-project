@@ -1,0 +1,1 @@
+./aws/create.sh capstone-s3 ./aws/s3.yml ./aws/s3-parameters.json
