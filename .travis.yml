@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to dockerhub
+      env:
+        USER: ${{secrets.DOCKERHUB_UNAME}}
+        PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
+      run: docker login -u $USER -p $PASSWORD
+    - name: Build the Docker image
+      run: docker-compose -f docker-compose-build.yaml build --parallel
+    - name: Tag and push images 
+      env:
+        USER: ${{secrets.DOCKERHUB_UNAME}}
+      run: |
+        docker image tag reverseproxy $USER/reverseproxy
+        docker push $USER/reverseproxy
+        docker image tag udagram-frontend:local $USER/udagram-frontend
+        docker push $USER/udagram-frontend
+        docker image tag udagram-api-user $USER/udagram-api-user
+        docker push $USER/udagram-api-user
+        docker image tag udagram-api-feed $USER/udagram-api-feed
+        docker push $USER/udagram-api-feed
