@@ -35,4 +35,4 @@ jobs:
                       docker push peggylicious/udagram-frontend:v4
                       docker push peggylicious/udagram-reverseproxy:v4
 # Do similar for other three images
-
+# Added env variables
