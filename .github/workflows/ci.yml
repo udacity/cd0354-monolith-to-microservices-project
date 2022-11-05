@@ -20,11 +20,11 @@ jobs:
     - run: docker tag udagram-frontend:local muhammed101ahmed/udagram-frontend:v1
     - run: docker tag udagram-api-user muhammed101ahmed/udagram-api-user:v1
     - run: docker tag udagram-api-feed muhammed101ahmed/udagram-api-feed:v1
-    - run: docker tag udagram-reverseproxy muhammed101ahmed/udagram-reverseproxy:v1
+    - run: docker tag reverseproxy muhammed101ahmed/udagram-reverseproxy:v1
 
     - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
-    
+
     - run: docker push muhammed101ahmed/udagram-frontend:v1
     - run: docker push muhammed101ahmed/udagram-api-user:v1
     - run: docker push muhammed101ahmed/udagram-api-feed:v1
-    - run: docker push muhammed101ahmed/udagram-reverseproxy:v1
+    - run: docker push muhammed101ahmed/reverseproxy:v1
