@@ -41,3 +41,7 @@ venv/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 set_env.sh
+set_env.sh
+set_env.sh
+kubectl.exe
+kubectl.exe.sha256
