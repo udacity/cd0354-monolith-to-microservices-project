@@ -10,4 +10,3 @@ export AWS_PROFILE=default
 export JWT_SECRET=testing
 export URL=http://localhost:8100
 
-
