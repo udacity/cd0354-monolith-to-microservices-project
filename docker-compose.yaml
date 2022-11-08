@@ -23,7 +23,7 @@ services:
   backend-feed:
     image: udagram-api-feed
     volumes:
-      - $HOME/.aws:/root/.aws
+      - "C:/Users/Phat/.aws:/root/.aws" #$HOME/.aws:/root/.aws In order to mount volume in windows.
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
