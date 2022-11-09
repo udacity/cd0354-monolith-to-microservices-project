@@ -12,7 +12,7 @@ before_script:
   - echo "no tests. yes there will be tests"
 
 script:
-  - docker --version
+  - docker --version #print version docker
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
   - docker build -t udagram-api-feed ./udagram-api-feed
   - docker build -t udagram-api-user ./udagram-api-user
