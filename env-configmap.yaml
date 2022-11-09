@@ -3,8 +3,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: udagram-config
-data:
-  POSTGRES_HOST: udacity-proj3-instance.ceyxytthigub.us-east-1.rds.amazonaws.com
+data: 
+  POSTGRES_HOST: udacity-proj3-instance.csneii89oxe8.us-east-1.rds.amazonaws.com
   POSTGRES_DB: udacity_proj3_db
   AWS_BUCKET: udacity-proj3-bucket
   AWS_REGION: us-east-1
