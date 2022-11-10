@@ -22,3 +22,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: echo "Test github action"
+    - run: docker-compose -f docker-compose-build.yaml build --parallel
+    - run: docker tag udagram-api-feed alexxsanya/udagram-api-feed:v1
+    - run: docker tag udagram-api-user alexxsanya/udagram-api-user:v1
+    - run: docker tag udagram-frontend:local alexxsanya/udagram-frontend:v1
+    - run: docker tag udagram-reverseproxy alexxsanya/udagram-reverseproxy:v1
+    - run: docker push alexxsanya/udagram-api-feed:v1
+    - run: docker push alexxsanya/udagram-api-user:v1
+    - run: docker push alexxsanya/udagram-frontend:v1
+    - run: docker push alexxsanya/udagram-reverseproxy:v1
