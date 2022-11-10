@@ -17,17 +17,22 @@ spec:
       containers:
       - name: backend-feed
         image: thimee/udagram-api-feed
-        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         resources:
+          limits:
+            cpu: 500m
           requests:
-            memory: 128Mi
             cpu: 200m
         envFrom:
           - secretRef:
               name: postgres-credentials
           - configMapRef:
               name: secret-config
-          - secretRef:
-              name: aws-credentials
+        volumeMounts:
+          - mountPath: "/root/.aws/"
+            name: aws-credentials
+      volumes:
+        - name: aws-credentials
+          configMap:
+            name: aws-credentials
