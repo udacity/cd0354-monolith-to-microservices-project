@@ -21,6 +21,6 @@ spec:
         - containerPort: 8080
         envFrom:
           - secretRef:
-              name: postgres-credentials
+              name: env-secret
           - configMapRef:
               name: secret-config

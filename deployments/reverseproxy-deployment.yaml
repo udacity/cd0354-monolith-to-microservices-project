@@ -17,5 +17,13 @@ spec:
       containers:
       - name: reverseproxy
         image: thimee/udagram-reverseproxy
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "1000Mi"
+            cpu: "250m"
+          limits:
+            memory: "2000Mi"
+            cpu: "500m"
         ports:
           - containerPort: 8080
