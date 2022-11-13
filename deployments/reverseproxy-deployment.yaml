@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: reverseproxy
-        image: thimee/reverseproxy
+        image: thimee/udagram-reverseproxy
         ports:
           - containerPort: 8080

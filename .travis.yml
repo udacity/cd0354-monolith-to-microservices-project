@@ -11,7 +11,7 @@ install:
 
 # Scripts to be run such as tests
 before_script:
-  - echo "no tests. Yes There will be tests"
+  - echo "no tests"
 
 script:
   - docker --version # prints version for logging

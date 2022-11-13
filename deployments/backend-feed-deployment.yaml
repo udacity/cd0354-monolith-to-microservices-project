@@ -21,18 +21,13 @@ spec:
         - containerPort: 8080
         resources:
           limits:
-            cpu: 500m
+            cpu: 700m
           requests:
-            cpu: 200m
+            cpu: 250m
         envFrom:
           - secretRef:
               name: postgres-credentials
+          - secretRef:
+              name: aws-credentials
           - configMapRef:
               name: secret-config
-        volumeMounts:
-          - mountPath: "/root/.aws/"
-            name: aws-credentials
-      volumes:
-        - name: aws-credentials
-          configMap:
-            name: aws-credentials

@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: thimee/udagram-frontend
+        image: thimee/udagram-frontend:local
         ports:
         - containerPort: 80
