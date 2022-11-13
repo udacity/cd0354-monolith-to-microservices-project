@@ -27,7 +27,12 @@ spec:
         envFrom:
           - secretRef:
               name: postgres-credentials
-          - secretRef:
-              name: aws-credentials
           - configMapRef:
               name: secret-config
+        volumeMounts:
+          - mountPath: "/root/.aws/"
+            name: aws-credentials
+      volumes:
+        - name: aws-credentials
+          configMap:
+            name: aws-credentials

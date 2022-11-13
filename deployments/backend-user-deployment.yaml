@@ -22,7 +22,5 @@ spec:
         envFrom:
           - secretRef:
               name: postgres-credentials
-          - secretRef:
-              name: aws-credentials
           - configMapRef:
               name: secret-config
