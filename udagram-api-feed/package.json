@@ -23,11 +23,11 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "email-validator": "^2.0.4",
-    "express": "^4.18.1",
+    "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.0.3",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^4.44.4",
+    "sequelize": "^5.21.4",
     "sequelize-typescript": "^0.6.9"
   },
   "devDependencies": {
