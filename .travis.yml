@@ -12,7 +12,7 @@ install:
 before_scripts:
   - echo "no tests. yes there will be tests"
 
-# Build
+# Build image
 - docker --version # print the version for logging here.
 - docker build -t udagram-api-feed ./udagram-api-feed
 - docker build -t udagram-api-user ./udagram-api-user
