@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverseproxy
+spec:
+  selector:
+    matchLabels:
+      app: reverseproxy
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: reverseproxy
+    spec:
+     containers:
+     - name: reverseproxy
+       image: abdallahmagdi/reverseproxy:v1
+       ports:
+       - containerPort: 8080
