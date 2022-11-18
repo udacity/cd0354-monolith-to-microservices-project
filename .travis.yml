@@ -22,8 +22,8 @@ script:
  # Tagging and
   - docker tag udagram-reverseproxy fisseb/udagram-reverseproxy:v3a
   - docker tag udagram-api-feed fisseb/udagram-api-feed:v3a
-  - docker build udagram-api-user fisseb/udagram-api-user:v3a
-  - docker build udagram-frontend fisseb/udagram-frontend:local
+  - docker tag udagram-api-user fisseb/udagram-api-user:v3a
+  - docker tag udagram-frontend fisseb/udagram-frontend:local
 
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
