@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+
+POSTGRES_USERNAME: postgres
+POSTGRES_PASSWORD: admin123
+POSTGRES_HOST: postgres.cuo7pyfqyzp3.us-east-1.rds.amazonaws.com
+POSTGRES_DB: postgres
+AWS_BUCKET: arn:aws:s3:::udagram-065946682926-dev
+AWS_REGION: us-west-2
+AWS_PROFILE: default
+JWT_SECRET: testing
+URL: http://localhost:8100

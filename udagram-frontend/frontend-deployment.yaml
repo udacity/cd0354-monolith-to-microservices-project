@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: abdallahmagdi/udagram-frontend:v1
+        image: abdallahmagdi/udagram-frontend:v6
         ports:
         - containerPort: 8100
