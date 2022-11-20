@@ -32,14 +32,14 @@ jobs:
          command: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t tifarafa/udagram-api-feed:0.1.10 ./udagram-api-feed
-          docker build -t tifarafa/udagram-api-user:0.1.10 ./udagram-api-user
-          docker build -t tifarafa/udagram-frontend:$TAG ./udagram-frontend
-          docker build -t tifarafa/reverseproxy:0.1.10 ./udagram-reverseproxy
-          docker push tifarafa/udagram-api-feed:0.1.10
-          docker push tifarafa/udagram-api-user:0.1.10
-          docker push tifarafa/udagram-frontend:$TAG
-          docker push tifarafa/reverseproxy:0.1.10
+          docker build -t tifarafa/udagram-api-feed:v.a ./udagram-api-feed
+          docker build -t tifarafa/udagram-api-user:v.a ./udagram-api-user
+          docker build -t tifarafa/udagram-frontend:v.a ./udagram-frontend
+          docker build -t tifarafa/reverseproxy:v.a ./udagram-reverseproxy
+          docker push tifarafa/udagram-api-feed:v.a
+          docker push tifarafa/udagram-api-user:v.a
+          docker push tifarafa/udagram-frontend:v.a
+          docker push tifarafa/reverseproxy:v.a
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
