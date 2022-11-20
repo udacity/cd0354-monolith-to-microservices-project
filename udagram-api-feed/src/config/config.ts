@@ -1,14 +1,14 @@
 export const config = {
-  'username': process.env.POSTGRES_USERNAME,
-  'password': process.env.POSTGRES_PASSWORD,
-  'database': process.env.POSTGRES_DB,
-  'host': process.env.POSTGRES_HOST,
+  'username': 'postgres',
+  'password': 'admin123',
+  'database': 'postgres',
+  'host': 'postgres.cuo7pyfqyzp3.us-east-1.rds.amazonaws.com',
   'dialect': 'postgres',
-  'aws_region': process.env.AWS_REGION,
-  'aws_profile': process.env.AWS_PROFILE,
-  'aws_media_bucket': process.env.AWS_BUCKET,
-  'url': process.env.URL,
+  'aws_region': 'us-west-2',
+  'aws_profile': 'default',
+  'aws_media_bucket': 'arn:aws:s3:::udagram-065946682926-dev',
+  'url': 'http://a8c2be21f8acc45a9a0424510dce827d-285907653.us-west-2.elb.amazonaws.com:8100',
   'jwt': {
-    'secret': process.env.JWT_SECRET,
+    'secret': 'testing',
   },
 };

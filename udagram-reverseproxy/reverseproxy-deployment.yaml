@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: reverseproxy
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
@@ -17,3 +17,10 @@ spec:
        image: abdallahmagdi/reverseproxy:v1
        ports:
        - containerPort: 8080
+       resources:
+         requests:
+           memory: "50Mi"
+         limits:
+           memory: "100Mi"
+       command: ["stress"]
+       args: ["--vm", "1", "--vm-bytes", "250M", "--vm-hang", "1"]
