@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:12-alpine
 # Create app directory
 WORKDIR /usr/src/app
 # Install app dependencies
@@ -8,5 +8,5 @@ RUN npm ci
 # Bundle app source
 COPY . .
 EXPOSE 8080
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "prod" ]
 

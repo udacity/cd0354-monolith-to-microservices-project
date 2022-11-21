@@ -1,4 +1,4 @@
-## Build
+##build
 FROM beevelop/ionic:latest AS ionic
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,4 +13,3 @@ RUN ionic build
 FROM nginx:alpine
 #COPY www /usr/share/nginx/html
 COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
-
