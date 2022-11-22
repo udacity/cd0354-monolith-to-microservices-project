@@ -58,3 +58,5 @@ Resources:
       MultiAZ: !Ref "MultiAZDatabase"
       StorageType: "gp2"
       PubliclyAccessible: true
+      EnablePerformanceInsights: false
+      BackupRetentionPeriod: 0

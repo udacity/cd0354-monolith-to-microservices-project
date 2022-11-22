@@ -25,7 +25,7 @@
 	},
 	{
 		"ParameterKey": "DBAllocatedStorage",
-		"ParameterValue": "5"
+		"ParameterValue": "20"
 	},
 	{
 		"ParameterKey": "MultiAZDatabase",
