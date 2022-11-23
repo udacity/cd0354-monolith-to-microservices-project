@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+  namespace: default
+data:
+  AWS_PROFILE: AdminProfile
+  POSTGRES_DB: postgres
+  POSTGRES_HOST: udagramrdsdbrafa.cgr5mcnnwhkt.us-east-1.rds.amazonaws.com
+  AWS_BUCKET: project-rafa-dev
+  AWS_REGION: us-east-1
+  URL: http://localhost:8100
+  JWT_SECRET: testing 

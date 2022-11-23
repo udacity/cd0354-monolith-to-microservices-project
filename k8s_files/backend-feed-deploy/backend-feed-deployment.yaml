@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-feed
+  labels:
+    app: backend-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-feed
+  template:
+    metadata:
+      labels:
+        app: backend-feed
+    spec:
+      containers:
+      - name: backend-feed
+        image: tifarafa/udagram-api-feed:0.1.15
+        resources:
+          requests:
+            #memory: "128Mi"
+            cpu: "250m"
+          limits:
+            #memory: "1024Mi"
+            cpu: "500m"  
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+        envFrom:
+          - secretRef:
+              name: env-secret
+          - configMapRef:
+              name: env-configmap
+        ports:
+          - containerPort: 8080
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
+          optional: false

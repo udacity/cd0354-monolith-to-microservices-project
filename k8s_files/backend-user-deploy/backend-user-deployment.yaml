@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user
+  labels:
+    app: backend-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+      - name: backend-user
+        image: tifarafa/udagram-api-user:0.1.15
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            #memory: "128Mi"
+            cpu: "250m"
+          limits:
+            #memory: "1024Mi"
+            cpu: "500m"   
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+        envFrom:
+          - secretRef:
+              name: env-secret
+          - configMapRef:
+              name: env-configmap
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
+          optional: false
