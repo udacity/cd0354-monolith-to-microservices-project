@@ -1,12 +1,16 @@
-apiVersion: apps/v1
-kind: Deployment
-
-POSTGRES_USERNAME: postgres
-POSTGRES_PASSWORD: admin123
-POSTGRES_HOST: postgres.cuo7pyfqyzp3.us-east-1.rds.amazonaws.com
-POSTGRES_DB: postgres
-AWS_BUCKET: arn:aws:s3:::udagram-065946682926-dev
-AWS_REGION: us-west-2
-AWS_PROFILE: default
-JWT_SECRET: testing
-URL: http://localhost:8100
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: configmap 
+data:
+  POSTGRES_USERNAME: postgres
+  POSTGRES_PASSWORD: admin123
+  POSTGRES_HOST: postgres.cuo7pyfqyzp3.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: postgres
+  AWS_BUCKET: arn:aws:s3:::udagram-065946682926-dev
+  AWS_REGION: eu-central-1
+  AWS_PROFILE: default
+  JWT_SECRET: testing
+  URL: http://a2cb6ee95a21a4b35a741b8263fb572e-1837218041.eu-central-1.elb.amazonaws.com:8100
+  AWS_ACCESS_KEY_ID: AKIAQ6WV2QYXNOKLQWOY
+  AWS_SECRET_ACCESS_KEY: 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
