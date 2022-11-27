@@ -22,7 +22,7 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
   
 
-- docker tag udagram-reverseproxy kedist/udagram-reverseproxy-two:v4a
+- docker tag udagram-reverseproxy kedist/reverseproxy-two:v4a
 - docker tag udagram-api-feed kedist/udagram-api-feed-two:v4a
 - docker tag udagram-api-user kedist/udagram-api-user-two:v4a
 - docker tag udagram-frontend kedist/udagram-frontend-two:local
@@ -30,7 +30,7 @@ script:
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-- docker push kedist/udagram-reverseproxy-two:v4a
+- docker push kedist/reverseproxy-two:v4a
 - docker push kedist/udagram-api-feed-two:v4a
 - docker push kedist/udagram-api-user-two:v4a
 - docker push kedist/udagram-frontend-two:local
