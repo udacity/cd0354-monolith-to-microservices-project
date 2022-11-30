@@ -26,7 +26,7 @@
     #               docker push ${DOCKERHUB_USERNAME}/udagram-api-feed:v8
     #               docker push ${DOCKERHUB_USERNAME}/udagram-frontend:v9.7
     #               docker push ${DOCKERHUB_USERNAME}/reverseproxy:v1
-  version: 2.1
+version: 2.1
 
 jobs:
   lint-app:
