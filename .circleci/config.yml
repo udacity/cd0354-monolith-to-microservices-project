@@ -33,9 +33,9 @@ jobs:
             echo " ------- login in to hub--------"
             docker login -u mizile -p $DOCKERPASS
             echo "-------------- Pushing images to dockerhub-------"
-            docker push mizile/udagram-api-feed:v3
-            docker push mizile/udagram-api-user:v3
-            docker push mizile/udagram-frontend:v3
+            docker push mizile/udagram-api-feed:v2
+            docker push mizile/udagram-api-user:v2
+            docker push mizile/udagram-frontend:v8
             docker push mizile/udagram-reverseproxy:v3
 workflows:
   default:
