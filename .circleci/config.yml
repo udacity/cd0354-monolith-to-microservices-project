@@ -1,63 +1,32 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
+language: node_js
+node_js:
+  - 14
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  lint-app:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: circleci/node:14.5.5
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-  build-docker:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Build docker containers for each microservices
-          command: |
-            echo "--------- Installing Dependencies -----------"
-            sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz
-            sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
-            sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
-            node --version => v18.0.0
-            sudo apt install nodejs
+services:
+  - docker
 
-            echo "--------- The images is building ---------"
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
 
-            docker build -t udagram-api-feed ./udagram-api-feed
-            docker tag udagram-api-feed mizile/udagram-api-feed:v3
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
 
-            docker build -t udagram-api-user ./udagram-api-user
-            docker tag udagram-api-user mizile/udagram-api-user:v3
+script:
+  - docker --version # print the version for logging
+  - docker build -t udagram-api-feed ./udagram-api-feed
+  - docker tag udagram-api-feed mizile/udagram-api-feed:v3
+  - docker build -t udagram-api-user ./udagram-api-user
+  - docker tag udagram-api-user mizile/udagram-api-user:v3
+  - docker build -t udagram-frontend ./udagram-frontend
+  - docker tag udagram-frontend mizile/udagram-frontend:v3
+  - docker build -t reverseproxy ./udagram-reverseproxy
+  - docker tag reverseproxy mizile/reverseproxy:v3
 
-            docker build -t udagram-frontend ./udagram-frontend
-            docker tag udagram-frontend mizile/udagram-frontend:v3
-
-            docker build -t udagram-reverseproxy ./udagram-reverseproxy
-            docker tag udagram-reverseproxy mizile/udagram-frontend:v3
-
-            echo "-------- All images successfully built -------"
-
-            echo "--------- login into hub ------"
-
-            docker login -u mizile -p $DOCKERPASS
-
-            echo "--------- Pushing images to dockerhub ----------"
-
-            docker push mizile/udagram-api-feed:v3
-            docker push mizile/udagram-api-user:v3
-            docker push mizile/udagram-frontend:v3
-            docker push mizile/udagram-reverseproxy:v3
-
-  workflows:
-    docker:
-      jobs:
-        - lint-app
-        - build-docker:
-            requires: [lint-app]
+after_success:
+  - docker login -u $DOCKER_USERNAME -p $DOCKERPASS
+  - docker push mizile/udagram-api-feed:v3
+  - docker push mizile/udagram-api-user:v3
+  - docker push mizile/udagram-frontend:v3
+  - docker push mizile/reverseproxy:v3
