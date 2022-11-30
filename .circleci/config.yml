@@ -21,39 +21,39 @@ jobs:
       - run:
           name: Build docker containers for each microservices
           command: |
-          echo "--------- Installing Dependencies -----------"
-          sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz
-          sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
-          sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
-          node --version => v18.0.0
-          sudo apt install nodejs
+            echo "--------- Installing Dependencies -----------"
+            sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz
+            sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
+            sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
+            node --version => v18.0.0
+            sudo apt install nodejs
 
-          echo "--------- The images is building ---------"
+            echo "--------- The images is building ---------"
 
-          docker build -t udagram-api-feed ./udagram-api-feed
-          docker tag udagram-api-feed mizile/udagram-api-feed:v3
+            docker build -t udagram-api-feed ./udagram-api-feed
+            docker tag udagram-api-feed mizile/udagram-api-feed:v3
 
-          docker build -t udagram-api-user ./udagram-api-user
-          docker tag udagram-api-user mizile/udagram-api-user:v3
+            docker build -t udagram-api-user ./udagram-api-user
+            docker tag udagram-api-user mizile/udagram-api-user:v3
 
-          docker build -t udagram-frontend ./udagram-frontend
-          docker tag udagram-frontend mizile/udagram-frontend:v3
+            docker build -t udagram-frontend ./udagram-frontend
+            docker tag udagram-frontend mizile/udagram-frontend:v3
 
-          docker build -t udagram-reverseproxy ./udagram-reverseproxy
-          docker tag udagram-reverseproxy mizile/udagram-frontend:v3
+            docker build -t udagram-reverseproxy ./udagram-reverseproxy
+            docker tag udagram-reverseproxy mizile/udagram-frontend:v3
 
-          echo "-------- All images successfully built -------"
+            echo "-------- All images successfully built -------"
 
-          echo "--------- login into hub ------"
+            echo "--------- login into hub ------"
 
-          docker login -u mizile -p $DOCKERPASS
+            docker login -u mizile -p $DOCKERPASS
 
-          echo "--------- Pushing images to dockerhub ----------"
+            echo "--------- Pushing images to dockerhub ----------"
 
-          docker push mizile/udagram-api-feed:v3
-          docker push mizile/udagram-api-user:v3
-          docker push mizile/udagram-frontend:v3
-          docker push mizile/udagram-reverseproxy:v3
+            docker push mizile/udagram-api-feed:v3
+            docker push mizile/udagram-api-user:v3
+            docker push mizile/udagram-frontend:v3
+            docker push mizile/udagram-reverseproxy:v3
 
   workflows:
     default:
