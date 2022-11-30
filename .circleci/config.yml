@@ -1,29 +1,73 @@
-    version: 2.1
+    # version: 2.1
 
-    jobs:
-      build:
-        docker:
-          - image: cimg/base:2022.06
-            auth:
-              username: $DOCKERHUB_USERNAME
-              password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        steps:
-          - setup_remote_docker:
-              version: 20.10.14
-              docker_layer_caching: true
-          - checkout
-          - run: pwd
-          - run: |
-                  docker-compose -f docker-compose-build.yaml build --parallel
+    # jobs:
+    #   build:
+    #     docker:
+    #       - image: cimg/base:2022.06
+    #         auth:
+    #           username: $DOCKERHUB_USERNAME
+    #           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    #     steps:
+    #       - setup_remote_docker:
+    #           version: 20.10.14
+    #           docker_layer_caching: true
+    #       - checkout
+    #       - run: pwd
+    #       - run: |
+    #               docker-compose -f docker-compose-build.yaml build --parallel
                   
-                  docker tag udagram-api-user ${DOCKERHUB_USERNAME}/udagram-api-user:v8
-                  docker tag udagram-api-feed ${DOCKERHUB_USERNAME}/udagram-api-feed:v8
-                  docker tag udagram-frontend:local ${DOCKERHUB_USERNAME}/udagram-frontend:v9.7
-                  docker tag reverseproxy ${DOCKERHUB_USERNAME}/reverseproxy:v1
+    #               docker tag udagram-api-user ${DOCKERHUB_USERNAME}/udagram-api-user:v8
+    #               docker tag udagram-api-feed ${DOCKERHUB_USERNAME}/udagram-api-feed:v8
+    #               docker tag udagram-frontend:local ${DOCKERHUB_USERNAME}/udagram-frontend:v9.7
+    #               docker tag reverseproxy ${DOCKERHUB_USERNAME}/reverseproxy:v1
 
-                  echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                  docker push ${DOCKERHUB_USERNAME}/udagram-api-user:v8
-                  docker push ${DOCKERHUB_USERNAME}/udagram-api-feed:v8
-                  docker push ${DOCKERHUB_USERNAME}/udagram-frontend:v9.7
-                  docker push ${DOCKERHUB_USERNAME}/reverseproxy:v1
-  
+    #               echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+    #               docker push ${DOCKERHUB_USERNAME}/udagram-api-user:v8
+    #               docker push ${DOCKERHUB_USERNAME}/udagram-api-feed:v8
+    #               docker push ${DOCKERHUB_USERNAME}/udagram-frontend:v9.7
+    #               docker push ${DOCKERHUB_USERNAME}/reverseproxy:v1
+  version: 2.1
+
+jobs:
+  lint-app:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+  build-docker:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build docker container for each microservices
+          command: |
+            echo "--------- Installing dependencies-----------"
+            sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz
+            sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
+            sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
+            node --version => v18.0.0
+            sudo apt install nodejs
+            echo "--------- The images is Building ------------"
+            docker build -t udagram-api-feed ./udagram-api-feed
+            docker tag udagram-api-feed ayomide265/udagram-api-feed:v3
+            docker build -t udagram-api-user ./udagram-api-user
+            docker tag udagram-api-user ayomide265/udagram-api-user:v3
+            
+            docker build -t udagram-frontend ./udagram-frontend
+            docker tag udagram-frontend ayomide265/udagram-frontend:v3
+            docker build -t udagram-reverseproxy ./udagram-reverseproxy
+            docker tag udagram-reverseproxy ayomide265/udagram-reverseproxy:v3
+            echo "-------- All images succesfully built----------"
+            echo " ------- login in to hub--------"
+            docker login -u ayomide265 -p $DOCKERPASS
+            echo "-------------- Pushing images to dockerhub-------"
+            docker push ayomide265/udagram-api-feed:v3
+            docker push ayomide265/udagram-api-user:v3
+            docker push ayomide265/udagram-frontend:v3
+            docker push ayomide265/udagram-reverseproxy:v3
+workflows:
+  default:
+    jobs:
+      - lint-app
+      - build-docker:
+          requires: [lint-app]
