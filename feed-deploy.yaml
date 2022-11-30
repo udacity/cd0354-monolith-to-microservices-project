@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-feed
+  labels:
+    app: api-feed
+  name: api-feed
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-feed
+  template:
+    metadata:
+      labels:
+        app: api-feed
+    spec:
+      containers:
+        - name: api-feed
+          image: ayomide265/udagram-api-feed:v3
+          ports:
+          - containerPort: 8080
+          envFrom:
+          - configMapRef:
+              name: udagramdb-env
+          - secretRef:
+              name: udagramdb-env
