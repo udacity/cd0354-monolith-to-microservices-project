@@ -56,7 +56,7 @@ jobs:
             docker push mizile/udagram-reverseproxy:v3
 
   workflows:
-    build:
+    docker:
       jobs:
         - lint-app
         - build-docker:
