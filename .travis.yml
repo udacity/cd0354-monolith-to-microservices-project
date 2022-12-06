@@ -13,7 +13,7 @@ install:
 before_script:
   - npm install -g gulp-cli
 
-script: gulp
+script: 
   - docker --version # print the version for logging
 
   #udagram-api-feed
