@@ -7,11 +7,11 @@ services:
 
 # Pre-testing installs
 install:
-  - echo "Step Install: N/A"
+  - echo "Step Install"
 
 # Scripts to be run such as tests
 before_script:
-  - echo "Step before: N/A"
+  - echo "Step Before Script"
 
 script:
   - docker --version # print the version for logging
