@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 18
+  - 13
 
 services:
   - docker
@@ -11,7 +11,7 @@ install:
 
 # Scripts to be run such as tests
 before_script:
-  - npm install -g gulp-cli
+  - echo "Step Before Script"
 
 script: 
   - docker --version # print the version for logging
