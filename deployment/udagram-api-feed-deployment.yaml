@@ -5,16 +5,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: backend-feed
+      service: backend-feed
   replicas: 2
   template:
     metadata:
       labels:
-        run: backend-feed
+        service: backend-feed
     spec:
       containers:
       - name: backend-feed
-        image: docker.io/dongtiennguyen/udagram-api-feed:v1
+        image: docker.io/dongtiennguyen/udagram-api-feed:v3
         ports:
         - containerPort: 80
         imagePullPolicy: Always  
@@ -56,6 +56,11 @@ spec:
             configMapKeyRef:
               name: env-config
               key: POSTGRES_HOST
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:

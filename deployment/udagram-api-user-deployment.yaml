@@ -5,16 +5,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: backend-user
+      service: backend-user
   replicas: 2
   template:
     metadata:
       labels:
-        run: backend-user
+        service: backend-user
     spec:
       containers:
       - name: backend-user
-        image: docker.io/dongtiennguyen/udagram-api-user:v1
+        image: docker.io/dongtiennguyen/udagram-api-user:v3
         ports:
         - containerPort: 80
         imagePullPolicy: Always  

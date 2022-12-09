@@ -5,17 +5,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: frontend
+      service: frontend
   replicas: 2
   template:
     metadata:
       labels:
-        run: frontend
-        api: external
+        service: frontend
     spec:
       containers:
       - name: frontend
-        image: docker.io/dongtiennguyen/udagram-frontend:v2
+        image: docker.io/dongtiennguyen/udagram-frontend:v6
         imagePullPolicy: Always
         ports: 
         - containerPort: 80
