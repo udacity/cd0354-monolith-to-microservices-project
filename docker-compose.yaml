@@ -1,15 +1,15 @@
 version: "3"
 services:
   reverseproxy:
-      image: reverseproxy:v4a
+      image: reverseproxy:v4b
       ports:
           - 8080:8080
       restart: always
       depends_on:
-        - backend-user
-        - backend-feed
-  backend-user:
-    image: udagram-api-user:v4a
+        - api-user
+        - api-feed
+  api-user:
+    image: udagram-api-user:v4b
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
@@ -20,8 +20,8 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
-  backend-feed:
-    image: udagram-api-feed:v4a
+  api-feed:
+    image: udagram-api-feed:v4b
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
