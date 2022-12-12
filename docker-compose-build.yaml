@@ -1,0 +1,26 @@
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+    image: reverseproxy
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+  backend_user:
+    build:
+      context: ./udagram-api-user
+    image: udagram-api-user
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+  backend_feed:
+    build:
+      context: ./udagram-api-feed
+    image: udagram-api-feed
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+  frontend:
+    build:
+      context: ./udagram-frontend
+    image: udagram-frontend:local
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
