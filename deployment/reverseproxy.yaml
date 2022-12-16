@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: reverseproxy
-        image: docker.io/mizile/reverseproxy:v3a
+        image: docker.io/mizile/udagram-reverseproxy:v3a
         ports:
         - containerPort: 80
         resources:
