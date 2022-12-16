@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: reverseproxy
-        image: docker.io/mizile/reverseproxy:v3
+        image: docker.io/mizile/reverseproxy
         ports:
         - containerPort: 80
         resources:
