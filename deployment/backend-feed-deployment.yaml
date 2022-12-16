@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-feed
-        image: docker.io/mizile/udagram-api-feed:v3a
+        image: docker.io/mizile/udagram-api-feed
         ports:
         - containerPort: 80
         resources:
