@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: docker.io/mizile/udagram-frontend
+        image: docker.io/mizile/udagram-frontend:v3
         ports: 
         - containerPort: 80
         resources:

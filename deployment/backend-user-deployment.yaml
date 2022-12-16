@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-user
-        image: docker.io/mizile/udagram-api-user
+        image: docker.io/mizile/udagram-api-user:v3a
         ports:
         - containerPort: 80
         resources:

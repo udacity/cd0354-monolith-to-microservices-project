@@ -27,8 +27,8 @@ jobs:
             
             docker build -t udagram-frontend ./udagram-frontend
             docker tag udagram-frontend mizile/udagram-frontend:v3
-            docker build -t udagram-reverseproxy ./udagram-reverseproxy
-            docker tag udagram-reverseproxy mizile/udagram-reverseproxy:v3
+            docker build -t reverseproxy ./udagram-reverseproxy
+            docker tag reverseproxy mizile/reverseproxy:v3
             echo "-------- All images succesfully built----------"
             echo " ------- login in to hub--------"
             docker login -u mizile -p $DOCKERPASS
@@ -36,7 +36,7 @@ jobs:
             docker push mizile/udagram-api-feed:v3
             docker push mizile/udagram-api-user:v3
             docker push mizile/udagram-frontend:v3
-            docker push mizile/udagram-reverseproxy:v3
+            docker push mizile/reverseproxy:v3
 workflows:
   default:
     jobs:
