@@ -5,8 +5,8 @@ data:
   AWS_PROFILE: udacity
   AWS_REGION: us-east-1
   JWT_SECRET: ___INSERT_JWT_SECRET___
-  POSTGRESS_DB: postgres
-  POSTGRESS_HOST: ___INSERT_POSTGRESS_HOST___
+  POSTGRES_DB: postgres
+  POSTGRES_HOST: ___INSERT_POSTGRES_HOST___
   URL: http://localhost:8100  
 metadata:
   name: env-config
