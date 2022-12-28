@@ -1,1 +1,1 @@
-aws cloudformation delete-stack --stack-name $1 --region=us-east-1 --profile udacity
+aws cloudformation delete-stack --stack-name $1 --region=ap-southeast-1 --profile udacity
