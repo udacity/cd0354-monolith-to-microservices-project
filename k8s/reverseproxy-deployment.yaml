@@ -5,10 +5,10 @@ metadata:
     service: reverseproxy
   name: reverseproxy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: reverseproxy
+      service: reverseproxy
   template:
     metadata:
       labels:
@@ -18,13 +18,13 @@ spec:
       - image: tanquyvt/reverseproxy:v1
         name: reverseproxy
         imagePullPolicy: Always          
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "1024Mi"
-            cpu: "500m"       
+        # resources:
+        #   requests:
+        #     memory: "64Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "1024Mi"
+        #     cpu: "500m"       
         ports:
         - containerPort: 8080
       restartPolicy: Always
