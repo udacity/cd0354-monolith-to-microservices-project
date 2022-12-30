@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 data:
-  AWS_BUCKET: mybucket1200798
+  AWS_BUCKET: mybucket058763079521
   AWS_PROFILE: udacity
-  AWS_REGION: us-east-1
-  JWT_SECRET: ___INSERT_JWT_SECRET___
+  AWS_REGION: ap-southeast-1
+  JWT_SECRET: testing
   POSTGRES_DB: postgres
-  POSTGRES_HOST: ___INSERT_POSTGRES_HOST___
+  POSTGRES_HOST: capstone-rds-dbinstance-xqmdrsx2xlqt.cywhgycdgrqy.ap-southeast-1.rds.amazonaws.com
   URL: http://localhost:8100  
 metadata:
   name: env-config
