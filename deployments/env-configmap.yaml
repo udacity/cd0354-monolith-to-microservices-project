@@ -6,7 +6,7 @@ data:
   AWS_REGION: us-west-2
   JWT_SECRET: testing
   POSTGRES_DB: postgres
-  POSTGRES_HOST: cdr1.c7pfrl6pymdk.us-west-2.rds.amazonaws.com
-  URL: https://af84e6ec021ff48679b4ebae66e27c8d-497042590.us-west-2.elb.amazonaws.com:8080
+  POSTGRES_HOST: cdr.c7pfrl6pymdk.us-west-2.rds.amazonaws.com
+  URL: http://af36890be3fd74c85b79cb2c44a015bc-2097585617.us-west-2.elb.amazonaws.com:8080
 metadata:
   name: env-config

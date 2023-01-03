@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-user
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend-user
@@ -20,11 +20,11 @@ spec:
         imagePullPolicy: Always  
         resources:
           requests:
-            memory: "100Mi"
-            cpu: "250m"
+            memory: "900Mi"
+            cpu: "800m"
           limits:
-            memory: "1024Mi"
-            cpu: "500m"      
+            memory: "2000Mi"
+            cpu: "2100m"      
         env:
         - name: URL
           valueFrom:

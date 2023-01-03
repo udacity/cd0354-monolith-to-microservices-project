@@ -5,7 +5,7 @@ metadata:
     app: frontend
   name: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -23,10 +23,10 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
+            memory: "500Mi"
+            cpu: "500m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"                
+            cpu: "1500m"                
       restartPolicy: Always
 
