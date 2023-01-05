@@ -1,7 +1,7 @@
 version: "3"
 services:
   reverseproxy:
-      image: zacchaeusayanniran/reverseproxy:v2a
+      image: zacchaeusayanniran/reverseproxy
       ports:
           - 8080:8080
       restart: always
@@ -9,7 +9,7 @@ services:
         - backend-user
         - backend-feed
   backend-user:
-    image: zacchaeusayanniran/udagram-api-user:v2a
+    image: zacchaeusayanniran/udagram-api-user
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
@@ -21,7 +21,7 @@ services:
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
   backend-feed:
-    image: zacchaeusayanniran/udagram-api-feed:v2a
+    image: zacchaeusayanniran/udagram-api-feed
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
