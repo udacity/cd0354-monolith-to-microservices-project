@@ -2,8 +2,8 @@ import {Router, Request, Response} from 'express';
 import {FeedItem} from '../models/FeedItem';
 import {NextFunction} from 'connect';
 import * as jwt from 'jsonwebtoken';
-import * as AWS from '../../../../aws';
-import * as c from '../../../../config/config';
+import * as AWS from '../../../aws';
+import * as c from '../../../config/config';
 
 const router: Router = Router();
 
@@ -18,7 +18,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
   }
 
   const token = tokenBearer[1];
-  return jwt.verify(token, c.config.jwt.secret, (err, decoded) => {
+  return jwt.verify(token, c.config.jwt.secret, (err: any, decoded: any) => {
     if (err) {
       return res.status(500).send({auth: false, message: 'Failed to authenticate.'});
     }

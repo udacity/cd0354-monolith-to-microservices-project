@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express';
 
 import {User} from '../models/User';
-import * as c from '../../../../config/config';
+import * as c from '../../../config/config';
 
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
@@ -38,7 +38,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
   }
 
   const token = tokenBearer[1];
-  return jwt.verify(token, c.config.jwt.secret, (err, decoded) => {
+  return jwt.verify(token, c.config.jwt.secret, (err: any, decoded: any) => {
     if (err) {
       return res.status(500).send({auth: false, message: 'Failed to authenticate.'});
     }
