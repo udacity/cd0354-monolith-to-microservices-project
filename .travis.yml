@@ -1,0 +1,49 @@
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_6d312b9e3cc3_key -iv $encrypted_6d312b9e3cc3_iv -in udagram-kubernetes/config.enc -out udagram-kubernetes/config -d
+  - openssl aes-256-cbc -K $encrypted_d506bd5213c4_key -iv $encrypted_d506bd5213c4_iv -in udagram-kubernetes/credentials.enc -out udagram-kubernetes/credentials -d
+  - openssl aes-256-cbc -K $encrypted_556cd2193b0c_key -iv $encrypted_556cd2193b0c_iv -in udagram-kubernetes/udagram-configmap.yml.enc -out udagram-kubernetes/udagram-configmap.yml -d
+
+install:
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  - chmod +x ./kubectl
+  - sudo mv ./kubectl /usr/local/bin/kubectl
+  - mkdir ${HOME}/.kube
+  - mv udagram-kubernetes/config ${HOME}/.kube/
+  - sudo apt-get install awscli
+  - mkdir ${HOME}/.aws
+  - mv udagram-kubernetes/credentials ${HOME}/.aws
+  
+before_script: []
+
+script:
+  - docker --version
+  - docker build -f udagram-api-feed/Dockerfile -t  mualaddinibrahim/udagram-api-feed:latest udagram-api-feed
+  - docker build -f udagram-api-user/Dockerfile -t  mualaddinibrahim/udagram-api-user:latest udagram-api-user
+  - docker build -f udagram-frontend/Dockerfile -t  mualaddinibrahim/udagram-frontend:latest udagram-frontend
+  - docker build -f udagram-reverseproxy/Dockerfile -t  mualaddinibrahim/udagram-reverseproxy:latest udagram-reverseproxy
+
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push mualaddinibrahim/udagram-api-feed:latest
+  - docker push mualaddinibrahim/udagram-api-user:latest
+  - docker push mualaddinibrahim/udagram-frontend:latest
+  - docker push mualaddinibrahim/udagram-reverseproxy:latest
+  - kubectl delete namespace udagram
+  - kubectl create namespace udagram
+  - kubectl apply -f udagram-kubernetes/udagram-configmap.yml
+  - kubectl apply -f udagram-kubernetes/udagram-api-feed-deployment.yml
+  - kubectl apply -f udagram-kubernetes/udagram-api-feed-service.yml
+  - kubectl apply -f udagram-kubernetes/udagram-api-user-deployment.yml
+  - kubectl apply -f udagram-kubernetes/udagram-api-user-service.yml
+  - kubectl apply -f udagram-kubernetes/udagram-frontend-deployment.yml
+  - kubectl apply -f udagram-kubernetes/udagram-frontend-service.yml
+  - kubectl apply -f udagram-kubernetes/udagram-reverseproxy-deployment.yml
+  - kubectl apply -f udagram-kubernetes/udagram-reverseproxy-service.yml
