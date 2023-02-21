@@ -7,14 +7,18 @@ workflows:
   build-and-publish-docker-image:
     jobs:
       - docker/publish:
+          dockerfile: udagram-api-user/Dockerfile
           image: ahmadsherief/udagram-api-user
           tag: "latest"
       - docker/publish:
+          dockerfile: udagram-api-feed/Dockerfile
           image: ahmadsherief/udagram-api-feed
           tag: "latest"
       - docker/publish:
+          dockerfile: udagram-frontend/Dockerfile
           image: ahmadsherief/udagram-frontend:local
           tag: "latest"
       - docker/publish:
+          dockerfile: udagram-reverseproxy/Dockerfile
           image: ahmadsherief/reverseproxy
           tag: "latest"
