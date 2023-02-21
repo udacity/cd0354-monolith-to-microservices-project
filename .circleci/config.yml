@@ -1,0 +1,20 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@2.2.0
+
+workflows:
+  build-and-publish-docker-image:
+    jobs:
+      - docker/publish:
+          image: ahmadsherief/udagram-api-user
+          tag: "latest"
+      - docker/publish:
+          image: ahmadsherief/udagram-api-feed
+          tag: "latest"
+      - docker/publish:
+          image: ahmadsherief/udagram-frontend:local
+          tag: "latest"
+      - docker/publish:
+          image: ahmadsherief/reverseproxy
+          tag: "latest"
