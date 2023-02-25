@@ -22,10 +22,10 @@ jobs:
           docker build -t udagram-frontend ./udagram-frontend
           docker build -t reverseproxy ./reverseproxy
           
-          docker tag udagram-api-feed zeyadmobarez/udagram-api-feed:v4
-          docker tag udagram-api-user zeyadmobarez/udagram-api-user:v4
-          docker tag udagram-frontend zeyadmobarez/udagram-frontend:v4
-          docker tag reverseproxy zeyadmobarez/reverseproxy:local1
+          docker tag udagram-api-feed zeyadmobarez/udagram-api-feed:v4a
+          docker tag udagram-api-user zeyadmobarez/udagram-api-user:v4a
+          docker tag udagram-frontend zeyadmobarez/udagram-frontend:v4a
+          docker tag reverseproxy zeyadmobarez/reverseproxy:local
           
       - name: Login to DockerHub and push images
         uses: docker/login-action@v1
