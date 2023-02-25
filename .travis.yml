@@ -5,14 +5,14 @@
 - docker build -t reverseproxy ./reverseproxy
 
 # Tag images
-- docker tag udagram-api-feed zeyadmobarez/udagram-api-feed:v4a
-- docker tag udagram-api-user zeyadmobarez/udagram-api-user:v4a
-- docker tag udagram-frontend zeyadmobarez/udagram-frontend:v4a
-- docker tag reverseproxy zeyadmobarez/reverseproxy:local
+- docker tag udagram-api-feed zeyadmobarez/udagram-api-feed:v4
+- docker tag udagram-api-user zeyadmobarez/udagram-api-user:v4
+- docker tag udagram-frontend zeyadmobarez/udagram-frontend:v4
+- docker tag reverseproxy zeyadmobarez/reverseproxy:local1
 
 # Login to DockerHub and push images
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker push zeyadmobarez/udagram-api-feed:v4a
-- docker push zeyadmobarez/udagram-api-user:v4a
-- docker push zeyadmobarez/udagram-frontend:v4a
-- docker push zeyadmobarez/reverseproxy:local
+- docker push zeyadmobarez/udagram-api-feed:v4
+- docker push zeyadmobarez/udagram-api-user:v4
+- docker push zeyadmobarez/udagram-frontend:v4
+- docker push zeyadmobarez/reverseproxy:local1
