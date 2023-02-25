@@ -35,7 +35,7 @@ jobs:
           
       - name: Push Docker images
         run: |
-          docker push zeyadmobarez/udagram-api-feed:v4
-          docker push zeyadmobarez/udagram-api-user:v4
-          docker push zeyadmobarez/udagram-frontend:v4
-          docker push zeyadmobarez/reverseproxy:local1
+          docker push zeyadmobarez/udagram-api-feed:v4a
+          docker push zeyadmobarez/udagram-api-user:v4a
+          docker push zeyadmobarez/udagram-frontend:v4a
+          docker push zeyadmobarez/reverseproxy:local
