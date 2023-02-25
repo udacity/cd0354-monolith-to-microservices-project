@@ -1,17 +1,20 @@
-name: Build and push Docker images
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: main
+          submodules: 'recursive'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ssh-key: ${{ secrets.DEPLOY_SSH_KEY }}
 
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          
       - name: Build and tag Docker images
         run: |
           docker build -t udagram-api-feed ./udagram-api-feed
