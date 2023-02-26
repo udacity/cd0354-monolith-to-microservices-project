@@ -1,3 +1,4 @@
+
 # Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
 # Use either `docker-compose` or individual `docker build` commands
 # Build
@@ -37,7 +38,7 @@
 # Push
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker push zeyadmobarez/udagram-frontend:v4a
+- docker push zeyadmobarez/udagram-frontend:local
 
 
 
