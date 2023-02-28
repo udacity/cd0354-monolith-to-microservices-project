@@ -5,7 +5,7 @@ metadata:
     service: api-user
   name: api-user
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       service: api-user
@@ -15,68 +15,14 @@ spec:
         service: api-user
     spec:
       containers:
-        - image: zeyadmobarez/udagram-api-user:v4a
-          name: api-user
-          imagePullPolicy: Always
-          env:
-            - name: URL
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: URL
-            - name: AWS_BUCKET
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: AWS_BUCKET
-            - name: AWS_PROFILE
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: AWS_PROFILE
-            - name: AWS_REGION
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: AWS_REGION
-            - name: JWT_SECRET
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: JWT_SECRET
-            - name: POSTGRES_DB
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: POSTGRES_DB
-            - name: POSTGRES_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: POSTGRES_HOST
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: env-secret
-                  key: POSTGRES_PASSWORD
-            - name: POSTGRES_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: env-secret
-                  key: POSTGRES_USERNAME
-          volumeMounts:
-            - name: aws-secret
-              mountPath: "/root/.aws/"
-              readOnly: true
-          resources:
-            requests:
-              memory: "100Mi"
-            limits:
-              memory: "200Mi"
-          command: ["stress"]
-          args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+      - image: zeyadmobarez/udagram-api-user:v4a
+        name: api-user
+        imagePullPolicy: Always
+        ports: 
+        - containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: env-secret
+          - configMapRef:
+              name: env-configmap
       restartPolicy: Always
-      volumes:
-        - name: aws-secret
-          secret:
-            secretName: aws-secret
