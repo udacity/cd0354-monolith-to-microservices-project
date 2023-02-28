@@ -2,34 +2,33 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: api-feed
+    app: api-feed
   name: api-feed
+  namespace: default
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      service: api-feed
-  replicas: 3
+      app: api-feed
   template:
     metadata:
       labels:
-        service: api-feed
+        app: api-feed
     spec:
       containers:
       - image: zeyadmobarez/udagram-api-feed:v4a
         name: api-feed
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
         envFrom:
-          - secretRef:
-              name: env-secret
-          - configMapRef:
-              name: env-configmap
+        - configMapRef:
+            name: env-config
+        - secretRef:
+            name: env-secret
         volumeMounts:
-        - name: aws-secret
-          mountPath: /root/.aws
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true        
       restartPolicy: Always
       volumes:
         - name: aws-secret
           secret:
-            secretName: aws-secret
+            secretName: aws-secret 

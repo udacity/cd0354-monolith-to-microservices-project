@@ -2,27 +2,38 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: api-user
+    app: api-user
   name: api-user
+  namespace: default
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      service: api-user
+      app: api-user
   template:
     metadata:
       labels:
-        service: api-user
+        app: api-user
     spec:
       containers:
-      - image: zeyadmobarez/udagram-api-user:v4a
+      - image: zeyadahmed/udagram-api-user:v4a
         name: api-user
-        imagePullPolicy: Always
-        ports: 
-        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
         envFrom:
-          - secretRef:
-              name: env-secret
-          - configMapRef:
-              name: env-configmap
+        - configMapRef:
+            name: env-config
+        - secretRef:
+            name: env-secret
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true        
       restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret 

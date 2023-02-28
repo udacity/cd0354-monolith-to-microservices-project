@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-feed
   labels:
-    service: api-feed
+    app: api-feed
+  name: api-feed
+  namespace: default
 spec:
   ports:
-    - name: '8080'
-      port: 8080
-      targetPort: 8080
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
   selector:
-    service: api-feed
+    app: api-feed

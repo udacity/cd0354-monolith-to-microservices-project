@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name:  udagram-frontend
+  name: udagram-frontend-svc
+  namespace: default
   labels:
-    service:  udagram-frontend
+    app: udagram-frontend
 spec:
   ports:
   - name: "8100"
-    port: 80
+    port: 8100
     targetPort: 80
   selector:
-    service: udagram-frontend
+    app: udagram-frontend

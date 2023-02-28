@@ -2,24 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: udagram-frontend
+  namespace: default
+  labels:
+    app: udagram-frontend
 spec:
-  replicas: 2
-  selector: 
+  replicas: 1
+  selector:
     matchLabels:
-      run: udagram-frontend
+      app: udagram-frontend
   template:
     metadata:
       labels:
-        run: udagram-frontend
-        api: external        
+        app: udagram-frontend
     spec:
       containers:
-      - name: udagram-frontend
-        image: zeyadmobarez/udagram-frontend:local
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: "250m"
-          limits:
-            cpu: "500m"                
+      - name:  udagram-frontend
+        image: zeyadmobarez/udagram-frontend:v6
+        imagePullPolicy: Always  
+      restartPolicy: Always
