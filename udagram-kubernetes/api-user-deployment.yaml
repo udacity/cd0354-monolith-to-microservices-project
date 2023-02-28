@@ -30,7 +30,7 @@ spec:
             name: env-secret
         volumeMounts:
           - name: aws-secret
-            mountPath: "/root/.aws/"
+            mountPath: /root/.aws/
             readOnly: true        
       restartPolicy: Always
       volumes:
