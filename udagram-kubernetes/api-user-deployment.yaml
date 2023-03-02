@@ -2,38 +2,80 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: api-user
+    service: api-user
   name: api-user
-  namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: api-user
+      service: api-user
   template:
     metadata:
       labels:
-        app: api-user
+        service: api-user
     spec:
       containers:
-      - image: zeyadahmed/udagram-api-user:v4a
-        name: api-user
-        resources:
-          limits:
-            cpu: 500m
-          requests:
-            cpu: 200m
-        envFrom:
-        - configMapRef:
-            name: env-config
-        - secretRef:
-            name: env-secret
-        volumeMounts:
-          - name: aws-secret
-            mountPath: /root/.aws/
-            readOnly: true        
+        - image: zeyadmobarez/udagram-api-user:v2
+          name: api-user
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              cpu: "500m" 
+          env:
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: URL
+            - name: AWS_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_BUCKET
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_PROFILE
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_REGION
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: JWT_SECRET
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_HOST
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_USERNAME
+          volumeMounts:
+            - name: aws-secret
+              mountPath: "/root/.aws/"
+              readOnly: true
       restartPolicy: Always
       volumes:
         - name: aws-secret
           secret:
-            secretName: aws-secret 
+            secretName: aws-secret

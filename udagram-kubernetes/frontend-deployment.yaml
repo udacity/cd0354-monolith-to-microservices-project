@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: udagram-frontend
-  namespace: default
   labels:
     app: udagram-frontend
 spec:
@@ -16,7 +15,7 @@ spec:
         app: udagram-frontend
     spec:
       containers:
-      - name:  udagram-frontend
-        image: zeyadmobarez/udagram-frontend:v6
-        imagePullPolicy: Always  
-      restartPolicy: Always
+        - name: udagram-frontend
+          image: zeyadmobarez/udagram-frontend:v6
+          ports:
+            - containerPort: 80

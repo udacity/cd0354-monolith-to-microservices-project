@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-      app: api-user
   name: api-user
-  namespace: default
+  labels:
+    service: api-user
 spec:
-  selector:
-    app: api-user
   ports:
-    - name: "8080"
-      port: 8080
+    - port: 8080
       targetPort: 8080
+      protocol: TCP
+  selector:
+    service: api-user

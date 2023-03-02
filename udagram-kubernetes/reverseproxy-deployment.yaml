@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reverseproxy
-  namespace: default
   labels:
     app: reverseproxy
 spec:
@@ -16,9 +15,7 @@ spec:
         app: reverseproxy
     spec:
       containers:
-      - image: zeyadmobarez/reverseproxy:v4a
-        name: reverseproxy
-        imagePullPolicy: Always              
-        ports:
-        - containerPort: 8080
-      restartPolicy: Always
+        - name: reverseproxy
+          image: zeyadmobarez/reverseproxy:v2
+          ports:
+            - containerPort: 8080

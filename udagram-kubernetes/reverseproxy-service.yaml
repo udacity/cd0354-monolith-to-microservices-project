@@ -2,13 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: reverseproxy
-  namespace: default
   labels:
-    app: reverseproxy
+    service: reverseproxy
 spec:
   ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 8080
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
   selector:
-    app: reverseproxy
+    service: reverseproxy
