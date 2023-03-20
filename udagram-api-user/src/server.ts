@@ -12,6 +12,14 @@ import {V0_USER_MODELS} from './controllers/v0/model.index';
 (async () => {
   await sequelize.addModels(V0_USER_MODELS);
 
+  console.debug(`username: ${config.username}`)
+  console.debug(`password: ${config.password}`)
+  console.debug(`database: ${config.database}`)
+  console.debug(`host: ${config.host}`)
+  console.debug(`dialect: ${config.dialect}`)
+  console.debug(`aws_region: ${config.aws_region}`)
+  console.debug(`aws_profile: ${config.aws_profile}`)
+  console.debug(`aws_media_bucket: ${config.aws_media_bucket}`)
   console.debug("Initialize database connection...");
   await sequelize.sync();
 

@@ -44,3 +44,4 @@ venv/
 !.elasticbeanstalk/*.global.yml
 set_env.sh
 set_env.bat
+set_aws.bat
