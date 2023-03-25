@@ -45,6 +45,7 @@ export class ApiService {
   }
 
   post(endpoint, data): Promise<any> {
+    console.log('post');
     const url = `${API_HOST}${endpoint}`;
     return this.http.post<HttpEvent<any>>(url, data, this.httpOptions)
             .toPromise()
@@ -56,18 +57,21 @@ export class ApiService {
 
   async upload(endpoint: string, file: File, payload: any): Promise<any> {
     const signed_url = (await this.get(`${endpoint}/signed-url/${file.name}`)).url;
-
+    console.log('upload');
     const headers = new HttpHeaders({'Content-Type': file.type});
     const req = new HttpRequest( 'PUT', signed_url, file,
                                   {
                                     headers: headers,
                                     reportProgress: true, // track progress
                                   });
-
+    console.log('test 3');
     return new Promise ( resolve => {
         this.http.request(req).subscribe((resp) => {
+        console.log('test 4', resp);
         if (resp && (<any> resp).status && (<any> resp).status === 200) {
           resolve(this.post(endpoint, payload));
+        } else {
+          console.log('false');
         }
       });
     });
