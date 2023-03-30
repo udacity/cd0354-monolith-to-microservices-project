@@ -3,11 +3,20 @@ version: 2.1
 orbs:
   node: circleci/node@5.1.0
 
+executors:
+  docker-publisher:
+    environment:
+      BACKEND_FEED: thienntn1/udagram-api-feed
+      BACKEND_USER: thienntn1/udagram-api-user
+      FRONTEND: thienntn1/udagram-frontend
+      REVERSE_PROXY: thienntn1/reverseproxy
+    docker:
+      - image: 'docker:stable'
+
 jobs:
   build:
     working_directory: /cd0354-monolith-to-microservices-project
-    docker:
-      - image: 'docker:stable'
+    executor: docker-publisher
     steps:
       - checkout
       - setup_remote_docker
@@ -16,21 +25,21 @@ jobs:
           command: |
             docker --version
             docker build -t udagram-api-feed ./udagram-api-feed
-            docker tag udagram-api-feed thienntn1/udagram-api-feed
+            docker tag udagram-api-feed $BACKEND_FEED
 
             docker build -t udagram-api-user ./udagram-api-user
-            docker tag udagram-api-user thienntn1/udagram-api-user
+            docker tag udagram-api-user $BACKEND_USER
 
             docker build -t udagram-frontend ./udagram-frontend
-            docker tag udagram-frontend thienntn1/udagram-frontend
+            docker tag udagram-frontend $FRONTEND
 
             docker build -t udagram-reverseproxy ./udagram-reverseproxy
-            docker tag udagram-reverseproxy thienntn1/udagram-reverseproxy
+            docker tag udagram-reverseproxy $REVERSE_PROXY
       - deploy:
           name: Push application Docker images
           command: |
             docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-            docker push thienntn1/udagram-api-feed:latest
-            docker push thienntn1/udagram-api-user:latest
-            docker push thienntn1/udagram-frontend:latest
-            docker push thienntn1/udagram-reverseproxy:latest
+            docker push $BACKEND_FEED:latest
+            docker push $BACKEND_USER:latest
+            docker push $FRONTEND:latest
+            docker push $REVERSE_PROXY:latest
