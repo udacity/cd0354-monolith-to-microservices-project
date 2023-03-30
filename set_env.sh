@@ -1,4 +1,4 @@
-# This file is used for convenience of local development.
+# This file is used for convenience of local development.   
 # DO NOT STORE YOUR CREDENTIALS INTO GIT
 export POSTGRES_USERNAME=thienntn1
 export POSTGRES_PASSWORD=thienntn1
