@@ -130,6 +130,28 @@ The project uses an AWS S3 bucket to store image files.
    }
    ```
 
+4. CORS configuration 
+   ``` json
+   [
+      {
+         "AllowedHeaders":[
+            "*"
+         ],
+         "AllowedMethods":[
+            "POST",
+            "GET",
+            "PUT",
+            "DELETE",
+            "HEAD"
+         ],
+         "AllowedOrigins":[
+            "*"
+         ],
+         "ExposeHeaders":[]
+      }
+   ]
+   ```
+
    > In the AWS S3 console, the CORS configuration must be JSON format. Whereas, the AWS CLI can use either JSON or XML format.
 
    > Once the policies above are set and you are no longer testing locally, you can disable public access to your bucket.
