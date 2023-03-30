@@ -16,6 +16,7 @@ executors:
 jobs:
   build:
     working_directory: /cd0354-monolith-to-microservices-project
+    executor: docker-publisher
     steps:
       - checkout
       - setup_remote_docker
