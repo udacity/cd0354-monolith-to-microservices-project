@@ -10,7 +10,5 @@ script:
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
 after_success: 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker tag udagram-reverseproxy $DOCKER_USERNAME/udagram-reverseproxy:$TRAVIS_BUILD_NUMBER
-  - docker push $DOCKER_USERNAME/udagram-reverseproxy:$TRAVIS_BUILD_NUMBER
   - docker tag udagram-reverseproxy $DOCKER_USERNAME/udagram-reverseproxy:latest
   - docker push $DOCKER_USERNAME/udagram-reverseproxy:latest
