@@ -16,8 +16,6 @@ executors:
 jobs:
   build:
     working_directory: /cd0354-monolith-to-microservices-project
-    docker:
-      - image: 'docker:stable'
     steps:
       - checkout
       - setup_remote_docker
