@@ -17,7 +17,7 @@ services:
       POSTGRES_HOST: $POSTGRES_HOST
       AWS_REGION: $AWS_REGION 
       AWS_PROFILE: $AWS_PROFILE 
-      AWS_BUCKET: $$AWS_BUCKET
+      AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
   backend-feed:
@@ -31,7 +31,7 @@ services:
       POSTGRES_HOST: $POSTGRES_HOST
       AWS_REGION: $AWS_REGION
       AWS_PROFILE: $AWS_PROFILE 
-      AWS_BUCKET: $$AWS_BUCKET
+      AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
   frontend:

@@ -1,0 +1,11 @@
+sudo: required
+services: 
+  - docker
+script:
+  - docker build -t udagram-frontend ./udagram-frontend
+after_success: 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontend:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USERNAME/udagram-frontend:$TRAVIS_BUILD_NUMBER
+  - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontend:latest
+  - docker push $DOCKER_USERNAME/udagram-frontend:latest

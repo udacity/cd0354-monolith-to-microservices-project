@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "14"
+sudo: required
+services: 
+  - docker
+before_script: 
+  - npm install
+script:
+  - docker build -t udagram-api-user ./udagram-api-user
+after_success: 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USERNAME/udagram-api-user:$TRAVIS_BUILD_NUMBER
+  - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user:latest
+  - docker push $DOCKER_USERNAME/udagram-api-user:latest
