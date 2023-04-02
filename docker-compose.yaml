@@ -3,7 +3,7 @@ services:
   reverseproxy:
       image: reverseproxy
       ports:
-          - 8080:8080
+          - "8080:8080"
       restart: always
       depends_on:
         - backend-user
