@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-reverseproxy
+  labels:
+    app: udagram-reverseproxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-reverseproxy
+  template:
+    metadata:
+      labels:
+        app: udagram-reverseproxy
+    spec:
+      containers:
+      - name: udagram-reverseproxy
+        image: ozieblomichal/udagram-reverseproxy:v2
+        ports:
+        - containerPort: 80
