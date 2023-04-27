@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: frontend
+  name: frontend
+spec:
+  ports:
+    - name: http
+      port: 8100
+      targetPort: 80
+  selector:
+    service: frontend
