@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: env-configmap
 data:
-  POSTGRES_HOST=phongtq2.culzlpruhdo7.us-east-1.rds.amazonaws.com
-  POSTGRES_DB=phongtq2
-  AWS_BUCKET=myawsbucket-phongtq2
-  AWS_REGION=us-east-1
-  AWS_PROFILE=default
-  JWT_SECRET=testing
-  URL=http://localhost:8100
+  POSTGRES_HOST: phongtq2.culzlpruhdo7.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: phongtq2
+  AWS_BUCKET: myawsbucket-phongtq2
+  AWS_REGION: us-east-1
+  AWS_PROFILE: default
+  JWT_SECRET: testing
+  URL: http://localhost:8100
