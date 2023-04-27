@@ -15,7 +15,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-        - image: mryutran/udagram-reverseproxy:v1
+        - image: mryutran/reverseproxy:latest
           name: reverseproxy
           imagePullPolicy: Always
           ports:

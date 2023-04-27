@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: api-feed
-  name: api-feed
+    service: backend-feed
+  name: backend-feed
 spec:
   replicas: 3
   selector:
     matchLabels:
-      service: api-feed
+      service: backend-feed
   template:
     metadata:
       labels:
-        service: api-feed
+        service: backend-feed
     spec:
       containers:
       - image: mryutran/udagram-api-feed:latest
-        name: api-feed
+        name: backend-feed
         imagePullPolicy: Always                
         env:
         - name: POSTGRES_HOST

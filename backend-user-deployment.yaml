@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: api-user
-  name: api-user
+    service: backend-user
+  name: backend-user
 spec:
   replicas: 2
   selector:
     matchLabels:
-      service: api-user
+      service: backend-user
   template:
     metadata:
       labels:
-        service: api-user
+        service: backend-user
     spec:
       containers:
       - image: mryutran/udagram-api-user:latest
-        name: api-user
+        name: backend-user
         imagePullPolicy: Always                
         env:
         - name: POSTGRES_HOST
