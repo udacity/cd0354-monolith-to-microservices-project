@@ -1,0 +1,28 @@
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+    image: mryutran/reverseproxy:latest
+  backend_user:
+    build:
+      context: ./udagram-api-user
+    image: mryutran/udagram-api-user:latest
+  backend_feed:
+    build:
+      context: ./udagram-api-feed
+    image: mryutran/udagram-api-feed:latest
+  frontend:
+    build:
+      context: ./udagram-frontend
+    image: mryutran/udagram-frontend:latest
+
+# Make sure the Docker services are running in your local machine
+# Remove unused and dangling images
+# docker image prune --all
+
+# Run this command from the directory where you have the "docker-compose-build.yaml" file present
+# docker-compose -f docker-compose-build.yaml build --parallel
+
+# Once you have the YAML file above ready in your project directory, you can start the application using:
+# docker-compose up
