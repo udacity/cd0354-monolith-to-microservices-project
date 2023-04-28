@@ -15,7 +15,7 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: transytai12a1/udagram-api-feed:v1
+      - image: transytai12a1/udagram-api-feed:v2
         name: backend-feed
         imagePullPolicy: Always
         env:
