@@ -17,5 +17,7 @@ spec:
       containers:
       - image: transytai12a1/reverseproxy:v3
         name: udagram-reverseproxy
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+      restartPolicy: Always
