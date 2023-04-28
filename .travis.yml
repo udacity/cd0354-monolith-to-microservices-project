@@ -15,7 +15,7 @@ script:
   - docker tag udagram-api-feed transytai12a1/udagram-api-feed:v1
   - docker tag udagram-api-user transytai12a1/udagram-api-user:v1
   - docker tag udagram-frontend transytai12a1/udagram-frontend:v1
-  - docker tag reverseproxy transytai12a1/udagram-reverseproxy:v1
+  - docker tag reverseproxy transytai12a1/reverseproxy:v1
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
