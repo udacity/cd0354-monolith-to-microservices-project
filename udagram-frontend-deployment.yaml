@@ -15,7 +15,7 @@ spec:
         service: frontend
     spec:
       containers:
-      - image: transytai12a1/udagram-frontend:v2
+      - image: transytai12a1/udagram-frontend:v3
         name: frontend
         ports:
         - containerPort: 80
