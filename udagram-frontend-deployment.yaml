@@ -15,7 +15,7 @@ spec:
         service: frontend
     spec:
       containers:
-      - image: transytai12a1/udagram-frontend:v4
+      - image: transytai12a1/udagram-frontend:latest
         name: frontend
         imagePullPolicy: Always
         ports:

@@ -15,7 +15,7 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: transytai12a1/udagram-api-user:v2
+      - image: transytai12a1/udagram-api-user:latest
         name: backend-user
         imagePullPolicy: Always
         env:
