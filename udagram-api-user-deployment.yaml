@@ -18,6 +18,10 @@ spec:
       - image: transytai12a1/udagram-api-user:latest
         name: backend-user
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "512Mi"
         env:
         - name: URL
           valueFrom:
