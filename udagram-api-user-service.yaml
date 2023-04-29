@@ -9,4 +9,4 @@ spec:
     - port: 8080
       targetPort: 8080
   selector:
-    run: backend-user
+    service: backend-user

@@ -9,6 +9,5 @@ spec:
     - name: http
       port: 8080
       targetPort: 8080
-      protocol: TCP
   selector:
-    run: reverseproxy
+    service: reverseproxy
