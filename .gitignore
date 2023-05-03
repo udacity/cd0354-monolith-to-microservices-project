@@ -36,7 +36,7 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 node_modules
 venv/
-*set_env.sh
+set_env.sh
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
