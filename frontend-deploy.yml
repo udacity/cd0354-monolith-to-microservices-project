@@ -6,15 +6,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      service: frontend
+      app: frontend
   template:
     metadata:
       labels:
-        service: frontend
+        app: frontend
     spec:
       containers:
       - name: frontend
-        image: docker.io/adwoabrems/udagram-frontend:v6
+        image: greengreengreen/udagram-frontend:v2
         ports:
         - containerPort: 80
         resources:

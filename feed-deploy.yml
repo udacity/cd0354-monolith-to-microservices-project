@@ -2,21 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-feed
+  labels:
+    app: backend-feed
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: backend-feed
+      app: backend-feed
   template:
     metadata:
       labels:
-        service: backend-feed
+        app: backend-feed
     spec:
       containers:
       - name: backend-feed
-        image: docker.io/adwoabrems/udagram-api-feed:v3
-        # ports:
-        # - containerPort: 80
+        image: greengreengreen/udagram-api-feed:latest
+        ports:
+        - containerPort: 8080
         resources:
           limits:
             cpu: 1000m
@@ -28,11 +30,11 @@ spec:
         - name: POSTGRES_PASSWORD
           value: postgres
         - name: POSTGRES_HOST
-          value: pj3-db.cenffctgkgqs.us-east-1.rds.amazonaws.com
+          value: pj3-db.ckbzakcvns7b.us-east-1.rds.amazonaws.com
         - name: POSTGRES_DB
           value: postgres
         - name: AWS_BUCKET
-          value: test-project2-bucket
+          value: tiennq7-bucket
         - name: AWS_REGION
           value: us-east-1
         - name: AWS_PROFILE

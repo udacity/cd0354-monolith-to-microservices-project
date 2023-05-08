@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: reverseproxy
   labels:
-    service: reverseproxy
+    app: reverseproxy
 spec:
   ports:
   - port: 8080
   selector:
-    service: reverseproxy
+    app: reverseproxy
