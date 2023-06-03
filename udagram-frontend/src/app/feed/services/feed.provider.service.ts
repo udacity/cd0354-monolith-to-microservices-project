@@ -27,13 +27,3 @@ export class FeedProviderService {
   }
 
 }
-
-// async getFeed() {
-//   const url = `${API_HOST}/feed`;
-
-//   const req = this.http.get(url, this.httpOptions).pipe(
-//     map(this.extractData));
-//     // catchError(this.handleError));
-//   const resp = <any> (await req.toPromise());
-//   return resp.rows;
-// }

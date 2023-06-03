@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/api/api.service';
 
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FeedProviderService } from '../services/feed.provider.service';

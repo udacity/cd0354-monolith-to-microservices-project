@@ -14,7 +14,7 @@ import { AuthRegisterComponent } from '../auth-register/auth-register.component'
 export class AuthMenuButtonComponent implements OnInit {
 
   constructor(
-    public auth: AuthService,
+    private auth: AuthService,
     public modalController: ModalController
     ) {}
 

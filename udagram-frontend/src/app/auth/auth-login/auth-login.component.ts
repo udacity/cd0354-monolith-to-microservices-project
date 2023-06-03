@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { ModalController } from '@ionic/angular';
 
 import { AuthService } from '../services/auth.service';
-import { catchError } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-auth-login',
@@ -46,7 +46,5 @@ export class AuthLoginComponent implements OnInit {
         this.error = e.statusText;
         throw e;
       });
-
     }
-
 }

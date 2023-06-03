@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FeedListComponent } from './feed-list.component';
 import { FeedProviderService } from '../services/feed.provider.service';
@@ -10,7 +10,7 @@ describe('FeedListComponent', () => {
   let fixture: ComponentFixture<FeedListComponent>;
   let feedProvider: FeedProviderService;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FeedListComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
