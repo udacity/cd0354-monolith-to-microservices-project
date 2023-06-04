@@ -69,6 +69,7 @@ Launch the frontend app locally.
     ```bash
     ionic serve
     ```
+NODE_OPTIONS=--openssl-legacy-provider ionic serve    
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
 ## Tips

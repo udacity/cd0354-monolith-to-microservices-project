@@ -12,3 +12,17 @@ export const config = {
     'secret': process.env.JWT_SECRET,
   },
 };
+// export const config = {
+//   'username': "postgres",
+//   'password': "qwe123123",
+//   'database': "postgres",
+//   'host': "database-1.cva3nzyd8arb.us-east-1.rds.amazonaws.com",
+//   'dialect': 'postgres',
+//   'aws_region': "us-east-1",
+//   'aws_profile': "default",
+//   'aws_media_bucket': "udagram-p31",
+//   'url': "http://localhost:8100",
+//   'jwt': {
+//     'secret': "JWT_SECRET_ramdom_eqwdasd",
+//   },
+// };
