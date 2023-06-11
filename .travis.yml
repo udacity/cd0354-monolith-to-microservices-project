@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no test"
+
+script:
+  - docker --version # print the version for logging
+  # build and tag api-feed
+  - docker build -t udagram-api-feed ./udagram-api-feed .
+  - docker tag udagram-api-feed mdt381/udagram-api-feed:latest
+  # build and tag api-user
+  - docker build -t udagram-api-user ./udagram-api-user .
+  - docker tag udagram-api-user mdt381/udagram-api-user:latest
+  # build and tag api-front-end
+  - docker build -t udagram-frontend ./udagram-frontend .
+  - docker tag udagram-frontend mdt381/udagram-frontend:latest
+  # build and tag api-feed
+  - docker build -t reverseproxy ./udagram-reverseproxy .
+  - docker tag reverseproxy mdt381/reverseproxy:latest
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push mdt381/travis-ci-simple
