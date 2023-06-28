@@ -26,7 +26,6 @@
     "@ionic/angular": "^4.1.0",
     "@ionic/cli": "^6.16.3",
     "core-js": "^2.5.4",
-    "fsevents": "^2.3.2",
     "rxjs": "~6.5.4",
     "zone.js": "~0.9.1"
   },
@@ -56,7 +55,10 @@
     "protractor": "~5.4.0",
     "ts-node": "~8.0.0",
     "tslint": "~5.12.0",
-    "typescript": "^3.5.3"
+    "typescript": "3.5.3"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   },
   "description": "An Ionic project"
 }

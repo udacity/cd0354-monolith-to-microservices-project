@@ -1,0 +1,33 @@
+# .circleci/config.yml file
+version: 2.1
+jobs:
+  build_and_push:
+    docker:
+      - image: circleci/node:14.15.5
+
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          version: 20.10.7
+
+      - run:
+          name: Remove unused and dangling images
+          command: |
+            docker image prune --all
+      - run:
+          name: Build Docker image
+          command: |
+            docker-compose -f docker-compose-build.yaml build --parallel
+
+      - run:
+          name: Push Docker image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+            docker-compose -f docker-compose-build.yaml push
+
+workflows:
+  version: 2.1
+  build_and_push_workflow:
+    jobs:
+      - build_and_push
