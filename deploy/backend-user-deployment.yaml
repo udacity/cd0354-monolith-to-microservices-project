@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-user
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend-user
@@ -17,6 +17,13 @@ spec:
       containers:
       - name: udagram-api-user
         image: linhtinh603/udagram-api-user
+        envFrom:
+        - configMapRef:
+            name: my-env-configmap
+        - secretRef:
+            name: my-env-secret
+        - secretRef:
+            name: my-aws-secret
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 
