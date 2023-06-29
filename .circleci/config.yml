@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build_and_push:
     docker:
-      - image: circleci/node:14.15.5
+      - image: cimg/node:14.15.5
 
     steps:
       - checkout

@@ -1,0 +1,14 @@
+# kubectl apply -f env-configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-env-configmap
+data:
+  AWS_REGION: $AWS_REGION 
+  AWS_PROFILE: $AWS_PROFILE 
+  AWS_BUCKET: $AWS_BUCKET
+  JWT_SECRET: $JWT_SECRET
+  POSTGRES_DB: $POSTGRES_DB 
+  POSTGRES_HOST: $POSTGRES_HOST
+  URL: "http://localhost:8100"
