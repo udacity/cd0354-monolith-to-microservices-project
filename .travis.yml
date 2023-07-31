@@ -27,15 +27,11 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
   - docker tag udagram-frontend abate3608/udagram-frontend:v1
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
-  - docker tag udagram-reverseproxy abate3608/reverseproxy:v1
-  
-  
-  
-  
+  - docker tag udagram-reverseproxy abate3608/reverseproxy:v1 
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push  abate3608/udagram-reverseproxy:latest
-  - docker push  abate3608/udagram-frontend:latest
-  - docker push  abate3608/udagram-api-user:latest
-  - docker push  abate3608/udagram-api-feed:latest
+  - docker push  abate3608/udagram-reverseproxy:v1
+  - docker push  abate3608/udagram-frontend:v1
+  - docker push  abate3608/udagram-api-user:v1
+  - docker push  abate3608/udagram-api-feed:v1
