@@ -1,22 +1,38 @@
-## Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
-## Use either `docker-compose` or individual `docker build` commands
-## Build
+branches:
+  only:
+    - master
+    - dev
+
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version
   - docker build -t udagram-api-feed ./udagram-api-feed
   - docker build -t udagram-api-user ./udagram-api-user
   - docker build -t udagram-frontend ./udagram-frontend
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
 
-## Tagging
-  - docker tag udagram-api-feed sudkul/udagram-api-feed:v1
-  - docker tag udagram-api-user sudkul/udagram-api-user:v1
-  - docker tag udagram-frontend sudkul/udagram-frontend:v1
-  - docker tag udagram-reverseproxy sudkul/udagram-reverseproxy:v1
+  - docker tag udagram-api-feed abate3608/udagram-api-feed:v1
+  - docker tag udagram-api-user abate3608/udagram-api-user:v1
+  - docker tag udagram-frontend abate3608/udagram-frontend:v1
+  - docker tag udagram-reverseproxy abate3608/udagram-reverseproxy:v1
 
-```bash
-## Push
-## Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
+after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push sudkul/udagram-api-feed:v1
-  - docker push sudkul/udagram-api-user:v1
-  - docker push sudkul/udagram-frontend:v1
-  - docker push sudkul/udagram-reverseproxy:v1
+  - docker push  abate3608/udagram-reverseproxy:latest
+  - docker push  abate3608/udagram-frontend:latest
+  - docker push  abate3608/udagram-api-user:latest
+  - docker push  abate3608/udagram-api-feed:latest
