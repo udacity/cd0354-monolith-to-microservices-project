@@ -4,10 +4,17 @@ import {config} from './config/config';
 
 export const sequelize = new Sequelize({
   'username': config.username,
+  'port': 5432,
   'password': config.password,
   'database': config.database,
   'host': config.host,
 
   'dialect': config.dialect,
+  'dialectOptions': {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  },
   'storage': ':memory:',
 });
