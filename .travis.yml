@@ -1,0 +1,5 @@
+## Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
+## Use either `docker-compose` or individual `docker build` commands
+## Build
+  - docker build -t udagram-api-feed ./udagram-api-feed
+## Do similar for other three images
