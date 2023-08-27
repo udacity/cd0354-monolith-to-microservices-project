@@ -20,6 +20,8 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
+      AWS_ACCESS_KEY: "AKIAWWDFPOMGUED5EUOS"
+      AWS_SECRET_ACCESS_KEY: "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"
   backend-feed:
     image: udagram-api-feed
     volumes:
