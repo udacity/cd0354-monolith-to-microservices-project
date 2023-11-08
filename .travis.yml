@@ -1,4 +1,8 @@
-language: node_js
+language: minimal
+services:
+  - docker
+script:
+  - docker --version
 ## Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
 ## Use either `docker-compose` or individual `docker build` commands
 ## Builds
