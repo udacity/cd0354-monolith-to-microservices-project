@@ -7,14 +7,14 @@ script:
   - echo '_______begining build'
   - docker build -t udagram-api-feed:v3 ./udagram-api-feed
   - docker build -t udagram-api-user:v3 ./udagram-api-user
-  - docker build -t udagram-frontend:v3 ./udagram-api-frontend
+  - docker build -t udagram-frontend:v3 ./udagram-frontend
   - docker build -t reverseproxy:v3 ./udagram-reverseproxy
 
   #Tagging
   - echo '______beigning tag'
   - docker tag udagram-api-feed:v3 ngtrantan99/udagram-api-feed:v3
   - docker tag udagram-api-user:v3 ngtrantan99/udagram-api-user:v3
-  - docker tag udagram-frontend:v3 ngtrantan99/udagram-api-frontend:v3
+  - docker tag udagram-frontend:v3 ngtrantan99/udagram-frontend:v3
   - docker build -t reverseproxy:v3 ngtrantan99/udagram-reverseproxy:v3
 
   - echo 'Docker Image ls___'
