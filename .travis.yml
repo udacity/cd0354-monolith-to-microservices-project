@@ -15,7 +15,7 @@ script:
   - docker tag udagram-api-feed:v3 ngtrantan99/udagram-api-feed:v3
   - docker tag udagram-api-user:v3 ngtrantan99/udagram-api-user:v3
   - docker tag udagram-frontend:v3 ngtrantan99/udagram-frontend:v3
-  - docker build -t reverseproxy:v3 ngtrantan99/udagram-reverseproxy:v3
+  - docker build -t reverseproxy:v3 ngtrantan99/reverseproxy:v3
 
   - echo 'Docker Image ls___'
   - docker image ls
