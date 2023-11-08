@@ -6,11 +6,11 @@ script:
   - docker build -t udagram-api-feed ./udagram-api-feed
   - docker tag udagram-api-feed minhducvt293/udagram-api-feed:v1
   - docker build -t udagram-api-user ./udagram-api-user
-  - docker tag udagram-api-feed minhducvt293/udagram-api-user:v1
-  - docker build -t udagram-api-frontend ./udagram-api-frontend
-  - docker tag udagram-api-feed minhducvt293/udagram-api-frontend:v1
-  - docker build -t udagram-api-reverseproxy ./udagram-api-reverseproxy
-  - docker tag udagram-api-feed minhducvt293/udagram-api-reverseproxy:v1
+  - docker tag udagram-api-user minhducvt293/udagram-api-user:v1
+  - docker build -t udagram-frontend ./udagram-frontend
+  - docker tag udagram-frontend minhducvt293/udagram-frontend:v1
+  - docker build -t reverseproxy ./udagram-reverseproxy
+  - docker tag reverseproxy minhducvt293/reverseproxy:v1
 deploy:
   provider: script
   script: bash docker_push.sh
