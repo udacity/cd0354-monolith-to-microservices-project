@@ -31,3 +31,6 @@ after success:
     - docker push ngtrantan99/udagram-api-user:v3
     - docker push ngtrantan99/udagram-frontend:v3
     - docker push ngtrantan99/reverseproxy:v3
+
+
+    #update
