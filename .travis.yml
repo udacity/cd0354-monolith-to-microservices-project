@@ -28,6 +28,7 @@ script:
   - docker tag udagram-reverse-proxy $DOCKER_USERNAME/udagram-reverse-proxy:v1
   - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontendv1
   
+  
 after_success: 
   # Login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
