@@ -23,16 +23,16 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
   - docker build -t reverseproxy ./udagram-reverseproxy
   # Tag images
-  - docker tag udagram-api-feed $DOCKER_USERNAME/udagram-api-feed
-  - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user
-  - docker tag reverseproxy $DOCKER_USERNAME/reverseproxy
-  - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontend
+  - docker tag udagram-api-feed $DOCKER_USERNAME/udagram-api-feed:v1
+  - docker tag udagram-api-user $DOCKER_USERNAME/udagram-api-user:v1
+  - docker tag reverseproxy $DOCKER_USERNAME/reverseproxy:v1
+  - docker tag udagram-frontend $DOCKER_USERNAME/udagram-frontend:v1
   
 after_success: 
   # Login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Push images to docker hub
-  - docker push $DOCKER_USERNAME/udagram-api-feed
-  - docker push $DOCKER_USERNAME/udagram-api-user
-  - docker push $DOCKER_USERNAME/reverseproxy
-  - docker push $DOCKER_USERNAME/udagram-frontend
+  - docker push $DOCKER_USERNAME/udagram-api-feed:v1
+  - docker push $DOCKER_USERNAME/udagram-api-user:v1
+  - docker push $DOCKER_USERNAME/reverseproxy:v1
+  - docker push $DOCKER_USERNAME/udagram-frontend:v1
