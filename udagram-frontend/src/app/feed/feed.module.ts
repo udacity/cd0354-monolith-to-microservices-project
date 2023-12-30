@@ -10,7 +10,6 @@ import { FeedUploadButtonComponent } from './feed-upload/feed-upload-button/feed
 
 import { FeedProviderService } from './services/feed.provider.service';
 
-const entryComponents = [FeedUploadComponent];
 const components = [FeedListComponent, FeedItemComponent, FeedUploadComponent, FeedUploadButtonComponent];
 
 @NgModule({
@@ -22,7 +21,6 @@ const components = [FeedListComponent, FeedItemComponent, FeedUploadComponent, F
   ],
   declarations: components,
   exports: components,
-  entryComponents: entryComponents,
   providers: [FeedProviderService]
 })
-export class FeedModule {}
+export class FeedModule { }
