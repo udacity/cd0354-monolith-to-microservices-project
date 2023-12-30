@@ -1,6 +1,6 @@
 <!-- display login and register buttons if user is logged in -->
 <ion-item-group
-  *ngIf=" !( auth.currentUser$ | async ) ">
+  *ngIf=" !( this.auth.currentUser$ | async ) ">
     <ion-button 
     color="secondary" 
     (click)="presentRegister()">

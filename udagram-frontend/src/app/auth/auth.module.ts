@@ -10,8 +10,7 @@ import { AuthMenuUserComponent } from './auth-menu-button/auth-menu-user/auth-me
 
 import { ApiModule } from '../api/api.module';
 
-const entryComponents = [AuthMenuUserComponent, AuthMenuButtonComponent, AuthLoginComponent, AuthRegisterComponent];
-const components = [...entryComponents];
+const components = [AuthMenuUserComponent, AuthMenuButtonComponent, AuthLoginComponent, AuthRegisterComponent];
 
 @NgModule({
   imports: [
@@ -21,9 +20,8 @@ const components = [...entryComponents];
     ReactiveFormsModule,
     ApiModule
   ],
-  entryComponents: entryComponents,
   declarations: components,
   exports: components,
   providers: []
 })
-export class AuthModule {}
+export class AuthModule { }
