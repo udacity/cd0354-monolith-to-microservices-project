@@ -14,9 +14,9 @@ import { AuthRegisterComponent } from '../auth-register/auth-register.component'
 export class AuthMenuButtonComponent implements OnInit {
 
   constructor(
-    private auth: AuthService,
+    protected auth: AuthService,
     public modalController: ModalController
-    ) {}
+  ) { }
 
   async presentmodal(ev: any) {
     const modal = await this.modalController.create({
@@ -43,6 +43,6 @@ export class AuthMenuButtonComponent implements OnInit {
     this.auth.logout();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
