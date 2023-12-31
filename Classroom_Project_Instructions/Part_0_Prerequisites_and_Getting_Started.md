@@ -37,18 +37,16 @@ Install [Git](https://git-scm.com/downloads) for your corresponding operating sy
 
 ## Node.js
 ### Instructions
-Install Node.js using [these instructions](https://nodejs.org/en/download/). We recommend a version between 12.14 and 14.15.
+Install Node.js using [these instructions](https://nodejs.org/en/download/).
 
 This installer will install Node.js as well as NPM on your system. Node.js is used to run JavaScript-based applications and NPM is a package manager used to handle dependencies.
 
 ### Verify Installation
 ```bash
-# v12.14 or greater up to v14.15
 node -v
 ```
 
 ```bash
-# v7.19 or greater
 npm -v
 ```
 
@@ -66,7 +64,7 @@ Use [these instructions](https://ionicframework.com/docs/installation/cli) to in
 
 #### Verify Installation
 ```bash
-# v6.0 or higher
+# v7.0 or higher
 ionic --version
 ```
 
@@ -134,6 +132,52 @@ The project uses an AWS S3 bucket to store image files.
 
    > Once the policies above are set and you are no longer testing locally, you can disable public access to your bucket.
 
+4. To prevent CORS access issue on the bucket when working with private access, add the following CORS policy at `Permissions` > `Cross Origin Resource Sharing (CORS)`. Update the port location if you are using a different set of ports:
+
+   ```json
+      [
+         {
+         "AllowedHeaders": [
+               "*"
+         ],
+         "AllowedMethods": [
+               "PUT",
+               "POST",
+               "DELETE"
+         ],
+         "AllowedOrigins": [
+               "http://localhost:4200"
+         ],
+         "ExposeHeaders": []
+         },
+         {
+         "AllowedHeaders": [
+               "*"
+         ],
+         "AllowedMethods": [
+               "PUT",
+               "POST",
+               "DELETE"
+         ],
+         "AllowedOrigins": [
+               "http://localhost:8100"
+         ],
+         "ExposeHeaders": []
+         },
+         {
+         "AllowedHeaders": [],
+         "AllowedMethods": [
+               "GET"
+         ],
+         "AllowedOrigins": [
+               "*"
+         ],
+         "ExposeHeaders": []
+         }
+      ]
+   ```
+
+
 ## PostgreSQL Database
 We will create a PostgreSQL database using AWS RDS. This is used by the project to store user metadata.
 
@@ -143,21 +187,21 @@ We will create a PostgreSQL database using AWS RDS. This is used by the project 
 
    <center>
 
-   |**Field**|**Value**|
-   |---|---|
-   |Database Creation Method|Standard create |
-   |Engine Option|PostgreSQL 12 or greater|
-   |Templates |Free tier <small>(if no Free tier is available, select a different PostgreSQL version)</small>|
-   |DB Instance Identifier|Your choice|
-   |Master Username|Your choice|
-   |Password|Your choice|
-   |DB Instance Class|Burstable classes with minimal size |
-   |VPC and Subnet |Default|
-   |Public Access|Yes|
-   |Database Authentication|Password authentication|
-   |VPC security group|Either choose default or <br>create a new one|
-   |Availability Zone|No preferencce|
-   |Database port|`5432` (default)|
+   | **Field**                | **Value**                                                                                      |
+   | ------------------------ | ---------------------------------------------------------------------------------------------- |
+   | Database Creation Method | Standard create                                                                                |
+   | Engine Option            | PostgreSQL 12 or greater                                                                       |
+   | Templates                | Free tier <small>(if no Free tier is available, select a different PostgreSQL version)</small> |
+   | DB Instance Identifier   | Your choice                                                                                    |
+   | Master Username          | Your choice                                                                                    |
+   | Password                 | Your choice                                                                                    |
+   | DB Instance Class        | Burstable classes with minimal size                                                            |
+   | VPC and Subnet           | Default                                                                                        |
+   | Public Access            | Yes                                                                                            |
+   | Database Authentication  | Password authentication                                                                        |
+   | VPC security group       | Either choose default or <br>create a new one                                                  |
+   | Availability Zone        | No preferencce                                                                                 |
+   | Database port            | `5432` (default)                                                                               |
    </center>
 
 2. Once the database is created successfully (this will take a few minutes), copy and save the database endpoint, master username, and password to your local machine. These values are required for the application to connect to the database.
@@ -186,9 +230,9 @@ Once the local and remote prerequisites are set up, we will need to configure ou
 If you have not already done so, you will need to fork and clone the project so that you have your own copy to work with.
 
 ```bash
-git clone https://github.com/<YOUR_GITHUB_USERNAME>/nd9990-c3-microservices-exercises.git
+git clone https://github.com/<YOUR_GITHUB_USERNAME>/monolith-to-microservices.git
 
-cd nd9990-c3-microservices-exercises/project/
+cd monolith-to-microservices
 ```
 
 ## Configuration Values
