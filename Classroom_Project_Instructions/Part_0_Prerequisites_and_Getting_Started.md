@@ -1,5 +1,5 @@
-# Overview - Udagram Image Filtering Microservice
-The project application, **Udagram** - an Image Filtering application, allows users to register and log into a web client, and post photos to a feed.
+# Overview - Image Search Microservice
+The project application is an Image Search application, allows users to register and log into a web client, and post photos to a feed.
 
 This section introduces the project followed by instructions on how to set up your local environment remote dependencies to be able to configure and run the starter project.
 
@@ -30,7 +30,7 @@ We will provide some details and tips on how to set up the mentioned prerequisit
 ## Git
 Git is used to interface with GitHub. 
 
-> Windows users: Once you download and install Git for Windows, you can execute all the bash, ssh, git commands in the Gitbash terminal. On the other hand, Windows users using Windows Subsystem for Linux (WSL) can follow all steps as if they are Linux users.
+> Windows users: Once you download and install Git for Windows, you can execute all the bash, ssh, git commands in the Git bash terminal. On the other hand, Windows users using Windows Subsystem for Linux (WSL) can follow all steps as if they are Linux users.
 
 ### Instructions
 Install [Git](https://git-scm.com/downloads) for your corresponding operating system.
@@ -57,7 +57,7 @@ Using PostgreSQL involves a server and a client. The server hosts the database w
 The easiest way to set this up is with the [PostgreSQL Installer](https://www.postgresql.org/download/). This installer installs a PostgreSQL client in the form of the `psql` command line utility.
 
 ## Ionic CLI
-Ionic Framework is used to make cross-platform applications using JavaScript. It is used to help build and run Udagram.
+Ionic Framework is used to make cross-platform applications using JavaScript. It is used to help build and run the App.
 
 ### Instructions
 Use [these instructions](https://ionicframework.com/docs/installation/cli) to install Ionic Framework with `npm`.
@@ -200,7 +200,7 @@ We will create a PostgreSQL database using AWS RDS. This is used by the project 
    | Public Access            | Yes                                                                                            |
    | Database Authentication  | Password authentication                                                                        |
    | VPC security group       | Either choose default or <br>create a new one                                                  |
-   | Availability Zone        | No preferencce                                                                                 |
+   | Availability Zone        | No preference                                                                                  |
    | Database port            | `5432` (default)                                                                               |
    </center>
 
@@ -217,7 +217,7 @@ Assuming the endpoint is: `mypostgres-database-1.c5szli4s4qq9.us-east-1.rds.amaz
 psql -h mypostgres-database-1.c5szli4s4qq9.us-east-1.rds.amazonaws.com -U [your-username] postgres
 # Provide the database password when prompted
 ```
-If your connection is succesful, your terminal should print ` "postgres=>"`.
+If your connection is successful, your terminal should print ` "postgres=>"`.
 
 You can play around with some `psql` commands found [here](https://www.postgresql.org/docs/13/app-psql.html).
 
@@ -282,7 +282,7 @@ setx URL http://localhost:8100
 ```
 
 # Get Started!
-Now that we have our prerequsites set up and configured, we will be following up this section with an overview of how to run the application.
+Now that we have our prerequisites set up and configured, we will be following up this section with an overview of how to run the application.
 
 ## Project Assessment
-To understand how you project will be assessed, see the <a href="https://review.udacity.com/#!/rubrics/2804/view" target="_blank">Project Rubric</a>
+To understand how you project will be assessed, see the [exam](../EXAM.md)
