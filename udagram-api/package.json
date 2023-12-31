@@ -38,7 +38,7 @@
     "@types/node": "^11.11.6",
     "@types/sequelize": "^4.27.44",
     "@types/validator": "^13.11.7",
-    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^2.19.2",
     "chai": "^4.2.0",
     "chai-http": "^4.4.0",
