@@ -1,5 +1,5 @@
 import {Router, Request, Response} from 'express';
-import {FeedRouter} from './feed/routes/feed.router';
+import {FeedRouter} from './routes/feed.router';
 
 const router: Router = Router();
 
