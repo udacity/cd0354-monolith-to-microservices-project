@@ -4,7 +4,7 @@ Udagram is a simple cloud application developed alongside the Udacity Cloud Deve
 
 The project is split into two parts:
 1. Frontend - Angular web application built with Ionic Framework
-2. Backend RESTful API - Node-Express application
+2. Backend RESTful API - Node-Express application test
 
 ## Getting Started
 > _tip_: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
