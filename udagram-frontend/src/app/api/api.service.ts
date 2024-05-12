@@ -10,7 +10,7 @@ const API_HOST = environment.apiHost;
 })
 export class ApiService {
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   token: string;
@@ -24,11 +24,11 @@ export class ApiService {
 
   static extractData(res: HttpEvent<any>) {
     const body = res;
-    return body || { };
+    return body || {};
   }
 
   setAuthToken(token) {
-    this.httpOptions.headers = this.httpOptions.headers.append('Authorization', `jwt ${token}`);
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', `jwt ${token}`);
     this.token = token;
   }
 
@@ -37,36 +37,36 @@ export class ApiService {
     const req = this.http.get(url, this.httpOptions).pipe(map(ApiService.extractData));
 
     return req
-            .toPromise()
-            .catch((e) => {
-              ApiService.handleError(e);
-              throw e;
-            });
+      .toPromise()
+      .catch((e) => {
+        ApiService.handleError(e);
+        throw e;
+      });
   }
 
   post(endpoint, data): Promise<any> {
     const url = `${API_HOST}${endpoint}`;
     return this.http.post<HttpEvent<any>>(url, data, this.httpOptions)
-            .toPromise()
-            .catch((e) => {
-              ApiService.handleError(e);
-              throw e;
-            });
+      .toPromise()
+      .catch((e) => {
+        ApiService.handleError(e);
+        throw e;
+      });
   }
 
   async upload(endpoint: string, file: File, payload: any): Promise<any> {
     const signed_url = (await this.get(`${endpoint}/signed-url/${file.name}`)).url;
 
-    const headers = new HttpHeaders({'Content-Type': file.type});
-    const req = new HttpRequest( 'PUT', signed_url, file,
-                                  {
-                                    headers: headers,
-                                    reportProgress: true, // track progress
-                                  });
+    const headers = new HttpHeaders({ 'Content-Type': file.type });
+    const req = new HttpRequest('PUT', signed_url, file,
+      {
+        headers: headers,
+        reportProgress: true, // track progress
+      });
 
-    return new Promise ( resolve => {
-        this.http.request(req).subscribe((resp) => {
-        if (resp && (<any> resp).status && (<any> resp).status === 200) {
+    return new Promise(resolve => {
+      this.http.request(req).subscribe((resp) => {
+        if (resp && (<any>resp).status && (<any>resp).status === 200) {
           resolve(this.post(endpoint, payload));
         }
       });
