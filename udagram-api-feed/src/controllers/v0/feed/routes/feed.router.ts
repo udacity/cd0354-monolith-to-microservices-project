@@ -4,6 +4,7 @@ import {NextFunction} from 'connect';
 import * as jwt from 'jsonwebtoken';
 import * as AWS from '../../../../aws';
 import * as c from '../../../../config/config';
+import os from 'os';
 
 const router: Router = Router();
 
@@ -25,6 +26,10 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     return next();
   });
 }
+
+router.get('/whoami', async (req: Request, res: Response) => {
+  res.send(`Handled by backend-feed: ${os.hostname()}`);
+});
 
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
