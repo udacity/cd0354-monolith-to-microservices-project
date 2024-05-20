@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - 16
+
+services:
+  - docker
+
+install:
+  - echo "nothing needs to be installed"
+  - docker --version # print the version for logging
+
+# Login into DockerHub
+before_script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - docker-compose -f docker-compose-build.yaml build --parallel
+  - docker tag udagram-frontend siboscol/udagram-frontend:v1
+  - docker tag udagram-api-feed siboscol/udagram-api-feed:v1
+  - docker tag udagram-api-user siboscol/udagram-api-user:v1
+  - docker tag reverseproxy siboscol/reverseproxy:v1
+
+after_success:
+  - docker push siboscol/udagram-frontend:v1
+  - docker push siboscol/udagram-api-feed:v1
+  - docker push siboscol/udagram-api-user:v1
+  - docker push siboscol/reverseproxy:v1
