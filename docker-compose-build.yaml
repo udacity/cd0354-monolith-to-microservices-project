@@ -15,6 +15,4 @@ services:
   frontend:
     build:
       context: ./udagram-frontend
-      platforms:
-        - "linux/amd64"
     image: udagram-frontend
