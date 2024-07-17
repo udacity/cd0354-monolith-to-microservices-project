@@ -1,0 +1,42 @@
+version: 2.1
+
+jobs:
+  build:            
+    docker:         
+      - image: cimg/base:current
+    working_directory: ~/app
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14  
+      - run:
+          name: Build docker
+          command: |           
+            echo "------------Start to build docker images----------"
+
+            docker build -t udagram-api-user ./udagram-api-user        
+            docker tag udagram-api-user khanhkieu167/udagram-api-user:v1
+
+            docker build -t udagram-api-feed ./udagram-api-feed        
+            docker tag udagram-api-feed khanhkieu167/udagram-api-feed:v1
+                   
+            docker build -t udagram-frontend ./udagram-frontend        
+            docker tag udagram-frontend khanhkieu167/udagram-frontend:v1
+
+            docker build -t udagram-reverseproxy ./udagram-reverseproxy        
+            docker tag udagram-reverseproxy khanhkieu167/udagram-reverseproxy:v1           
+
+            echo "-------------All of images were done ------------"        
+
+            echo "-------------Start to login dockerhub------------" 
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            
+            echo "-------------Start to push to dockerhub------------" 
+            docker push khanhkieu167/udagram-reverseproxy:v1        
+            docker push khanhkieu167/udagram-api-user:v1
+            docker push khanhkieu167/udagram-api-feed:v1
+            docker push khanhkieu167/udagram-frontend:v1
+workflows:
+  default:
+    jobs:
+      - build
