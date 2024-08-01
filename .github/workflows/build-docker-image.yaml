@@ -1,0 +1,47 @@
+name: build docker image
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+
+  build-api-user:
+    runs-on: ubuntu-latest
+    
+    services:
+      docker:
+        image: docker:19.03
+        options: >-
+          --health-cmd "docker info"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+          
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js 13
+      uses: actions/setup-node@v2
+      with:
+        node-version: 13
+        
+    - name: Install dependencies
+      run: echo "nothing needs to be installed"
+        
+    - name: Build Docker image
+      run: |
+        docker --version
+        cd ./udagram-api-user
+        docker build -t udagram-api-user .
+        docker tag udagram-api-user ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-api-user:latest
+        
+    - name: Push to Docker Hub
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      run: |
+        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-api-user:latest
