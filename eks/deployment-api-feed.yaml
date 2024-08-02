@@ -5,11 +5,11 @@ metadata:
   labels:
     app: udagram-api-feed
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: udagram-api-feed
-  template:
+  template: 
     metadata:
       labels:
         app: udagram-api-feed
