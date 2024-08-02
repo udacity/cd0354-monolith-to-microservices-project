@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: my-container
-          image: kustomize edit set image udagram-reverseproxy=haitruong1001/udagram-reverseproxy:latest
+          image: haitruong1001/udagram-reverseproxy:latest
           ports:
             - containerPort: 8080
