@@ -118,7 +118,7 @@ jobs:
         docker --version
         cd ./udagram-frontend
         docker build -t udagram-frontend .
-        docker tag uudagram-frontend ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-frontend:latest
+        docker tag udagram-frontend ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-frontend:latest
         
     - name: Push to Docker Hub
       env:
