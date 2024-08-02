@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-reverseproxy
+  name: udagram-frontend
   labels:
-    app: udagram-reverseproxy
+    app: udagram-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: udagram-reverseproxy
+      app: udagram-frontend
   template:
     metadata:
       labels:
-        app: udagram-reverseproxy
+        app: udagram-frontend
     spec:
       containers:
         - name: my-container
-          image: haitruong1001/udagram-reverseproxy:latest
+          image: haitruong1001/udagram-frontend:latest
           resources:
             limits:
               memory: "1024Mi"
               cpu: "500m" 
           ports:
-            - containerPort: 8080
+          - containerPort: 80

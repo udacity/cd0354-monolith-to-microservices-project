@@ -3,11 +3,12 @@ kind: Service
 metadata:
   name: udagram-frontend
   labels:
-    app: uudagram-frontend
+    app: udagram-frontend
 spec:
+  type: LoadBalancer
   selector:
     app: udagram-frontend
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8100
+      targetPort: 80

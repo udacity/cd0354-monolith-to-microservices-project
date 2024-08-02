@@ -97,32 +97,32 @@ jobs:
         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         docker push ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-reverseproxy:latest
 
-  build-frontend:
-    runs-on: ubuntu-latest
+  # build-frontend:
+  #   runs-on: ubuntu-latest
     
-    steps:
-    - name: checkout code
-      uses: actions/checkout@v3
+  #   steps:
+  #   - name: checkout code
+  #     uses: actions/checkout@v3
     
-    - name: Use Node.js 13
-      uses: actions/setup-node@v2
-      with:
-        node-version: 13
+  #   - name: Use Node.js 13
+  #     uses: actions/setup-node@v2
+  #     with:
+  #       node-version: 13
         
-    - name: Install dependencies
-      run: echo "nothing needs to be installed"
+  #   - name: Install dependencies
+  #     run: echo "nothing needs to be installed"
         
-    - name: Build Docker image
-      run: |
-        docker --version
-        cd ./udagram-frontend
-        docker build -t udagram-frontend .
-        docker tag udagram-frontend ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-frontend:latest
+  #   - name: Build Docker image
+  #     run: |
+  #       docker --version
+  #       cd ./udagram-frontend
+  #       docker build -t udagram-frontend .
+  #       docker tag udagram-frontend ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-frontend:latest
         
-    - name: Push to Docker Hub
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      run: |
-        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-frontend:latest
+  #   - name: Push to Docker Hub
+  #     env:
+  #       DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+  #       DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+  #     run: |
+  #       echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  #       docker push ${{ secrets.DOCKER_HUB_USERNAME }}/udagram-frontend:latest

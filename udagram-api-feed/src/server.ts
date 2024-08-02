@@ -46,5 +46,9 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
   app.listen( port, () => {
     console.log( `server running ${config.url}` );
     console.log( `press CTRL+C to stop server` );
+    console.log(config.aws_region);
+    console.log(config.aws_profile);
+    console.log(config.aws_media_bucket);
+
   } );
 })();

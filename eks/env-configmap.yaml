@@ -3,10 +3,10 @@ kind: ConfigMap
 data:
   AWS_BUCKET: test-120094232232-dev
   AWS_PROFILE: default
-  AWS_REGION: ap-south-1
+  AWS_REGION: us-east-1
   JWT_SECRET: testing
-  POSTGRESS_DB: postgres
-  POSTGRESS_HOST: postgres.cr9bldgsf1j6.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: postgres
+  POSTGRES_HOST: database-1.csvfrqthpb12.us-east-1.rds.amazonaws.com
   URL: http://localhost:8100  
 metadata:
   name: env-config
