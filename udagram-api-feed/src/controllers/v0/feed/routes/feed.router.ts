@@ -32,6 +32,7 @@ router.get('/', async (req: Request, res: Response) => {
   items.rows.map((item) => {
     if (item.url) {
       item.url = AWS.getGetSignedUrl(item.url);
+      console.log(item.url);
     }
   });
   res.send(items);
