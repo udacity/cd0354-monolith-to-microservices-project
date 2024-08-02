@@ -29,7 +29,7 @@ jobs:
           cd ./udagram-api-user/k8s
           kustomize build | kubectl apply -f -
 
-   udagram-api-feed:
+  udagram-api-feed:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
