@@ -5,6 +5,7 @@ metadata:
   labels:
     app: udagram-reverseproxy
 spec:
+  type: LoadBalancer
   selector:
     app: udagram-reverseproxy
   ports:
