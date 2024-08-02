@@ -23,6 +23,6 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          cd ./udagram-reverseproxy/ks8
+          cd ./udagram-reverseproxy/k8s
           kustomize edit set image udagram-reverseproxy=haitruong1001/udagram-reverseproxy:latest
           kustomize build | kubectl apply -f -
