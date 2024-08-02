@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-api-feed
+  labels:
+    app: udagram-api-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-api-feed
+  template:
+    metadata:
+      labels:
+        app: udagram-api-feed
+    spec:
+      containers:
+        - name: my-container
+          image: haitruong1001/udagram-api-feed:latest
+          env:
+          - name: URL
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: URL 
+          - name: JWT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: JWT_SECRET
+          - name: POSTGRESS_DB
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: POSTGRESS_DB
+          - name: POSTGRESS_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: POSTGRESS_HOST
+          - name: POSTGRESS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: env-secret
+                key: POSTGRESS_PASSWORD
+          - name: POSTGRESS_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: env-secret
+                key: POSTGRESS_USERNAME
+          volumeMounts:
+          - name: aws-credentials
+            mountPath: "/root/.aws/"
+            readOnly: true
+      volumes:
+      - name: aws-credentials
+        secret:
+          secretName: aws-credentials
