@@ -44,3 +44,4 @@ set_env.sh
 set_env.sh
 *.bat
 docker-compose.yaml-bk
+set_env.sh
