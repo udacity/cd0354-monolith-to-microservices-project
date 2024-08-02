@@ -11,17 +11,9 @@ jobs:
   build-api-user:
     runs-on: ubuntu-latest
     
-    services:
-      docker:
-        image: docker:19.03
-        options: >-
-          --health-cmd "docker info"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 3
-          
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout code
+      uses: actions/checkout@v3
     
     - name: Use Node.js 13
       uses: actions/setup-node@v2
