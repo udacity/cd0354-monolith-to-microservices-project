@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+data:
+  POSTGRES_USERNAME: "POSTGRES_DB_USERNAME"
+  POSTGRES_HOST: "POSTGRES_DB_ENDPOINT"
+  POSTGRES_DB: "postgres"
+  AWS_BUCKET: "S3_BUCKET_NAME"
+  AWS_REGION: "us-east-2"
+  AWS_PROFILE: "default"
+  URL: "http://localhost:8100"
