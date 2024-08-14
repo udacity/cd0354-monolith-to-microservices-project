@@ -18,15 +18,15 @@ services:
     ports:
       - 5432:5432
  
-  # frontend:
-  #   image: udagram-frontend
-  #   container_name: udagram-frontend
-  #   build:
-  #     dockerfile: udagram-frontend/Dockerfile
-  #     context: .
-  #   ports:
-  #     - 4200:4200
-  #   restart: unless-stopped
+  frontend:
+    image: udagram-frontend
+    container_name: udagram-frontend
+    build:
+      dockerfile: udagram-frontend/Dockerfile
+      context: .
+    ports:
+      - 4200:4200
+    restart: unless-stopped
  
   api:
     image: udagram-api
