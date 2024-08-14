@@ -26,6 +26,7 @@ services:
       context: .
     ports:
       - 4200:4200
+      - 8111:80
     restart: unless-stopped
  
   api:
