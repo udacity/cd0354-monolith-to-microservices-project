@@ -88,6 +88,17 @@ services:
     - JWT_SECRET=$JWT_SECRET
     - URL=$URL
        
+  reverseproxy:
+    image: reverseproxy
+    build:
+      dockerfile: udagram-reverseproxy/Dockerfile
+      context: .
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - user-api
+      - feed-api
 networks:
   default:
     driver: bridge
