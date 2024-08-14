@@ -34,6 +34,8 @@ services:
     build:
       dockerfile: udagram-api/Dockerfile
       context: .
+    volumes:
+      - $HOME/.aws:/root/.aws
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -74,6 +76,8 @@ services:
     build:
       dockerfile: udagram-api-feed/Dockerfile
       context: .
+    volumes:
+      - $HOME/.aws:/root/.aws
     ports:
       - 8020:8020
     restart: unless-stopped
