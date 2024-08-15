@@ -58,7 +58,7 @@ services:
       dockerfile: udagram-api-user/Dockerfile
       context: .
     ports:
-      - 8010:8010
+      - 8010:8080
     restart: unless-stopped
     environment:
     - POSTGRES_USERNAME=$POSTGRES_USERNAME
@@ -80,7 +80,7 @@ services:
     volumes:
       - $HOME/.aws:/root/.aws
     ports:
-      - 8020:8020
+      - 8020:8080
     restart: unless-stopped
     environment:
     - POSTGRES_USERNAME=$POSTGRES_USERNAME
