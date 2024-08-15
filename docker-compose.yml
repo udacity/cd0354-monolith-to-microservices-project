@@ -95,6 +95,7 @@ services:
        
   reverseproxy:
     image: reverseproxy
+    container_name: reverseproxy
     build:
       dockerfile: udagram-reverseproxy/Dockerfile
       context: .
