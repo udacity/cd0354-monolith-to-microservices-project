@@ -22,8 +22,7 @@ services:
     image: udagram-frontend
     container_name: udagram-frontend
     build:
-      dockerfile: udagram-frontend/Dockerfile
-      context: .
+      context: ./udagram-frontend
     ports:
       - 8100:80
     restart: unless-stopped
@@ -32,8 +31,8 @@ services:
     image: udagram-api
     container_name: udagram-api
     build:
-      dockerfile: udagram-api/Dockerfile
-      context: .
+      dockerfile: Dockerfile
+      context: ./udagram-api/
     volumes:
       - $HOME/.aws:/root/.aws
     ports:
@@ -54,8 +53,7 @@ services:
     image: udagram-api-user
     container_name: udagram-api-user
     build:
-      dockerfile: udagram-api-user/Dockerfile
-      context: .
+      context: ./udagram-api-user
     restart: unless-stopped
     environment:
     - POSTGRES_USERNAME=$POSTGRES_USERNAME
@@ -72,8 +70,7 @@ services:
     image: udagram-api-feed
     container_name: udagram-api-feed
     build:
-      dockerfile: udagram-api-feed/Dockerfile
-      context: .
+      context: ./udagram-api-feed
     volumes:
       - $HOME/.aws:/root/.aws
     restart: unless-stopped
@@ -92,8 +89,7 @@ services:
     image: reverseproxy
     container_name: reverseproxy
     build:
-      dockerfile: udagram-reverseproxy/Dockerfile
-      context: .
+      context: ./udagram-reverseproxy
     ports:
       - 8080:8080
     restart: always
