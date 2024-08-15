@@ -25,8 +25,7 @@ services:
       dockerfile: udagram-frontend/Dockerfile
       context: .
     ports:
-      - 4200:4200
-      - 8111:80
+      - 8100:80
     restart: unless-stopped
  
   api:
@@ -38,7 +37,7 @@ services:
     volumes:
       - $HOME/.aws:/root/.aws
     ports:
-      - 8080:8080
+      - 8888:8080
     restart: unless-stopped
     environment:
     - POSTGRES_USERNAME=$POSTGRES_USERNAME
@@ -57,8 +56,6 @@ services:
     build:
       dockerfile: udagram-api-user/Dockerfile
       context: .
-    ports:
-      - 8010:8080
     restart: unless-stopped
     environment:
     - POSTGRES_USERNAME=$POSTGRES_USERNAME
@@ -79,8 +76,6 @@ services:
       context: .
     volumes:
       - $HOME/.aws:/root/.aws
-    ports:
-      - 8020:8080
     restart: unless-stopped
     environment:
     - POSTGRES_USERNAME=$POSTGRES_USERNAME
