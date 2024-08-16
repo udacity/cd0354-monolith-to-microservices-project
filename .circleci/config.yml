@@ -16,17 +16,24 @@ jobs:
           name: Build and push Docker image
           command: |
             echo "Inside the Build and push Docker image step"
+
             docker --version # print the version for logging
             docker-compose --version
+
             docker-compose build  --no-cache --progress plain frontend
             docker-compose build  --no-cache --progress plain reverseproxy
             docker-compose build  --no-cache --progress plain feed-api
             docker-compose build  --no-cache --progress plain user-api
+
+            echo "All images"
             docker images
-            # docker build -t iamnarutohokage1995/sample-express-app .        
-            # docker tag iamnarutohokage1995/sample-express-app iamnarutohokage1995/sample-express-app:1.0.0
-            # echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-            # docker push iamnarutohokage1995/sample-express-app:1.0.0
+
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+            docker-compose push frontend
+            docker-compose push reverseproxy
+            docker-compose push feed-api
+            docker-compose push user-api
 workflows:
   build-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
