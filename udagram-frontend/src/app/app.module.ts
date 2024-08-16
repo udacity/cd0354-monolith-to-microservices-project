@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -12,6 +12,11 @@ import { MenubarComponent } from './menubar/menubar.component';
 
 import { AuthModule } from './auth/auth.module';
 import { ApiService } from './api/api.service';
+import {AppConfigService} from '../component/service/AppConfigService';
+
+export function initConfig(appConfig: AppConfigService) {
+  return () => appConfig.loadConfig();
+}
 
 @NgModule({
   declarations: [
@@ -29,6 +34,12 @@ import { ApiService } from './api/api.service';
     ApiService,
     StatusBar,
     SplashScreen,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initConfig,
+      deps: [AppConfigService],
+      multi: true,
+    },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
