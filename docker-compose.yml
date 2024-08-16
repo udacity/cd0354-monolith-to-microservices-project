@@ -19,7 +19,7 @@ services:
       - 5432:5432
  
   frontend:
-    image: udagram-frontend
+    image: iamnarutohokage1995/udagram-frontend
     container_name: udagram-frontend
     build:
       context: ./udagram-frontend
@@ -28,7 +28,7 @@ services:
     restart: unless-stopped
  
   api:
-    image: udagram-api
+    image: iamnarutohokage1995/udagram-api
     container_name: udagram-api
     build:
       dockerfile: Dockerfile
@@ -50,7 +50,7 @@ services:
     - URL=$URL
   
   user-api:
-    image: udagram-api-user
+    image: iamnarutohokage1995/udagram-api-user
     container_name: udagram-api-user
     build:
       context: ./udagram-api-user
@@ -67,7 +67,7 @@ services:
     - URL=$URL
 
   feed-api:
-    image: udagram-api-feed
+    image: iamnarutohokage1995/udagram-api-feed
     container_name: udagram-api-feed
     build:
       context: ./udagram-api-feed
@@ -86,7 +86,7 @@ services:
     - URL=$URL
        
   reverseproxy:
-    image: reverseproxy
+    image: iamnarutohokage1995/reverseproxy
     container_name: reverseproxy
     build:
       context: ./udagram-reverseproxy
