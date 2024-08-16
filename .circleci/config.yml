@@ -22,6 +22,7 @@ jobs:
             docker-compose build  --no-cache --progress plain reverseproxy
             docker-compose build  --no-cache --progress plain feed-api
             docker-compose build  --no-cache --progress plain user-api
+            docker images
             # docker build -t iamnarutohokage1995/sample-express-app .        
             # docker tag iamnarutohokage1995/sample-express-app iamnarutohokage1995/sample-express-app:1.0.0
             # echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
