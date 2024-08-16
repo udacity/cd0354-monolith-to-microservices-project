@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { AppConfigService } from 'src/component/service/AppConfigService';
 
-const API_HOST = environment.apiHost;
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,10 @@ export class ApiService {
   };
 
   token: string;
+  apiHost: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private appConfigService: AppConfigService) {
+    this.apiHost = this.appConfigService.getConfig().backendHost;
   }
 
   static handleError(error: Error) {
@@ -33,7 +34,7 @@ export class ApiService {
   }
 
   get(endpoint): Promise<any> {
-    const url = `${API_HOST}${endpoint}`;
+    const url = `${this.apiHost}${endpoint}`;
     const req = this.http.get(url, this.httpOptions).pipe(map(ApiService.extractData));
 
     return req
@@ -45,7 +46,7 @@ export class ApiService {
   }
 
   post(endpoint, data): Promise<any> {
-    const url = `${API_HOST}${endpoint}`;
+    const url = `${this.apiHost}${endpoint}`;
     return this.http.post<HttpEvent<any>>(url, data, this.httpOptions)
             .toPromise()
             .catch((e) => {
