@@ -74,10 +74,16 @@ router.post('/',
         url: fileName,
       });
 
-      const savedItem = await item.save();
+      try{
+        const savedItem = await item.save();
 
-      savedItem.url = AWS.getGetSignedUrl(savedItem.url);
-      res.status(201).send(savedItem);
-    });
+        savedItem.url = AWS.getGetSignedUrl(savedItem.url);
+        res.status(201).send(savedItem);
+      } catch(error) {
+        res.status(500).send({message: 'Failed to save feed item.'});
+      }
+      }
+      
+    );
 
 export const FeedRouter: Router = router;
