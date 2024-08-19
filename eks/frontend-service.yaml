@@ -7,6 +7,6 @@ metadata:
 spec:
   ports:
   - port: 80
-    protocol: frontend
+    protocol: TCP
   selector:
     run: frontend
