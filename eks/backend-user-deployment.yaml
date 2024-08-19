@@ -15,7 +15,7 @@ spec:
         app: user-api
     spec:
       containers:
-      - name: feed-api
+      - name: user-api
         image: iamnarutohokage1995/udagram-api-user
         ports:
         - containerPort: 8080
