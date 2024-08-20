@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: user-api
   labels:
-    run: user-api
+    app: user-api
 spec:
   ports:
   - port: 8080 # expose port
     targetPort: 8080 # container port
     protocol: TCP
   selector:
-    run: user-api
+    app: user-api
