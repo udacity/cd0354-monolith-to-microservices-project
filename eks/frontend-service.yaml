@@ -6,7 +6,8 @@ metadata:
     run: frontend
 spec:
   ports:
-  - port: 80
+  - port: 80 # expose port
+    targetPort: 80 # container port
     protocol: TCP
   selector:
     run: frontend
