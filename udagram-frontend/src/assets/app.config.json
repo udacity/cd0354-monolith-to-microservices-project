@@ -1,3 +1,3 @@
 {
-    "backendHost":"http://localhost:8080/api/v0"
+    "backendHost":"http://aaf5197589aa9485ea570946cfaf1481-1902334489.us-east-1.elb.amazonaws.com:8080/api/v0"
 }
