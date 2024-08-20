@@ -19,3 +19,58 @@ spec:
         image: iamnarutohokage1995/udagram-api-feed
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: aws-credentials
+          mountPath: /root/.aws
+          subPath: credentials
+        env:
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_BUCKET
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_DB
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: JWT_SECRET
+        - name: AWS_PROFILE
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: AWS_PROFILE
+      
+      volumes:
+      - name: aws-credentials
+        secret:
+          secretName: aws-secret 
