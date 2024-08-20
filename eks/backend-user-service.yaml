@@ -5,5 +5,9 @@ metadata:
   labels:
     run: user-api
 spec:
+  ports:
+  - port: 8080 # expose port
+    targetPort: 8080 # container port
+    protocol: TCP
   selector:
     run: user-api
