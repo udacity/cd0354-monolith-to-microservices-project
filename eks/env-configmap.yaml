@@ -1,1 +1,8 @@
-
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  AWS_BUCKET: udagram-chungvv3-730554764003-bucket
+  AWS_REGION: us-east-1
+  URL: http://localhost:8080
