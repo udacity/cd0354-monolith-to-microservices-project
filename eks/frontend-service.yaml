@@ -5,6 +5,7 @@ metadata:
   labels:
     run: frontend
 spec:
+  type: LoadBalancer
   ports:
   - port: 80 # expose port
     targetPort: 80 # container port
