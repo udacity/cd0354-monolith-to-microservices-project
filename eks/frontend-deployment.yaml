@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -17,5 +17,15 @@ spec:
       containers:
       - name: frontend
         image: iamnarutohokage1995/udagram-frontend
+        volumeMounts:
+        - name: frontend-app-config
+          mountPath: /usr/share/nginx/html/assets/app.config.json
+          subPath: app.config.json
+          readOnly: true
         ports:
         - containerPort: 80
+
+      volumes:
+      - name: frontend-app-config
+        configMap:
+          name: frontend-app-config
