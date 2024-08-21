@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    run: frontend
+    app: frontend
 spec:
   type: LoadBalancer
   ports:
@@ -11,4 +11,4 @@ spec:
     targetPort: 80 # container port
     protocol: TCP
   selector:
-    run: frontend
+    app: frontend
