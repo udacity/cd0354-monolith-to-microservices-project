@@ -14,6 +14,10 @@ kubectl describe hpa
 # describe deployments
 kubectl get deployments
 
+# apply all configmap and secret
+kubectl apply -f env-secret.yaml
+kubectl apply -f env-configmap.yaml
+
 # apply all deployments and services
 kubectl apply -f backend-feed-deployment.yaml 
 kubectl apply -f backend-user-deployment.yaml
@@ -28,7 +32,7 @@ kubectl expose deployment frontend --type=LoadBalancer --name=frontend
 kubectl expose deployment reverse-proxy --type=LoadBalancer --name=reverse-proxy
 
 # mount file to configmap
-kubectl create configmap nginx-router-config --from-file=nginx.conf
+kubectl create configmap frontend-app-config --from-file=app.config.json
 
 # mount file to secret
 kubectl create secret generic aws-secret --from-file=$HOME/.aws/credentials
