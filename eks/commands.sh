@@ -9,6 +9,7 @@ kubectl get services
 kubectl describe services
 
 # describe hpa
+kubectl autoscale deployment feed-api --cpu-percent=70 --min=3 --max=5
 kubectl describe hpa
 
 # describe deployments
