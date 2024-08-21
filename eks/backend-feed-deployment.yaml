@@ -21,7 +21,7 @@ spec:
         - containerPort: 8080
         volumeMounts:
         - name: aws-credentials
-          mountPath: /root/.aws
+          mountPath: /root/.aws/credentials
           subPath: credentials
         env:
         - name: AWS_BUCKET
