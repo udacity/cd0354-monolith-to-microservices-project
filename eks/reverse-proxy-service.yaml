@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: reverse-proxy
   labels:
-    run: reverse-proxy
+    app: reverse-proxy
 spec:
   type: LoadBalancer
   ports:
   - port: 8080
     protocol: TCP
   selector:
-    run: reverse-proxy
+    app: reverse-proxy
