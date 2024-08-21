@@ -23,6 +23,8 @@ services:
     container_name: udagram-frontend
     build:
       context: ./udagram-frontend
+    volumes:
+      - app.config.json:/usr/share/nginx/html/assets/app.config.json
     ports:
       - 8100:80
     restart: unless-stopped
