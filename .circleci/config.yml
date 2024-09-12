@@ -7,12 +7,15 @@ workflows:
       - build
 jobs:      
   build:
+    resource_class: large
     working_directory: ~/udacity-monolith-to-microservices-project
     docker:
       - image: cimg/base:2022.09
       - image: cimg/node:13
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 20.10.14 
       - run:    
           name: build
           command: |
