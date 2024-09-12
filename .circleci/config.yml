@@ -9,7 +9,6 @@ jobs:
   build:
     working_directory: ~/udacity-monolith-to-microservices-project
     docker:
-      - image: cimg/base:2022.09
       - image: cimg/node:14.15.0
     steps:
       - checkout
