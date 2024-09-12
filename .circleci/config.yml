@@ -13,6 +13,8 @@ jobs:
       - image: cimg/node:13
     steps:
       - checkout
+      - setup_remote_docker:
+          version: default
       - run:    
           name: build
           command: |
