@@ -9,12 +9,12 @@ jobs:
   build:
     working_directory: ~/udacity-monolith-to-microservices-project
     docker:
-      - image: cimg/base:2024.09
-      - image: cimg/node:13
+      - image: cimg/base:2023.09
+      - image: cimg/node:16.20.2
     steps:
       - checkout
       - setup_remote_docker:
-          version: 25.0.3
+          version: 20.10.23
       - run:    
           name: build
           command: |
