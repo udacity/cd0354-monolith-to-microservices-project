@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: backend-api-feed
+  name: backend-api-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: backend-api-feed
+  template:
+    metadata:
+      labels:
+        service: backend-api-feed
+    spec:
+      containers:
+      - image: quangnm1999/udagram-api-feed
+        name: backend-api-feed
+        imagePullPolicy: Always  
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limits:
+            memory: "2048Mi"
+            cpu: "500m"                  
+        env:
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_HOST
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_BUCKET
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_PROFILE
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL  
+        volumeMounts:
+        - name: aws-secret
+          mountPath: "/root/.aws/"
+          readOnly: true        
+      restartPolicy: Always
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret   

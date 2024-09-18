@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:16
+    environment:      
+      DOCKERHUB_PASSWORD: $DOCKER_PASSWORD
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build and push Docker image
+          command: |
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker-compose -f docker-compose-build.yaml build --parallel
+            docker-compose -f docker-compose-build.yaml push
