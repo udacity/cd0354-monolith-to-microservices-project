@@ -2,26 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: backend-api-user
-  name: backend-api-user
+    service: backend-user
+  name: backend-user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: backend-api-user
+      service: backend-user
   template:
     metadata:
       labels:
-        service: backend-api-user
+        service: backend-user
     spec:
       containers:
       - image: quangnm1999/udagram-api-user
-        name: backend-api-user
+        name: backend-user
         imagePullPolicy: Always  
         resources:
           requests:
             memory: "64Mi"
-            cpu: "200m"
+            cpu: "250m"
           limits:
             memory: "2048Mi"
             cpu: "500m"                  

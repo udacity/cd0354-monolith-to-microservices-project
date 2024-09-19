@@ -14,4 +14,7 @@ jobs:
           command: |
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker-compose -f docker-compose-build.yaml build --parallel
-            docker-compose -f docker-compose-build.yaml push
+            docker push quangnm1999/udagram-api-feed
+            docker push quangnm1999/udagram-api-user
+            docker push quangnm1999/udagram-frontend
+            docker push quangnm1999/reverseproxy            

@@ -34,7 +34,7 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
-  frontend:
+  udagram-frontend:
     image: quangnm1999/udagram-frontend
     ports:
       - "8100:80"
