@@ -9,10 +9,12 @@ spec:
   selector:
     matchLabels:
         service: udagram-frontend
+        api: external
   template:
     metadata:
       labels:
         service: udagram-frontend
+        api: external
     spec:
       containers:
       - image: quangnm1999/udagram-frontend

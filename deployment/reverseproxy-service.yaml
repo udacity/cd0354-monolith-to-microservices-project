@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: reverseproxy
+    service: reverseproxy
   name: reverseproxy
 spec:
   ports:
@@ -10,5 +10,4 @@ spec:
     port: 8080
     targetPort: 8080
   selector:
-    app: reverseproxy
-  type: LoadBalancer  
+    service: reverseproxy

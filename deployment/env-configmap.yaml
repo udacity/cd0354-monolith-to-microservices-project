@@ -4,9 +4,9 @@ data:
   POSTGRES_USERNAME: postgres
   POSTGRES_PASSWORD: postgres
   POSTGRES_DB: postgres
-  POSTGRES_HOST: database-udagram.csorpqanefje.us-east-1.rds.amazonaws.com    
-  POSTGRES_POST: '5432'
-  AWS_BUCKET: udagram-12092024
+  POSTGRES_HOST: postgres.codctohgfvrc.us-east-1.rds.amazonaws.com
+  POSTGRES_POST: "5432"
+  AWS_BUCKET: mybucket-project03
   AWS_PROFILE: default
   AWS_REGION: us-east-1
   JWT_SECRET: udagram@2024

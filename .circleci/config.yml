@@ -1,20 +1,47 @@
 version: 2.1
 
 jobs:
-  build:
+  init-microservices-application:
     docker:
-      - image: circleci/node:16
-    environment:      
-      DOCKERHUB_PASSWORD: $DOCKER_PASSWORD
+      - image: circleci/node:14.17.6
     steps:
       - checkout
-      - setup_remote_docker
+  build-docker:
+    machine: true
+    steps:
+      - checkout
       - run:
-          name: Build and push Docker image
+          name: Build docker container
           command: |
-            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker-compose -f docker-compose-build.yaml build --parallel
-            docker push quangnm1999/udagram-api-feed
-            docker push quangnm1999/udagram-api-user
-            docker push quangnm1999/udagram-frontend
-            docker push quangnm1999/reverseproxy            
+            echo "--------- Building ------------"
+
+            docker build -t udagram-api-feed ./udagram-api-feed
+            docker tag udagram-api-feed quangnm1999/udagram-api-feed:v1
+
+            docker build -t udagram-api-user ./udagram-api-user
+            docker tag udagram-api-user quangnm1999/udagram-api-user:v1
+            
+            docker build -t udagram-frontend ./udagram-frontend
+            docker tag udagram-frontend quangnm1999/udagram-frontend:v1
+
+            docker build -t udagram-reverseproxy ./udagram-reverseproxy
+            docker tag udagram-reverseproxy quangnm1999/reverseproxy:v1
+
+            echo "-------- All images succesfully built----------"
+
+            echo " ------- login in to hub--------"
+
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+            echo "-------------- Pushing images to dockerhub-------"
+            
+            docker push quangnm1999/udagram-api-feed:v1
+            docker push quangnm1999/udagram-api-user:v1
+            docker push quangnm1999/udagram-frontend:v1
+            docker push quangnm1999/reverseproxy:v1
+workflows:
+  default:
+    jobs:
+      - init-microservices-application
+      - build-docker:
+          requires: [init-microservices-application]
