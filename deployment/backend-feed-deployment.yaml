@@ -5,7 +5,7 @@ metadata:
     service: backend-feed
   name: backend-feed
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       service: backend-feed
@@ -15,7 +15,7 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: quangnm1999/udagram-api-feed
+      - image: quangnm1999/udagram-api-feed:latest
         name: backend-feed
         imagePullPolicy: Always  
         resources:
