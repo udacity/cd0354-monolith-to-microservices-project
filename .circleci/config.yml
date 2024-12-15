@@ -126,11 +126,14 @@ jobs:
       - run:
           name: "Check docker version"
           command: "docker --version"
-          
+
+      - run:
+          name: Debug Environment Variables
+          command: echo "Username: $DOCKER_USERNAME"
       - run:
           name: "docker login"
           command: |
-            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
           
       - run:
           name: "push feed"
