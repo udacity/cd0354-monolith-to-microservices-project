@@ -129,7 +129,8 @@ jobs:
 
       - run:
           name: Debug Environment Variables
-          command: echo "Username: $DOCKER_USERNAME"
+          command: | 
+            echo "Username: $DOCKER_USERNAME"
       - run:
           name: "docker login"
           command: |
