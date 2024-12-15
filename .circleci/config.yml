@@ -43,6 +43,7 @@ jobs:
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
+      - setup_remote_docker
       - checkout
       - run:
           name: "Check docker version"
@@ -68,6 +69,7 @@ jobs:
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
+      - setup_remote_docker
       - checkout
       - run:
           name: "Check docker version"
@@ -93,6 +95,7 @@ jobs:
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
+      - setup_remote_docker
       - checkout
       - run:
           name: "Check docker version"
@@ -118,6 +121,7 @@ jobs:
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
+      - setup_remote_docker
       - checkout
       - run:
           name: "Check docker version"
