@@ -163,5 +163,4 @@ workflows:
               - build-user
               - build-frontend
               - build-webservice
-              - build-push-images
       
