@@ -24,12 +24,19 @@ jobs:
           command: "docker --version"
           
       - run:
+          name: "docker login"
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          
+      - run:
           name: "build feed api"
           command: "docker build -t udagram-api-feed ./udagram-api-feed"
 
       - run:
-          name: "tag image"
-          command: "docker tag udagram-api-feed dailebao/udagram-api-feed:v1"
+          name: "push image"
+          command: | 
+            docker tag udagram-api-feed dailebao/udagram-api-feed:v1
+            docker push dailebao/udagram-api-feed:v1
 
   build-user:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
@@ -50,12 +57,19 @@ jobs:
           command: "docker --version"
           
       - run:
+          name: "docker login"
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin          
+          
+      - run:
           name: "build user api"
           command: "docker build -t udagram-api-user ./udagram-api-user"
 
       - run:
-          name: "tag image"
-          command: "docker tag udagram-api-user dailebao/udagram-api-user:v1"
+          name: "push image"
+          command: | 
+            docker tag udagram-api-user dailebao/udagram-api-user:v1
+            docker push dailebao/udagram-api-user:v1
 
   build-frontend:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
@@ -74,14 +88,21 @@ jobs:
       - run:
           name: "Check docker version"
           command: "docker --version"
+
+      - run:
+          name: "docker login"
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           
       - run:
           name: "build udagram-frontend"
           command: "docker build -t udagram-frontend ./udagram-frontend"
 
       - run:
-          name: "tag image"
-          command: "docker tag udagram-frontend dailebao/udagram-frontend:v1"
+          name: "push image"
+          command: | 
+            docker tag udagram-frontend dailebao/udagram-frontend:v1
+            docker push dailebao/udagram-frontend:v1
 
   build-webservice:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
@@ -102,55 +123,19 @@ jobs:
           command: "docker --version"
           
       - run:
+          name: "docker login"
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin         
+          
+      - run:
           name: "build udagram-reverseproxy"
           command: "docker build -t udagram-reverseproxy ./udagram-reverseproxy"
 
       - run:
           name: "tag image"
-          command: "docker tag udagram-reverseproxy dailebao/udagram-reverseproxy:v1"
-
-  build-push-images:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      # Specify the version you desire here
-      # See: https://circleci.com/developer/images/image/cimg/base
-      - image: cimg/base:current
-    
-    # Add steps to the job
-    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
-    steps:
-      # Checkout the code as the first step.
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: "Check docker version"
-          command: "docker --version"
-
-      - run:
-          name: Debug Environment Variables
           command: | 
-            echo "Username: $DOCKER_USERNAME"
-      - run:
-          name: "docker login"
-          command: |
-            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          
-      - run:
-          name: "push feed"
-          command: "docker push dailebao/udagram-api-feed:v1"
-          
-      - run:
-          name: "push user"
-          command: "docker push dailebao/udagram-api-user:v1"
-
-      - run:
-          name: "push frontend"
-          command: "docker push dailebao/udagram-frontend:v1"      
-          
-      - run:
-          name: "push reverseproxy"
-          command: "docker push dailebao/udagram-reverseproxy:v1"            
+            docker tag udagram-reverseproxy dailebao/udagram-reverseproxy:v1
+            docker push dailebao/udagram-reverseproxy:v1         
           
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -162,10 +147,4 @@ workflows:
       - build-user
       - build-frontend
       - build-webservice
-      - build-push-images:
-          requires:
-              - build-feed
-              - build-user
-              - build-frontend
-              - build-webservice
       
