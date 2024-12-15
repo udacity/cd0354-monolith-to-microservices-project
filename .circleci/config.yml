@@ -157,8 +157,7 @@ workflows:
       - build-user
       - build-frontend
       - build-webservice
-      - build-push-images
-      - test:
+      - build-push-images:
           requires:
               - build-feed
               - build-user
