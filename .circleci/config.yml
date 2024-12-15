@@ -129,7 +129,8 @@ jobs:
           
       - run:
           name: "docker login"
-          command: "echo 'Crs@20201' | docker login -u 'Dailebao' --password-stdin"
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           
       - run:
           name: "push feed"
