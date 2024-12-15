@@ -158,4 +158,9 @@ workflows:
       - build-frontend
       - build-webservice
       - build-push-images
+          requires:
+            - build-feed
+            - build-user
+            - build-frontend
+            - build-webservice
       
