@@ -134,7 +134,7 @@ jobs:
       - run:
           name: "docker login"
           command: |
-            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           
       - run:
           name: "push feed"
