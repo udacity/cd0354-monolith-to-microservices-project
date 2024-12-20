@@ -31,6 +31,10 @@ Once your database is set up, set the config values for environment variables pr
 * If you set up a local database, your `POSTGRES_HOST` is most likely `localhost`
 * If you set up an RDS database, your `POSTGRES_HOST` is most likely in the following format: `***.****.us-west-1.rds.amazonaws.com`. You can find this value in the AWS console's RDS dashboard.
 
+* Database: mlt
+* Username: postgres
+* Password: 6nZTRzJDCx4AT2Nurbr1
+* Endpoint: mlt.ckakzbejork3.us-east-1.rds.amazonaws.com
 
 ### 2. S3
 Create an AWS S3 bucket. The S3 bucket is used to store images that are displayed in Udagram.
@@ -71,6 +75,10 @@ Launch the frontend app locally.
     ```
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
+* Node: 14
+* npm install (not audit fix)
+* run: npm start (not ionic build)
+
 ## Tips
 1. Take a look at `udagram-api` -- does it look like we can divide it into two modules to be deployed as separate microservices?
 2. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
@@ -84,3 +92,6 @@ Launch the frontend app locally.
     ```
 4. `set_env.sh` is really for your backend application. Frontend applications have a different notion of how to store configurations. Configurations for the application endpoints can be configured inside of the `environments/environment.*ts` files.
 5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
+
+
+##
