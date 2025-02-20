@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { lastValueFrom } from 'rxjs';
 
 const API_HOST = environment.apiHost;
 
@@ -28,8 +29,11 @@ export class ApiService {
   }
 
   setAuthToken(token) {
-    this.httpOptions.headers = this.httpOptions.headers.append('Authorization', `jwt ${token}`);
     this.token = token;
+    this.httpOptions.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `jwt ${token}`
+    });
   }
 
   get(endpoint): Promise<any> {
@@ -55,21 +59,30 @@ export class ApiService {
   }
 
   async upload(endpoint: string, file: File, payload: any): Promise<any> {
-    const signed_url = (await this.get(`${endpoint}/signed-url/${file.name}`)).url;
+    try {
+      // Get signed URL with JWT auth
+      const signedUrlResponse = await this.get(`${endpoint}/signed-url/${file.name}`);
+      const signed_url = signedUrlResponse.url;
 
-    const headers = new HttpHeaders({'Content-Type': file.type});
-    const req = new HttpRequest( 'PUT', signed_url, file,
-                                  {
-                                    headers: headers,
-                                    reportProgress: true, // track progress
-                                  });
+      // Create a simple PUT request with minimal headers
+      const uploadResponse = await lastValueFrom(
+        this.http.put(signed_url, file, {
+          headers: new HttpHeaders({
+            'Content-Type': file.type
+          }),
+          observe: 'response'
+        })
+      );
 
-    return new Promise ( resolve => {
-        this.http.request(req).subscribe((resp) => {
-        if (resp && (<any> resp).status && (<any> resp).status === 200) {
-          resolve(this.post(endpoint, payload));
-        }
-      });
-    });
+      if (uploadResponse.status === 200) {
+        // If upload successful, post the metadata
+        return await this.post(endpoint, payload);
+      } else {
+        throw new Error('Upload failed');
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      throw error;
+    }
   }
 }

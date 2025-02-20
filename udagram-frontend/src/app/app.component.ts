@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MenubarComponent } from './menubar/menubar.component';
 import { environment } from '../environments/environment';
+import { StatusBar } from '@capacitor/status-bar';
+import { SplashScreen } from '@capacitor/splash-screen';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  standalone: true,
+  imports: [
+    IonicModule,
+    CommonModule,
+    RouterModule,
+    MenubarComponent
+  ]
 })
 export class AppComponent {
   public appPages = [
@@ -20,19 +30,22 @@ export class AppComponent {
 
   public appName = environment.appName;
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+  constructor(private platform: Platform) {
     this.initializeApp();
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      document.title = environment.appName;
-    });
+  async initializeApp() {
+    await this.platform.ready();
+    
+    // Only try to use Capacitor plugins on mobile platforms
+    if (this.platform.is('capacitor')) {
+      try {
+        await StatusBar.setBackgroundColor({ color: '#3880ff' });
+        await SplashScreen.hide();
+      } catch (err) {
+        console.warn('Capacitor plugins not available', err);
+      }
+    }
+    document.title = environment.appName;
   }
 }

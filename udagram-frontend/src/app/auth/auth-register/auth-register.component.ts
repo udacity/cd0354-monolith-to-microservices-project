@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
-import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-auth-register',
   templateUrl: './auth-register.component.html',
   styleUrls: ['./auth-register.component.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    CommonModule,
+    ReactiveFormsModule
+  ]
 })
 export class AuthRegisterComponent implements OnInit {
-
-  registerForm: FormGroup;
-  error: string;
+  registerForm!: FormGroup;
+  error: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,27 +41,29 @@ export class AuthRegisterComponent implements OnInit {
     }, { validators: this.passwordsMatch });
   }
 
-  onSubmit($event) {
+  onSubmit($event: Event) {
     $event.preventDefault();
 
     if (!this.registerForm.valid) { return; }
 
     const newuser: User = {
-      email: this.registerForm.controls.email.value,
-      name: this.registerForm.controls.name.value
+      email: this.registerForm.controls['email'].value,
+      name: this.registerForm.controls['name'].value
     };
 
-    this.auth.register(newuser, this.registerForm.controls.password.value)
-              .then((user) => {
-                this.modal.dismiss();
-              })
-             .catch((e) => {
-              this.error = e.statusText;
-              throw e;
-             });
+    this.auth.register(newuser, this.registerForm.controls['password'].value)
+      .then((user) => {
+        this.modal.dismiss();
+      })
+      .catch((e) => {
+        this.error = e.statusText;
+        throw e;
+      });
   }
 
   passwordsMatch(group: FormGroup) {
-    return group.controls.password.value === group.controls.password_confirm.value ? null : { passwordsMisMatch: true };
+    return group.controls['password'].value === group.controls['password_confirm'].value 
+      ? null 
+      : { passwordsMisMatch: true };
   }
 }

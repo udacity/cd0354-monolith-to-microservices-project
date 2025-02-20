@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { AuthMenuUserComponent } from './auth-menu-user/auth-menu-user.component';
-
 import { AuthService } from '../services/auth.service';
 import { AuthLoginComponent } from '../auth-login/auth-login.component';
 import { AuthRegisterComponent } from '../auth-register/auth-register.component';
@@ -10,29 +10,33 @@ import { AuthRegisterComponent } from '../auth-register/auth-register.component'
   selector: 'app-auth-menu-button',
   templateUrl: './auth-menu-button.component.html',
   styleUrls: ['./auth-menu-button.component.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    CommonModule
+  ]
 })
-export class AuthMenuButtonComponent implements OnInit {
-
+export class AuthMenuButtonComponent {
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     public modalController: ModalController
-    ) {}
+  ) {}
 
-  async presentmodal(ev: any) {
+  async presentmodal() {
     const modal = await this.modalController.create({
       component: AuthMenuUserComponent,
     });
     return await modal.present();
   }
 
-  async presentLogin(ev: any) {
+  async presentLogin() {
     const modal = await this.modalController.create({
       component: AuthLoginComponent,
     });
     return await modal.present();
   }
 
-  async presentRegister(ev: any) {
+  async presentRegister() {
     const modal = await this.modalController.create({
       component: AuthRegisterComponent,
     });
@@ -42,7 +46,4 @@ export class AuthMenuButtonComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
-
-  ngOnInit() {}
-
 }
