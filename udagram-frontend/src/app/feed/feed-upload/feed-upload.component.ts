@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule, LoadingController, ModalController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { FeedProviderService } from '../services/feed.provider.service';
-
-import { LoadingController, ModalController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-feed-upload',
   templateUrl: './feed-upload.component.html',
   styleUrls: ['./feed-upload.component.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    CommonModule,
+    ReactiveFormsModule
+  ]
 })
 export class FeedUploadComponent implements OnInit {
-  previewDataUrl;
-  file: File;
-  uploadForm: FormGroup;
+  previewDataUrl: string | ArrayBuffer | null = null;
+  file: File | null = null;
+  uploadForm!: FormGroup;
 
   constructor(
     private feed: FeedProviderService,
@@ -30,35 +34,36 @@ export class FeedUploadComponent implements OnInit {
   }
 
   setPreviewDataUrl(file: Blob) {
-    const reader  = new FileReader();
+    const reader = new FileReader();
     reader.onloadend = () => {
       this.previewDataUrl = reader.result;
     };
-
     reader.readAsDataURL(file);
   }
 
-  selectImage(event) {
-    const file = event.srcElement.files;
+  selectImage(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    const fileList: FileList | null = element.files;
 
-    if (!file) {
-      return;
+    if (fileList) {
+      this.file = fileList[0];
+      this.setPreviewDataUrl(this.file);
     }
-    this.file = file[0];
-    this.setPreviewDataUrl(this.file);
-
   }
 
-  onSubmit($event) {
-    $event.preventDefault();
-    this.loadingController.create();
+  async onSubmit(event: Event) {
+    event.preventDefault();
+    const loading = await this.loadingController.create();
+    await loading.present();
 
     if (!this.uploadForm.valid || !this.file) { return; }
-    this.feed.uploadFeedItem(this.uploadForm.controls.caption.value, this.file)
-      .then((result) => {
-        this.modalController.dismiss();
-        this.loadingController.dismiss();
-      });
+
+    try {
+      await this.feed.uploadFeedItem(this.uploadForm.controls['caption'].value, this.file);
+      await this.modalController.dismiss();
+    } finally {
+      await loading.dismiss();
+    }
   }
 
   cancel() {

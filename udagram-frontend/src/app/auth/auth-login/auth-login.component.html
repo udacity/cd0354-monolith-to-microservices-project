@@ -1,7 +1,7 @@
 <form [formGroup]="loginForm" (submit)="onSubmit($event)">
   <ion-item>
     <ion-label position="floating" color="primary">Email</ion-label>
-    <ion-input type="text" formControlName="email" required></ion-input>
+    <ion-input type="email" formControlName="email" required></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating" color="primary">Password</ion-label>
@@ -13,5 +13,7 @@
     [disabled]="!loginForm.valid">
     Log In
   </ion-button>
-  {{error}}
+  <ion-text color="danger" *ngIf="error">
+    <p>{{ error }}</p>
+  </ion-text>
 </form>

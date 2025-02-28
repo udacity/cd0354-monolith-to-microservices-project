@@ -1,5 +1,11 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
 ion-title { 
-    font-weight: bold;
-    font-family: 'Dancing Script', cursive;
-    font-size: 180%;
-  }
+  font-weight: bold;
+  font-family: 'Dancing Script', cursive;
+  font-size: 180%;
+}
