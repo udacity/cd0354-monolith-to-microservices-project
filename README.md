@@ -71,16 +71,4 @@ Launch the frontend app locally.
     ```
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
-## Tips
-1. Take a look at `udagram-api` -- does it look like we can divide it into two modules to be deployed as separate microservices?
-2. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
-3. It's useful to "lint" your code so that changes in the codebase adhere to a coding standard. This helps alleviate issues when developers use different styles of coding. `eslint` has been set up for TypeScript in the codebase for you. To lint your code, run the following:
-    ```bash
-    npx eslint --ext .js,.ts src/
-    ```
-    To have your code fixed automatically, run
-    ```bash
-    npx eslint --ext .js,.ts src/ --fix
-    ```
-4. `set_env.sh` is really for your backend application. Frontend applications have a different notion of how to store configurations. Configurations for the application endpoints can be configured inside of the `environments/environment.*ts` files.
-5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
+
