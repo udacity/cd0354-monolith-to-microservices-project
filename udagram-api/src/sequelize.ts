@@ -16,4 +16,10 @@ export const sequelize = new Sequelize({
     }
   },
   'storage': ':memory:',
+  dialectOptions: {
+      ssl: {
+        require: true, // Fixes SequelizeConnectionError
+        rejectUnauthorized: false // This line will fix new error with above line only.
+      }
+    },
 });
