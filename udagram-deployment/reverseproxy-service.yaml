@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: reverseproxy
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: reverseproxy
   ports:

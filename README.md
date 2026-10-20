@@ -8,7 +8,7 @@ The project is split into the following services, each deployable as its own Doc
 3. `udagram-api-user` - Backend `/api/v0/users` RESTful API (Node-Express)
 4. `udagram-reverseproxy` - Nginx reverse proxy routing frontend requests to the two backend APIs
 
-Use `docker-compose-build.yaml` to build all four images and `docker-compose.yaml` to run them together locally (see "Run with Docker Compose" below). CI is handled by `.travis.yml`, and Kubernetes manifests for deploying the Docker Hub images live in `udagram-deployment/`.
+Use `docker-compose-build.yaml` to build all four images and `docker-compose.yaml` to run them together locally (see "Run with Docker Compose" below). CI/CD is handled by the GitHub Actions workflow in `.github/workflows/docker-build-push.yml`, which builds and pushes all four images to Docker Hub on every push (functionally equivalent to the course's suggested Travis CI pipeline; a legacy `.travis.yml` is retained for reference but is not the active pipeline). Kubernetes manifests for deploying the Docker Hub images to an EKS (or any Kubernetes) cluster live in `udagram-deployment/` (see "Deploy to Kubernetes" below).
 
 ## Getting Started
 > _tip_: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
@@ -93,6 +93,28 @@ Launch the frontend app locally.
 3. Visit `http://localhost:8100` in your browser to verify the application is running end-to-end.
 
 > Replace the `alisaber21` placeholder in `docker-compose-build.yaml`, `docker-compose.yaml`, `.travis.yml`, and `udagram-deployment/*.yaml` with your real Docker Hub account before pushing/deploying images.
+
+## Deploy to Kubernetes (EKS)
+The `udagram-deployment/` directory contains Deployment, Service, and HorizontalPodAutoscaler manifests for all four services, pulling the images already published to Docker Hub by the GitHub Actions pipeline.
+
+1. **Create a cluster** (or point `kubectl`/`aws eks update-kubeconfig` at an existing one):
+    ```bash
+    eksctl create cluster --name udagram --region us-east-1 --nodes 2 --node-type t3.medium
+    ```
+2. **Fill in the config/secret templates** with real values (do not commit real secrets):
+   - `udagram-deployment/env-configmap.yaml`: `POSTGRES_HOST`, `AWS_BUCKET`, etc.
+   - `udagram-deployment/env-secret.yaml`: `POSTGRES_PASSWORD`, `JWT_SECRET`
+   - `udagram-deployment/aws-secret.yaml`: base64-encoded `~/.aws/credentials` (`cat ~/.aws/credentials | base64`, or build one from temporary STS creds if running in AWS CloudShell)
+3. **Apply everything and verify:**
+    ```bash
+    cd udagram-deployment
+    kubectl apply -f .
+    kubectl get pods
+    kubectl get services   # reverseproxy is type LoadBalancer; wait for an EXTERNAL-IP/hostname
+    kubectl get hpa
+    ```
+   Or run `./deploy.sh` from `udagram-deployment/` for a scripted version of steps 2-3 (builds `aws-secret.yaml` automatically from AWS CloudShell's temporary credentials).
+4. Visit `http://<reverseproxy-external-hostname>:8080/api/v0/feed` to confirm the deployment is reachable end-to-end.
 
 ## Tips
 1. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
