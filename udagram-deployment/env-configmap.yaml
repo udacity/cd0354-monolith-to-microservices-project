@@ -1,0 +1,13 @@
+# Non-confidential configuration values shared across backend deployments.
+# Replace placeholder values with your real environment before applying.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  POSTGRES_HOST: "postgres.example.rds.amazonaws.com"
+  POSTGRES_DB: "postgres"
+  AWS_BUCKET: "udagram-image-filtering-microservice"
+  AWS_REGION: "us-east-1"
+  AWS_PROFILE: "default"
+  URL: "http://localhost:8100"

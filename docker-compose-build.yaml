@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  backend-feed:
+    build:
+      context: ./udagram-api-feed
+      dockerfile: Dockerfile
+    image: alisaber21/udagram-api-feed:v1
+
+  backend-user:
+    build:
+      context: ./udagram-api-user
+      dockerfile: Dockerfile
+    image: alisaber21/udagram-api-user:v1
+
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+      dockerfile: Dockerfile
+    image: alisaber21/reverseproxy:v1
+
+  frontend:
+    build:
+      context: ./udagram-frontend
+      dockerfile: Dockerfile
+    image: alisaber21/udagram-frontend:v1

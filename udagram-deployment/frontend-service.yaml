@@ -1,0 +1,15 @@
+# Default type is ClusterIP. To expose externally, either port-forward
+# this service, or re-expose it as type LoadBalancer, e.g.:
+#   kubectl expose deployment frontend --type=LoadBalancer --name=publicfrontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 8100
+      targetPort: 80
